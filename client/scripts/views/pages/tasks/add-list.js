@@ -3,12 +3,12 @@ import Component from '../../../views/component.js';
 import Tasks from '../../../models/tasks.js';
 
 class AddAndList extends Component {
-	static async getData() {
+    static async getData() {
         return await Tasks.getTasksList();
     }
 
     static async render(tasks) {
-		return `
+        return `
             <h1 class="page-title">Tasks List</h1>
         
             <div class="task-add">
@@ -39,23 +39,23 @@ class AddAndList extends Component {
     static afterRender() {
         this.setActions();
 
-		this.countTasksAmount();
+        this.countTasksAmount();
     }
 
     static setActions() {
         const taskTitleField = document.getElementsByClassName('task-add__title')[0],
             taskDescriptionField = document.getElementsByClassName('task-add__description')[0],
-			addTaskBtn = document.getElementsByClassName('task-add__btn-add')[0],
+            addTaskBtn = document.getElementsByClassName('task-add__btn-add')[0],
             sortTasksListBtn = document.getElementsByClassName('tasks__btn-sort')[0],
-			tasksContainer = document.getElementsByClassName('tasks')[0],
-			clearTasksListBtn = tasksContainer.getElementsByClassName('tasks__btn-clear')[0],
-			tasksList = tasksContainer.getElementsByClassName('tasks__list')[0];
+            tasksContainer = document.getElementsByClassName('tasks')[0],
+            clearTasksListBtn = tasksContainer.getElementsByClassName('tasks__btn-clear')[0],
+            tasksList = tasksContainer.getElementsByClassName('tasks__list')[0];
 
         taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();
         addTaskBtn.onclick = () => this.addTask(taskTitleField, taskDescriptionField, addTaskBtn,
-                                                clearTasksListBtn, tasksList);
+            clearTasksListBtn, tasksList);
 
-		tasksContainer.onclick = evt => {
+        tasksContainer.onclick = evt => {
             const target = evt.target,
                 targetClassList = target.classList;
 
@@ -75,7 +75,7 @@ class AddAndList extends Component {
 
                 case targetClassList.contains('task__btn-done'):
                     this.changeTaskStatus(target.parentNode.parentNode,
-                                          target.previousElementSibling, target);
+                        target.previousElementSibling, target);
                     break;
 
                 case targetClassList.contains('task__btn-remove'):
@@ -102,7 +102,7 @@ class AddAndList extends Component {
     }
 
     static getTaskHTML(task) {
-    	const statusDone = task.status === 'Done';
+        const statusDone = task.status === 'Done';
 
         return `
             <div class="task ${statusDone ? 'task_done' : ''}" data-id="${task.id}">
@@ -110,9 +110,9 @@ class AddAndList extends Component {
                 
                 <div class="task__buttons">
                 	${!statusDone ?
-                    	`<a class="task__btn-edit button" href="#/task/${task.id}/edit">Edit</a>
+                `<a class="task__btn-edit button" href="#/task/${task.id}/edit">Edit</a>
                     	 <a class="task__btn-done button">Done</a>`
-					: ''}
+                : ''}
                     <a class="task__btn-remove button">Remove</a>   
                 </div>                            
             </div>
@@ -138,40 +138,46 @@ class AddAndList extends Component {
             `<span class="tasks__counter-total">${totalAmount}</span> ${toBeVerbForm} done`;
     }
 
-    static sortTasksList(tasksList, sortTasksBtn){
+    static sortTasksList(tasksList, sortTasksBtn) {
 
-        if (confirm('Sort?')) {
-            tasksList.innerHTML = '';
-            Tasks.sortTasksList();
+        tasksList.innerHTML = '';
+        Tasks.sortTasksList();
+
+        const tasks = Tasks.getTasksList();
+        const length = tasks.length;
+
+        for (let i = 0; i < length; i++){
+            tasksList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(tasks[i]));
         }
+    
 
     }
 
 
     static clearTasksList(tasksList, clearTasksListBtn) {
-    	if (confirm('Are you sure?')) {
-			clearTasksListBtn.disabled = true;
-			tasksList.innerHTML = '';
+        if (confirm('Are you sure?')) {
+            clearTasksListBtn.disabled = true;
+            tasksList.innerHTML = '';
 
-			Tasks.clearTasksList();
+            Tasks.clearTasksList();
 
-			this.countTasksAmount();
-		}
-	}
+            this.countTasksAmount();
+        }
+    }
 
     static redirectToTaskInfo(id) {
         location.hash = `#/task/${id}`;
     }
 
     static changeTaskStatus(taskContainer, editTaskBtn, doneTaskBtn) {
-    	taskContainer.classList.add('task_done');
-		editTaskBtn.remove();
-		doneTaskBtn.remove();
+        taskContainer.classList.add('task_done');
+        editTaskBtn.remove();
+        doneTaskBtn.remove();
 
         Tasks.setTaskStatus(taskContainer.dataset);
 
-		this.countTasksAmount();
-	}
+        this.countTasksAmount();
+    }
 
     static removeTask(tasksList, taskContainer, clearTasksListBtn) {
         if (confirm('Are you sure?')) {
@@ -180,7 +186,7 @@ class AddAndList extends Component {
 
             Tasks.removeSelectedTask(taskContainer.dataset);
 
-			this.countTasksAmount();
+            this.countTasksAmount();
         }
     }
 }

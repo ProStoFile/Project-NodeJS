@@ -6,7 +6,7 @@
 * {
   box-sizing: border-box;
   text-decoration: none;
-  font-family: sans-serif !important;
+  font-family: Montserrat !important;
 }
 
 body {
@@ -130,7 +130,7 @@ body {
 }
 
 .tasks {
-  max-width: 600px;
+  max-width: 1200px;
   margin: 30px auto 0;
 
   &__additional {
@@ -155,28 +155,48 @@ body {
     padding: 8px 16px;
   }
 
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px 0px;
+  }
+
   .task {
     display: flex;
     justify-content: space-between;
-    margin: 10px 0;
-    padding: 10px;
+    flex-direction: column;
+    min-height: 100px;
+    min-width: 150px;
+    max-width: 250px;
+    margin: 10px 10px;
+    padding: 0px 15px;
+    flex: 0 1 25%;
     border: solid black 1px;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all .3s;
+    
 
     &:hover {
       background: black;
       border-color: white;
 
-      & > .task__title {
+      &>.task__title {
         color: white;
       }
 
-      & > .task__buttons .button {
+      &>.task__buttons .button {
         background: white;
         color: black;
       }
+    }
+
+    &__btn-remove{
+      background-color: crimson;
+    }
+
+    &__btn-edit{
+      background-color:#38ac38
     }
 
     &__title {
@@ -189,14 +209,26 @@ body {
     }
 
     &__buttons {
+      
+      margin: 0 auto;
+      padding: 0px;
+      top: 0;
+      right: 0;
+      height: 30px;
       width: 175px;
       display: flex;
-      justify-content: flex-end;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
 
       .button {
         padding: 4px 12px;
         font-size: 12px;
         margin: 0 2px;
+      }
+
+      &__button:last-child{
+        background-color: red;
       }
     }
 

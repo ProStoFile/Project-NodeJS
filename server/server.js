@@ -87,7 +87,7 @@ app.put('/api/task/:id/done', (req, res) => {
 		res.sendStatus(204);
 });
 
-app.put('http://localhost:3000/api/tasks/sort', (req, res) => {
+app.get('http://localhost:3000/api/tasks/sort', (req, res) => {
 	const tasksData = getTasksFromDB();
 	tasksData.sort((first, second) => first.description - second.description);
 	setTasksToDB(tasksData);

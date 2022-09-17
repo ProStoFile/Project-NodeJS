@@ -43,12 +43,8 @@ class Tasks {
 	}
 
 	static async sortTasksList(){
-		await fetch('http://localhost:3000/api/tasks/sort', {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-		});
+		const response = await fetch('http://localhost:3000/api/tasks/sort');
+		return await response.json();
 	}
 
 	static async removeSelectedTask(selectedTask){
