@@ -149,7 +149,6 @@ class AddAndList extends Component {
         for (let i = 0; i < length; i++){
             tasksList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(tasks[i]));
         }
-    
 
     }
 

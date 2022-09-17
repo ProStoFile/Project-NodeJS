@@ -92,7 +92,7 @@ app.get('http://localhost:3000/api/tasks/sort', (req, res) => {
 	tasksData.sort((first, second) => first.description - second.description);
 	setTasksToDB(tasksData);
 
-	res.send(TasksData);
+	res.send(tasksData);
 	res.sendStatus(204);
 
 });
