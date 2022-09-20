@@ -18,7 +18,7 @@ class Edit extends Component {
             const {id, title, description} = task;
 
             html = `
-                <h1 class="page-title">Task Edit</h1>
+                <h1 class="page-title">Изменить</h1>
                 
                 <div class="task-edit">
                     <p>
@@ -26,13 +26,13 @@ class Edit extends Component {
                         <input class="task-edit__title" type="text" value="${title}">
                     </p>
                     <p>
-                        <b>Task Description:</b>
+                        <b>Описание:</b>
                         <textarea class="task-edit__description">${(description === 'No Description') ? '' : description}</textarea>
                     </p>
             
                     <div class="task-edit__buttons">
-                        <button class="task-edit__btn-save button">Save Task</button>
-                        <a class="task-edit__btn-back button" href="#/task/${id}">Back to Info</a>
+                        <button class="task-edit__btn-save button">Сохранить</button>
+                        <a class="task-edit__btn-back button" href="#/task/${id}">Назад</a>
                     </div>
                 </div>
             `;

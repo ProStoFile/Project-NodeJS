@@ -24,8 +24,16 @@ app.post('/api/task', (req, res) => {
 
 	task.time = task.time || 'Не указано';
 	task.id = shortId.generate();
-	task.description = task.description || 'No Description';
+	task.description = task.description || 'Нет описания';
 	task.status = 'In Progress';
+	task.capacity = task.capacity || 'Объем не указан';
+
+	task.fuelUsed = task.fuelUsed || 'Не указано';
+	task.distanceTraveled = task.distanceTraveled || 'Не указано';
+	task.fuelCost = task.fuelCost 
+
+	task.totalFuelUsed = task.fuelUsed * task.distanceTraveled;
+	task.totalFuelCost = task.totalFuelUsed * task.fuelCost;
 
 	tasksData.push(task);
 	setTasksToDB(tasksData);
@@ -46,7 +54,7 @@ app.put('/api/task/:id', (req, res) => {
 		updatedTask = req.body;
 
 	task.title = updatedTask.title;
-	task.description = updatedTask.description || 'No Description';
+	task.description = updatedTask.description || 'Нет описания';
 
 	setTasksToDB(tasksData);
 

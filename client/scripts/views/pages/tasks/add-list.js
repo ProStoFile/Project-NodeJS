@@ -12,20 +12,23 @@ class AddAndList extends Component {
         
             <div class="task-add">
                 <input class="task-add__title add" type="text" placeholder="Модель">
-                <textarea class="task-add__description add" placeholder="Task description"></textarea>
+                <textarea class="task-add__description add" placeholder="Описание"></textarea>
                 <input class="task-add__time add" type="date" min="1980-01-01" max="2060-12-31">
                 <input class="task-add__capacity add" type="number" min="1" max="20" step="0.1" value="2.2">
-                <button class="task-add__btn-add button" disabled>Add Task</button>
+                <label>Израсходовано топлива<input class="task-add__fuel_used add" type="number" min="0" max="50" step="0.1" value="8.0"></label>
+                <label>Пройденное расстояние<input class="task-add__distance_traveled add" type="number" min="0" max="50" step="0.1" value="7.0"></label>
+                <label>Стоимость топлива<input class="task-add__fuel_cost add" type="number" min="0" max="50" step="0.1" value="6.0"></label>
+                <button class="task-add__btn-add button" disabled>Добавить</button>
             </div>
      
             <div class="tasks">
                 <div class="tasks__additional">
                     <p class="tasks__counter"></p>
                     
-                    <button class="tasks__btn-sort button">Sort</button>
+                    <button class="tasks__btn-sort button">Сортировать</button>
                     
                     <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>
-                        Clear Tasks List
+                        Очистить список
                     </button>
                 </div>
                 
@@ -50,13 +53,26 @@ class AddAndList extends Component {
             tasksContainer = document.getElementsByClassName('tasks')[0],
             clearTasksListBtn = tasksContainer.getElementsByClassName('tasks__btn-clear')[0],
             tasksList = tasksContainer.getElementsByClassName('tasks__list')[0],
-            taskTimeField = document.getElementsByClassName('task-add__time')[0];
+            taskTimeField = document.getElementsByClassName('task-add__time')[0],
+            taskCapacityField = document.getElementsByClassName('task-add__capacity')[0],
+            taskFuelUsedField = document.getElementsByClassName('task-add__fuel_used')[0],
+            taskDistancetraveledField = document.getElementsByClassName('task-add__distance_traveled')[0],
+            taskFuelCostField = document.getElementsByClassName('task-add__fuel_cost')[0];
 
-            taskTimeField.valueAsDate = new Date();
+        taskTimeField.valueAsDate = new Date();
 
         taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();
-        addTaskBtn.onclick = () => this.addTask(taskTitleField, taskDescriptionField, addTaskBtn,
-            clearTasksListBtn, tasksList, taskTimeField);
+        addTaskBtn.onclick = () => this.addTask(
+            taskTitleField,
+            taskDescriptionField,
+            addTaskBtn,
+            clearTasksListBtn,
+            tasksList,
+            taskTimeField,
+            taskCapacityField,
+            taskFuelUsedField,
+            taskDistancetraveledField,
+            taskFuelCostField);
 
         tasksContainer.onclick = evt => {
             const target = evt.target,
@@ -88,11 +104,26 @@ class AddAndList extends Component {
         };
     }
 
-    static async addTask(taskTitleField, taskDescriptionField, addTaskBtn, clearTasksListBtn, tasksList, taskTimeField) {
+    static async addTask(
+        taskTitleField,
+        taskDescriptionField,
+        addTaskBtn,
+        clearTasksListBtn,
+        tasksList,
+        taskTimeField,
+        taskCapacityField,
+        taskFuelUsedField,
+        taskDistancetraveledField,
+        taskFuelCostField
+    ) {
         let newTask = {
             title: taskTitleField.value.trim(),
             description: taskDescriptionField.value.trim(),
-            time: taskTimeField.value.trim()
+            time: taskTimeField.value.trim(),
+            capacity: taskCapacityField.value,
+            fuelUsed: taskFuelUsedField.value,
+            distanceTraveled: taskDistancetraveledField.value,
+            fuelCost: taskFuelCostField.value,
         };
 
         newTask = await Tasks.addTask(newTask);
@@ -117,7 +148,7 @@ class AddAndList extends Component {
                 `<a class="task__btn-edit button" href="#/task/${task.id}/edit">Edit</a>
                     	 <a class="task__btn-done button">Done</a>`
                 : ''}
-                    <a class="task__btn-remove button">Remove</a>   
+                    <a class="task__btn-remove button">Удалить</a>   
                 </div>                            
             </div>
         `;
@@ -137,16 +168,15 @@ class AddAndList extends Component {
             taskWordForm = (doneAmount === 1) ? 'task' : 'tasks';
 
         tasksCounter.innerHTML = !totalAmount ?
-            'Tasks list is empty' :
+            'Список пуст' :
             `There ${toBeVerbForm} <span class="tasks__counter-done">${doneAmount}</span> ${taskWordForm} of ` +
             `<span class="tasks__counter-total">${totalAmount}</span> ${toBeVerbForm} done`;
     }
 
-    static async sortTasksList(tasksList, sortTasksBtn) {
+    static async sortTasksList(tasksList) {
 
         tasksList.innerHTML = '';
         await Tasks.sortTasksList();
-
         const tasks = await Tasks.getTasksList();
         const length = tasks.length;
 

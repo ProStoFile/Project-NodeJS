@@ -9,34 +9,73 @@ class Info extends Component {
 		return await Tasks.getTask(this.urlParts.id);
 	}
 
-    static async render(task) {
+	static async render(task) {
 		let html;
 
 		if (!task.error) {
-			const {id, title, description, status} = task;
+			const { id,
+				title,
+				description,
+				status,
+				time,
+				capacity,
+				fuelUsed,
+				distanceTraveled,
+				fuelCost,
+				totalFuelUsed,
+				totalFuelCost } = task;
 
 			html = `
-				<h1 class="page-title">Task Info</h1>
+				<h1 class="page-title">Информация об авто</h1>
 				
 				<div class="task-info">
 					<p>
-						<b>Task Title:</b>
+						<b>Модель:</b>
 						${title}
 					</p>
 					<p>
-						<b>Task Description:</b>
+						<b>Описание:</b>
 						${description}
 					</p>
 					<p>
-						<b>Task Status:</b>
+						<b>Статус:</b>
 						${status}
+					</p>
+					<p>
+						<b>Начало действия страховки:</b>
+						${time}
+					</p>
+					<p>
+						<b>Объем:</b>
+						${capacity}
+					</p>
+					<p>Расчет расхода топлива</p>
+					<p>
+						<b>Израсходовано:</b>
+						${fuelUsed}
+					</p>
+					<p>
+						<b>Пройденное расстояние:</b>
+						${distanceTraveled}
+					</p>
+					<p>
+						<b>Стоимость топлива:</b>
+						${fuelCost}
+					</p>
+					<p>
+						<b>Израсходовано топлива:</b>
+						${totalFuelUsed}
+					</p>
+					<p>
+						<b>Затраты на топливо:</b>
+						${totalFuelCost}
 					</p>
 					
 					<div class="task-info__buttons">
-						${status !== 'Done' ?
-							`<a class="task-info__btn-edit button" href="#/task/${id}/edit">Edit Task</a>`
-						: ''}
-						<a class="task-info__btn-back button" href="#/tasks">Back to List</a>
+						${status !== 'Выполнено' ?
+					`<a class="task-info__btn-edit button" href="#/task/${id}/edit">Изменить</a>`
+					: ''}
+						<a class="task-info__btn-back button" href="#/tasks">Назад</a>
 					</div>
 				</div>
 			`;
@@ -45,7 +84,7 @@ class Info extends Component {
 		}
 
 		return html;
-    }
+	}
 }
 
 export default Info;
