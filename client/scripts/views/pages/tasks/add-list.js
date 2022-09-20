@@ -9,12 +9,11 @@ class AddAndList extends Component {
 
     static async render(tasks) {
         return `
-            <h1 class="page-title">Tasks List</h1>
         
             <div class="task-add">
                 <input class="task-add__title" type="text" placeholder="Task title">
                 <textarea class="task-add__description" placeholder="Task description"></textarea>
-             
+                <input class="task-add__time" type="text" placeholder="Task title">
                 <button class="task-add__btn-add button" disabled>Add Task</button>
             </div>
      
@@ -49,11 +48,12 @@ class AddAndList extends Component {
             sortTasksListBtn = document.getElementsByClassName('tasks__btn-sort')[0],
             tasksContainer = document.getElementsByClassName('tasks')[0],
             clearTasksListBtn = tasksContainer.getElementsByClassName('tasks__btn-clear')[0],
-            tasksList = tasksContainer.getElementsByClassName('tasks__list')[0];
+            tasksList = tasksContainer.getElementsByClassName('tasks__list')[0],
+            taskTimeField = document.getElementsByClassName('task-add__time')[0];
 
         taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();
         addTaskBtn.onclick = () => this.addTask(taskTitleField, taskDescriptionField, addTaskBtn,
-            clearTasksListBtn, tasksList);
+            clearTasksListBtn, tasksList, taskTimeField);
 
         tasksContainer.onclick = evt => {
             const target = evt.target,
@@ -85,10 +85,11 @@ class AddAndList extends Component {
         };
     }
 
-    static async addTask(taskTitleField, taskDescriptionField, addTaskBtn, clearTasksListBtn, tasksList) {
+    static async addTask(taskTitleField, taskDescriptionField, addTaskBtn, clearTasksListBtn, tasksList, taskTimeField) {
         let newTask = {
             title: taskTitleField.value.trim(),
-            description: taskDescriptionField.value.trim()
+            description: taskDescriptionField.value.trim(),
+            time: taskTimeField.value.trim()
         };
 
         newTask = await Tasks.addTask(newTask);
@@ -138,15 +139,15 @@ class AddAndList extends Component {
             `<span class="tasks__counter-total">${totalAmount}</span> ${toBeVerbForm} done`;
     }
 
-    static sortTasksList(tasksList, sortTasksBtn) {
+    static async sortTasksList(tasksList, sortTasksBtn) {
 
         tasksList.innerHTML = '';
-        Tasks.sortTasksList();
+        await Tasks.sortTasksList();
 
-        const tasks = Tasks.getTasksList();
+        const tasks = await Tasks.getTasksList();
         const length = tasks.length;
 
-        for (let i = 0; i < length; i++){
+        for (let i = 0; i < length; i++) {
             tasksList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(tasks[i]));
         }
 
