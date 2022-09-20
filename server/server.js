@@ -104,7 +104,3 @@ app.get('/api/tasks/sort', (req, res) => {
 	res.send(tasksData);
 
 });
-
-
-
-

@@ -11,9 +11,10 @@ class AddAndList extends Component {
         return `
         
             <div class="task-add">
-                <input class="task-add__title" type="text" placeholder="Task title">
-                <textarea class="task-add__description" placeholder="Task description"></textarea>
-                <input class="task-add__time" type="text" placeholder="Task title">
+                <input class="task-add__title add" type="text" placeholder="Модель">
+                <textarea class="task-add__description add" placeholder="Task description"></textarea>
+                <input class="task-add__time add" type="date" min="1980-01-01" max="2060-12-31">
+                <input class="task-add__capacity add" type="number" min="1" max="20" step="0.1" value="2.2">
                 <button class="task-add__btn-add button" disabled>Add Task</button>
             </div>
      
@@ -50,6 +51,8 @@ class AddAndList extends Component {
             clearTasksListBtn = tasksContainer.getElementsByClassName('tasks__btn-clear')[0],
             tasksList = tasksContainer.getElementsByClassName('tasks__list')[0],
             taskTimeField = document.getElementsByClassName('task-add__time')[0];
+
+            taskTimeField.valueAsDate = new Date();
 
         taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();
         addTaskBtn.onclick = () => this.addTask(taskTitleField, taskDescriptionField, addTaskBtn,
