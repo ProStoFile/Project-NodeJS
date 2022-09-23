@@ -5,11 +5,11 @@ class About extends Component {
         return `
         <body>
     <div class="cars__container">
-        <img src="styles/img/car7.png" class="car__one translate" data-speed="-0.4" alt="">
-        <img src="styles/img/car8.png" class="car__two translate" data-speed="-0.2" alt="">
-        <img src="styles/img/car10.png" class="car__three translate" data-speed="-0.1" alt="">
-        <img src="styles/img/car2.png" class="car__four translate" data-speed="0.1" alt="">
-        <img src="styles/img/garage4.jpg" class="cars__background translate" data-speed="0.5" alt="">
+        <img src="styles/img/car14.png" class="car__one translate" data-speed="-0.9" alt="">
+        <img src="styles/img/car10.png" class="car__two translate" data-speed="-0.5" alt="">
+        <img src="styles/img/car9.png" class="car__three translate" data-speed="-0.1" alt="">
+        <img src="styles/img/car16.png" class="car__four translate" data-speed="0.2" alt="">
+        <img src="styles/img/garage5.jpg" class="cars__background translate" data-speed="0.5" alt="">
     </div>
 
     <section class="cars__section">
