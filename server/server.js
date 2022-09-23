@@ -22,7 +22,7 @@ app.post('/api/task', (req, res) => {
 	const tasksData = getTasksFromDB(),
 		task = req.body;
 
-	task.time = task.time || 'Не указано';
+	task.dateInsuranceStart = task.dateInsuranceStart || 'Не указано';
 	task.id = shortId.generate();
 	task.description = task.description || 'Нет описания';
 	task.status = 'In Progress';
@@ -30,10 +30,21 @@ app.post('/api/task', (req, res) => {
 
 	task.fuelUsed = task.fuelUsed || 'Не указано';
 	task.distanceTraveled = task.distanceTraveled || 'Не указано';
-	task.fuelCost = task.fuelCost 
+	task.fuelCost = task.fuelCost
 
 	task.totalFuelUsed = task.fuelUsed * task.distanceTraveled;
 	task.totalFuelCost = task.totalFuelUsed * task.fuelCost;
+
+	const dateNow = Date.now();
+	const year = 31536000000;
+	const elevenMonths = 28944000000;
+	if (dateNow - year < task.dateInsuranceStart) {
+		task.insurance__status = 'Актуальна';
+	} else if (dateNow - year > task.dateInsuranceStart && Date.parse(dateNow) - elevenMonths > task.dateInsuranceStart) {
+		task.insurance__status = 'Заканчивается';
+	} else if (dateNow - year > task.dateInsuranceStart) {
+		task.insurance__status = 'Закончилась';
+	}
 
 	tasksData.push(task);
 	setTasksToDB(tasksData);

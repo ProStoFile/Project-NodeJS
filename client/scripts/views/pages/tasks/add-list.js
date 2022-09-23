@@ -119,11 +119,12 @@ class AddAndList extends Component {
         let newTask = {
             title: taskTitleField.value.trim(),
             description: taskDescriptionField.value.trim(),
-            time: taskTimeField.value.trim(),
+            dateInsuranceStart: taskTimeField.value.trim(),
             capacity: taskCapacityField.value,
             fuelUsed: taskFuelUsedField.value,
             distanceTraveled: taskDistancetraveledField.value,
             fuelCost: taskFuelCostField.value,
+            insurance__status: ''
         };
 
         newTask = await Tasks.addTask(newTask);
