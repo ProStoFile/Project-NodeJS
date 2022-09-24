@@ -64,6 +64,7 @@ app.put('/api/task/:id', (req, res) => {
 
 	task.title = updatedTask.title;
 	task.description = updatedTask.description || 'Нет описания';
+	task.dateInsuranceStart = updatedTask.dateInsuranceStart;
 
 	setTasksToDB(tasksData);
 

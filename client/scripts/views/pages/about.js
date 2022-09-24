@@ -21,21 +21,29 @@ class About extends Component {
                     About
                     <div class="cars__border"></div>
                 </h3>
+                
                 <p class="cars__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque officiis quos expedita
                     ipsa, a quidem inventore voluptates debitis accusamus tenetur qui et voluptas dicta, culpa earum,
                     doloribus odio consectetur consequuntur soluta quasi nobis! Deserunt voluptatum reiciendis iure
                     expedita sequi quisquam laboriosam temporibus exercitationem.</p>
             </div>
+            
             <div class="about"> 
-    <a class="about__btn-start button" href="#/tasks" title="Click here to get started!">
-        Start using
-    </a>
+    
     </div>
 
             <div class="cars__img__container opacity">
+            <img src="styles/img/logos.jpg">
             </div>
+
+            <a class="about__btn-start button" href="#/tasks" title="Click here to get started!">
+        Start using
+    </a>
         </div>
+        
     </section>
+
+    
     
     <script src="app.js"></script>
 </body>

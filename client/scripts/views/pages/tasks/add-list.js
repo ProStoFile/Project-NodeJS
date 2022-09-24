@@ -208,7 +208,7 @@ class AddAndList extends Component {
         const year = 31525200000;
 
         if (date + year > dateNow) {
-            return 'Актуальна';
+            return 'Действительна';
         } else {
             return 'Истекла';
         }
