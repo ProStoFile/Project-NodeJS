@@ -52,7 +52,7 @@ class Info extends Component {
 					</p>
 					<p>Расчет расхода топлива</p>
 					<p>
-						<b>Израсходовано:</b>
+						<b>Расход топлива:</b>
 						${fuelUsed}
 					</p>
 					<p>

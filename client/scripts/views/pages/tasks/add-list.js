@@ -125,6 +125,7 @@ class AddAndList extends Component {
             distanceTraveled: taskDistancetraveledField.value,
             fuelCost: taskFuelCostField.value,
             insurance__status: this.getInsuranceStatus(Date.parse(taskTimeField.value)),
+            totalFuelUsed: (+taskFuelUsedField.value) * (+taskDistancetraveledField.value),
         };
 
         newTask = await Tasks.addTask(newTask);

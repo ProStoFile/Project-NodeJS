@@ -7,10 +7,10 @@ class Header extends Component {
         return `
             <header class="header">                    
                 <a class="header__link ${!page ? 'active' : ''}" href="#/">
-                    About
+                    О нас
                 </a>
                 <a class="header__link ${page === 'tasks' ? 'active' : ''}" href="#/tasks">
-                    Tasks List
+                    Авто
                 </a>                                            
             </header>
         `;

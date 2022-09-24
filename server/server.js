@@ -65,6 +65,12 @@ app.put('/api/task/:id', (req, res) => {
 	task.title = updatedTask.title;
 	task.description = updatedTask.description || 'Нет описания';
 	task.dateInsuranceStart = updatedTask.dateInsuranceStart;
+	task.capacity = updatedTask.capacity;
+	task.fuelUsed = updatedTask.fuelUsed;
+	task.distanceTraveled = updatedTask.distanceTraveled;
+	task.insurance__status = updatedTask.insurance__status;
+	task.totalFuelUsed = updatedTask.totalFuelUsed;
+	task.totalFuelCost = updatedTask.totalFuelCost;
 
 	setTasksToDB(tasksData);
 
