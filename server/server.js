@@ -34,16 +34,15 @@ app.post('/api/task', (req, res) => {
 
 	task.totalFuelUsed = task.fuelUsed * task.distanceTraveled;
 	task.totalFuelCost = task.totalFuelUsed * task.fuelCost;
-	const dateNow = new Date();
-	const year = 31536000000;
-	const elevenMonths = 28944000000;
-	if (+dateNow - year < +task.dateInsuranceStart) {
-		task.insurance__status == 'Актуальна';
-	} else if (+dateNow - year > +task.dateInsuranceStart && Date.parse(dateNow) - elevenMonths > task.dateInsuranceStart) {
-		task.insurance__status == 'Заканчивается';
-	} else if (+dateNow - year > +task.dateInsuranceStart) {
-		task.insurance__status == 'Закончилась';
-	}
+
+	// const dateNow = Date.parse(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`);
+	// const year = 31525200000;
+
+	// if (task.dateInsuranceStart + year > dateNow) {
+    //     task.insurance__status == 'Актуальна';
+    // } else {
+	// 	task.insurance__status == 'Истекла';
+    // }
 
 	tasksData.push(task);
 	setTasksToDB(tasksData);

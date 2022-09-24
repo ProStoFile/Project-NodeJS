@@ -124,7 +124,7 @@ class AddAndList extends Component {
             fuelUsed: taskFuelUsedField.value,
             distanceTraveled: taskDistancetraveledField.value,
             fuelCost: taskFuelCostField.value,
-            insurance__status: ''
+            insurance__status: this.getInsuranceStatus(Date.parse(taskTimeField.value)),
         };
 
         newTask = await Tasks.addTask(newTask);
@@ -201,6 +201,17 @@ class AddAndList extends Component {
 
     static redirectToTaskInfo(id) {
         location.hash = `#/task/${id}`;
+    }
+
+    static getInsuranceStatus(date) {
+        const dateNow = Date.parse(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`);
+        const year = 31525200000;
+
+        if (date + year > dateNow) {
+            return 'Актуальна';
+        } else {
+            return 'Истекла';
+        }
     }
 
     static changeTaskStatus(taskContainer, editTaskBtn, doneTaskBtn) {
