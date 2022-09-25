@@ -13,7 +13,7 @@ class AddAndList extends Component {
             <div class="task-add">
                 <input class="task-add__title add" type="text" placeholder="Модель">
                 <textarea class="task-add__description add" placeholder="Описание"></textarea>
-                <input class="task-add__time add" type="date" min="1980-01-01" max="2060-12-31">
+                <input class="task-add__time add" type="date" min="1980-01-01">
                 <input class="task-add__capacity add" type="number" min="1" max="20" step="0.1" value="2.2">
                 <label>Израсходовано топлива<input class="task-add__fuel_used add" type="number" min="0" max="50" step="0.1" value="8.0"></label>
                 <label>Пройденное расстояние<input class="task-add__distance_traveled add" type="number" min="0" max="50" step="0.1" value="7.0"></label>
@@ -60,6 +60,7 @@ class AddAndList extends Component {
             taskFuelCostField = document.getElementsByClassName('task-add__fuel_cost')[0];
 
         taskTimeField.valueAsDate = new Date();
+        taskTimeField.max = new Date().toISOString().split("T")[0];
 
         taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();
         addTaskBtn.onclick = () => this.addTask(
@@ -124,8 +125,7 @@ class AddAndList extends Component {
             fuelUsed: taskFuelUsedField.value,
             distanceTraveled: taskDistancetraveledField.value,
             fuelCost: taskFuelCostField.value,
-            insurance__status: this.getInsuranceStatus(Date.parse(taskTimeField.value)),
-            totalFuelUsed: (+taskFuelUsedField.value) * (+taskDistancetraveledField.value),
+            insuranceStatus: this.getInsuranceStatus(Date.parse(taskTimeField.value)),
         };
 
         newTask = await Tasks.addTask(newTask);

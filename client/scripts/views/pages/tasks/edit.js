@@ -25,7 +25,7 @@ class Edit extends Component {
                 fuelCost,
                 totalFuelUsed,
                 totalFuelCost,
-                insurance__status } = task;
+                insuranceStatus } = task;
 
             html = `
                 <h1 class="page-title">Изменить</h1>
@@ -69,7 +69,7 @@ class Edit extends Component {
                     </p>
                     <p>
                         <b>Статус страховки:</b>
-                        <b>${insurance__status}</b>
+                        <b>${insuranceStatus}</b>
                     </p>
             
                     <div class="task-edit__buttons">
@@ -134,11 +134,10 @@ class Edit extends Component {
         this.task.title = taskTitleField.value.trim();
         this.task.description = taskDescriptionField.value.trim();
         this.task.dateInsuranceStart = taskTimeInput.value;
-        this.task.insurance__status = this.getInsuranceStatus(Date.parse(taskTimeInput.value)); // не меняется статус
+        this.task.insuranceStatus = this.getInsuranceStatus(Date.parse(taskTimeInput.value));
         this.task.capacity = inputCapacity.value;
         this.task.fuelUsed = fuelUsedInput.value;
         this.task.distanceTraveled = distanceTraveledInput.value;
-
 
         await Tasks.editTask(this.task);
 

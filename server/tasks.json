@@ -1,16 +1,1 @@
-[
-    {
-        "title": "ййй",
-        "description": "ййй",
-        "dateInsuranceStart": "2021-09-26",
-        "capacity": "2.2",
-        "fuelUsed": "8.0",
-        "distanceTraveled": "7.0",
-        "fuelCost": "6.0",
-        "insurance__status": "Действительна",
-        "totalFuelUsed": 56,
-        "id": "PB1y9Xn2B",
-        "status": "In Progress",
-        "totalFuelCost": 336
-    }
-]
+[{"title":"audi","description":"audi","dateInsuranceStart":"2020-09-26","capacity":"2.2","fuelUsed":"8.0","distanceTraveled":"7.0","fuelCost":"6.0","insuranceStatus":"Истекла","id":"pbPce_mPF","status":"In Progress","totalFuelUsed":56,"totalFuelCost":336},{"title":"bmw","description":"audi","dateInsuranceStart":"2021-09-25","capacity":"2.2","fuelUsed":"8.0","distanceTraveled":"7.0","fuelCost":"6.0","insuranceStatus":"Истекла","id":"p0Oq4PA7E","status":"In Progress","totalFuelUsed":56,"totalFuelCost":336}]
