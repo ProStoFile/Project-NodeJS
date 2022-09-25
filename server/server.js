@@ -69,8 +69,8 @@ app.put('/api/task/:id', (req, res) => {
 	task.fuelUsed = updatedTask.fuelUsed;
 	task.distanceTraveled = updatedTask.distanceTraveled;
 	task.insurance__status = updatedTask.insurance__status;
-	task.totalFuelUsed = updatedTask.totalFuelUsed;
-	task.totalFuelCost = updatedTask.totalFuelCost;
+	task.totalFuelUsed = updatedTask.fuelUsed * updatedTask.distanceTraveled;
+	task.totalFuelCost = updatedTask.fuelUsed * updatedTask.distanceTraveled * updatedTask.fuelCost;
 
 	setTasksToDB(tasksData);
 
