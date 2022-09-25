@@ -1,1 +1,16 @@
-[{"title":"1","description":"1","dateInsuranceStart":"2020-09-25","capacity":"2.2","fuelUsed":"3","distanceTraveled":"3","fuelCost":"4","insurance__status":"Истекла","totalFuelUsed":6,"id":"pZX7buHd8","status":"In Progress","totalFuelCost":24}]
+[
+    {
+        "title": "ййй",
+        "description": "ййй",
+        "dateInsuranceStart": "2021-09-26",
+        "capacity": "2.2",
+        "fuelUsed": "8.0",
+        "distanceTraveled": "7.0",
+        "fuelCost": "6.0",
+        "insurance__status": "Действительна",
+        "totalFuelUsed": 56,
+        "id": "PB1y9Xn2B",
+        "status": "In Progress",
+        "totalFuelCost": 336
+    }
+]

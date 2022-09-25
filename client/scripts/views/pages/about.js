@@ -33,14 +33,12 @@ class About extends Component {
     </div>
 
             <div class="cars__img__container opacity">
-            <img src="styles/img/logos.jpg">
+                <img class="cars__image" src="styles/img/car1.png">
             </div>
-
-            <a class="about__btn-start button" href="#/tasks" title="Click here to get started!">
-        Start using
-    </a>
+            
+            
         </div>
-        
+         
     </section>
 
     
