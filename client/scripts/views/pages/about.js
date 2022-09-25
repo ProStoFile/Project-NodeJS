@@ -28,22 +28,17 @@ class About extends Component {
                     expedita sequi quisquam laboriosam temporibus exercitationem.</p>
             </div>
             
-            <div class="about"> 
-    
-    </div>
+            <div class="about"></div>
 
             <div class="cars__img__container opacity">
                 <img class="cars__image" src="styles/img/car1.png">
             </div>
             
-            
         </div>
          
     </section>
 
-    
-    
-    <script src="app.js"></script>
+
 </body>
 `;
     }
@@ -53,14 +48,14 @@ class About extends Component {
     }
 
     static setActions() {
-        const translate = document.querySelectorAll(".translate");
-        const cars__container = document.querySelector(".cars__container");
-        const shadow = document.querySelector(".shadow");
-        const content = document.querySelector(".cars__text");
-        const section = document.querySelector(".cars__section");
-        const image_container = document.querySelector(".cars__img__container");
-        const opacity = document.querySelectorAll(".opacity");
-        const border = document.querySelector(".cars__border");
+        const translate = document.querySelectorAll(".translate"),
+            cars__container = document.querySelector(".cars__container"),
+            shadow = document.querySelector(".shadow"),
+            content = document.querySelector(".cars__text"),
+            section = document.querySelector(".cars__section"),
+            image_container = document.querySelector(".cars__img__container"),
+            opacity = document.querySelectorAll(".opacity"),
+            border = document.querySelector(".cars__border");
 
         let cars__container_height = cars__container.offsetHeight;
         let section_height = section.offsetHeight;
