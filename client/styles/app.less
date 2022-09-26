@@ -324,7 +324,6 @@ body {
     min-width: 122px;
     color: white;
     outline: none;
-    opacity: 0;
     cursor: pointer;
     border: none;
     text-align: center;
@@ -337,6 +336,9 @@ body {
 
   &-content {
     display: none;
+    opacity: 0;
+    transition-property: all;
+    transition-duration: .3s;
     position: absolute;
     min-width: 100px;
     z-index: 1;
@@ -354,10 +356,9 @@ body {
   }
 
   &:hover .dropdown-content {
-    display: block;
     opacity: 1;
-    transition: 0.5s opacity;
-  } 
+    display: block;
+  }
 
   &:hover .dropbtn {
     background-color: #3e8e41;
