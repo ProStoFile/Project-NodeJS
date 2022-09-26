@@ -335,14 +335,12 @@ body {
   }
 
   &-content {
-    display: none;
+    visibility: hidden;
     opacity: 0;
-    transition-property: all;
-    transition-duration: .3s;
+    transition: visibility 0s, opacity .3s linear;
     position: absolute;
     min-width: 100px;
     z-index: 1;
-    transition: all .3s;
 
     & .dropdown__button {
       padding: 5px;
@@ -356,12 +354,20 @@ body {
   }
 
   &:hover .dropdown-content {
+    visibility: visible;
     opacity: 1;
-    display: block;
   }
 
   &:hover .dropbtn {
     background-color: #3e8e41;
     border-radius: 20px 20px 0px 0px;
   }
+}
+
+.green{
+  color: #3e8e41;
+}
+
+.red {
+  color: crimson;
 }

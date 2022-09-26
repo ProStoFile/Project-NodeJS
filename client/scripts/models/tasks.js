@@ -42,10 +42,22 @@ class Tasks {
 		});
 	}
 
-	static async sortTasksList(){
-		const response = await fetch('http://localhost:3000/api/tasks/sort');
+	static async sortTasksListByModel(){
+		const response = await fetch('http://localhost:3000/api/tasks/sortbymodel');
 		return await response.json();
 	}
+
+	static async sortTasksListByDistanceTraveled(){
+		const response = await fetch('http://localhost:3000/api/tasks/sortbydistancetraveled');
+		return await response.json();
+	}
+
+	static async sortTasksListByTotalFuelCost(){
+		const response = await fetch('http://localhost:3000/api/tasks/sortbytotalfuelcost');
+		return await response.json();
+	}
+
+	
 
 	static async removeSelectedTask(selectedTask){
     	await fetch(`http://localhost:3000/api/task/${selectedTask.id}`,{

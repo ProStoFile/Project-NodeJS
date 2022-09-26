@@ -74,7 +74,7 @@ class Info extends Component {
 
 					<p>
 						<b>Статус страховки:</b>
-						${insuranceStatus}
+						<b class="insuranceStatus__text">${insuranceStatus}</b>
 					</p>
 
 					

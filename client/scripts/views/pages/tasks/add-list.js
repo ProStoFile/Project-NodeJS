@@ -30,8 +30,8 @@ class AddAndList extends Component {
                         <button class="dropbtn button">Сортировать</button>
                         <div class="dropdown-content">
                             <button class="tasks__btn-sort dropdown__button">По модели</button>
-                            <button class="button__two dropdown__button">По расстоянию</button>
-                            <button class="button__three dropdown__button">По затратам<br>на топливо</button>
+                            <button class="tasks__btn-sort_by_distanceTraveled dropdown__button">По расстоянию</button>
+                            <button class="tasks__btn-sort_by_totalFuelCost dropdown__button">По затратам<br>на топливо</button>
                         </div>
                     </div>
                 
@@ -60,6 +60,8 @@ class AddAndList extends Component {
             taskDescriptionField = document.getElementsByClassName('task-add__description')[0],
             addTaskBtn = document.getElementsByClassName('task-add__btn-add')[0],
             sortTasksListBtn = document.getElementsByClassName('tasks__btn-sort')[0],
+            sortTasksListBydistanceTraveledBtn = document.getElementsByClassName('tasks__btn-sort_by_distanceTraveled')[0],
+            sortTasksListByTotalFuelCostBtn = document.getElementsByClassName('tasks__btn-sort_by_totalFuelCost')[0],
             tasksContainer = document.getElementsByClassName('tasks')[0],
             clearTasksListBtn = tasksContainer.getElementsByClassName('tasks__btn-clear')[0],
             tasksList = tasksContainer.getElementsByClassName('tasks__list')[0],
@@ -95,7 +97,15 @@ class AddAndList extends Component {
                     break;
 
                 case targetClassList.contains('tasks__btn-sort'):
-                    this.sortTasksList(tasksList, sortTasksListBtn);
+                    this.sortTasksListByModel(tasksList, sortTasksListBtn);
+                    break;
+
+                case targetClassList.contains('tasks__btn-sort_by_distanceTraveled'):
+                    this.sortTasksListByDistanceTraveled(tasksList, sortTasksListBydistanceTraveledBtn);
+                    break;
+
+                case targetClassList.contains('tasks__btn-sort_by_totalFuelCost'):
+                    this.sortTasksListByTotalFuelCost(tasksList, sortTasksListByTotalFuelCostBtn);
                     break;
 
                 case targetClassList.contains('task'):
@@ -185,10 +195,36 @@ class AddAndList extends Component {
             `<span class="tasks__counter-total">${totalAmount}</span> ${toBeVerbForm} done`;
     }
 
-    static async sortTasksList(tasksList) {
+    static async sortTasksListByModel(tasksList) {
 
         tasksList.innerHTML = '';
-        await Tasks.sortTasksList();
+        await Tasks.sortTasksListByModel();
+        const tasks = await Tasks.getTasksList();
+        const length = tasks.length;
+
+        for (let i = 0; i < length; i++) {
+            tasksList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(tasks[i]));
+        }
+
+    }
+
+    static async sortTasksListByDistanceTraveled(tasksList) {
+
+        tasksList.innerHTML = '';
+        await Tasks.sortTasksListByDistanceTraveled();
+        const tasks = await Tasks.getTasksList();
+        const length = tasks.length;
+
+        for (let i = 0; i < length; i++) {
+            tasksList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(tasks[i]));
+        }
+
+    }
+
+    static async sortTasksListByTotalFuelCost(tasksList) {
+
+        tasksList.innerHTML = '';
+        await Tasks.sortTasksListByDistanceTraveled();
         const tasks = await Tasks.getTasksList();
         const length = tasks.length;
 

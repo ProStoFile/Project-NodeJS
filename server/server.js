@@ -104,7 +104,7 @@ app.put('/api/task/:id/done', (req, res) => {
 	res.sendStatus(204);
 });
 
-app.get('/api/tasks/sort', (req, res) => {
+app.get('/api/tasks/sortbymodel', (req, res) => {
 	const tasksData = getTasksFromDB();
 	tasksData.sort(function (one, two) {
 		let modelOne = one.title.toLowerCase(), modelTwo = two.title.toLowerCase();
@@ -114,6 +114,28 @@ app.get('/api/tasks/sort', (req, res) => {
 		if (modelOne > modelTwo)
 			return 1
 		return 0
+	});
+	setTasksToDB(tasksData);
+
+	res.send(tasksData);
+
+});
+
+app.get('/api/tasks/sortbydistancetraveled', (req, res) => {
+	const tasksData = getTasksFromDB();
+	tasksData.sort(function (one, two) {
+		return two.distanceTraveled - one.distanceTraveled
+	});
+	setTasksToDB(tasksData);
+
+	res.send(tasksData);
+
+});
+
+app.get('/api/tasks/sortbysortbytotalfuelcost', (req, res) => {
+	const tasksData = getTasksFromDB();
+	tasksData.sort(function (one, two) {
+		return two.totalFuelCost - one.totalFuelCost;
 	});
 	setTasksToDB(tasksData);
 
