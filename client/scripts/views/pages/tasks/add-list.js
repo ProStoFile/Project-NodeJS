@@ -25,7 +25,17 @@ class AddAndList extends Component {
                 <div class="tasks__additional">
                     <p class="tasks__counter"></p>
                     
-                    <button class="tasks__btn-sort button">Сортировать</button>
+
+                    <div class="dropdown">
+                        <button class="dropbtn button">Сортировать</button>
+                        <div class="dropdown-content">
+                            <button class="tasks__btn-sort dropdown__button">По модели</button>
+                            <button class="button__two dropdown__button">По расстоянию</button>
+                            <button class="button__three dropdown__button">По затратам<br>на топливо</button>
+                        </div>
+                    </div>
+                
+                    
                     
                     <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>
                         Очистить список
