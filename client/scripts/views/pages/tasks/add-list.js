@@ -146,6 +146,7 @@ class AddAndList extends Component {
             distanceTraveled: taskDistancetraveledField.value,
             fuelCost: taskFuelCostField.value,
             insuranceStatus: this.getInsuranceStatus(Date.parse(taskTimeField.value)),
+            daysInsuranceValidityLeft: this.getDaysInsuranceValidityLeft(taskTimeField.value),
         };
 
         newTask = await Tasks.addTask(newTask);
@@ -259,6 +260,24 @@ class AddAndList extends Component {
         } else {
             return 'Истекла';
         }
+    }
+
+    static getDaysInsuranceValidityLeft(date) {
+        const dateStart = new Date(date),
+            dateEnd = new Date(`
+            ${dateStart.getFullYear() + 1}-
+            ${dateStart.getMonth() + 1}-
+            ${dateStart.getDate()}
+            `),
+            dateNow = new Date(`
+            ${new Date().getFullYear()}-
+            ${new Date().getMonth() + 1}-
+            ${new Date().getDate()}
+            `),
+            oneDay = 1000 * 60 * 60 * 24,
+            diffInTime = dateEnd.getTime() - dateNow.getTime(),
+            diffInDays = Math.round(diffInTime / oneDay);
+        return diffInDays;
     }
 
     static changeTaskStatus(taskContainer, editTaskBtn, doneTaskBtn) {

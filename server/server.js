@@ -23,6 +23,7 @@ app.post('/api/task', (req, res) => {
 		task = req.body;
 
 	task.dateInsuranceStart = task.dateInsuranceStart || 'Не указано';
+	task.daysInsuranceValidityLeft = task.daysInsuranceValidityLeft;
 	task.id = shortId.generate();
 	task.description = task.description || 'Нет описания';
 	task.status = 'In Progress';
@@ -58,6 +59,7 @@ app.put('/api/task/:id', (req, res) => {
 	task.title = updatedTask.title;
 	task.description = updatedTask.description || 'Нет описания';
 	task.dateInsuranceStart = updatedTask.dateInsuranceStart;
+	task.daysInsuranceValidityLeft = updatedTask.daysInsuranceValidityLeft;
 	task.capacity = updatedTask.capacity;
 	task.fuelUsed = updatedTask.fuelUsed;
 	task.distanceTraveled = updatedTask.distanceTraveled;

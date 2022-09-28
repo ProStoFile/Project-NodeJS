@@ -18,6 +18,7 @@ class Info extends Component {
 				description,
 				status,
 				dateInsuranceStart,
+				daysInsuranceValidityLeft,
 				capacity,
 				fuelUsed,
 				distanceTraveled,
@@ -45,6 +46,10 @@ class Info extends Component {
 					<p>
 						<b>Начало действия страховки:</b>
 						${dateInsuranceStart}
+					</p>
+					<p>
+						<b>Дней до окончания действия:</b>
+						${daysInsuranceValidityLeft}
 					</p>
 					<p>
 						<b>Объем:</b>

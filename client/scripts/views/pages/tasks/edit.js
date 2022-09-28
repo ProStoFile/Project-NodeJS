@@ -20,6 +20,7 @@ class Edit extends Component {
                 description,
                 capacity,
                 dateInsuranceStart,
+                daysInsuranceValidityLeft,
                 fuelUsed,
                 distanceTraveled,
                 fuelCost,
@@ -42,6 +43,9 @@ class Edit extends Component {
                     <p>
                         <b>Начало действия страховки:</b>
                         <input class="task-edit__time" value="${dateInsuranceStart}" type="date" min="1980-01-01" max="2060-12-31">
+                    </p>
+                    <p>
+                        <b>Дней до окончания действия:</b>${daysInsuranceValidityLeft}
                     </p>
                     <p>
                         <b>Объем:</b>
@@ -106,6 +110,24 @@ class Edit extends Component {
         }
     }
 
+    static getDaysInsuranceValidityLeft(date) {
+        const dateStart = new Date(date),
+            dateEnd = new Date(`
+            ${dateStart.getFullYear() + 1}-
+            ${dateStart.getMonth() + 1}-
+            ${dateStart.getDate()}
+            `),
+            dateNow = new Date(`
+            ${new Date().getFullYear()}-
+            ${new Date().getMonth() + 1}-
+            ${new Date().getDate()}
+            `),
+            oneDay = 1000 * 60 * 60 * 24,
+            diffInTime = dateEnd.getTime() - dateNow.getTime(),
+            diffInDays = Math.round(diffInTime / oneDay);
+        return diffInDays;
+    }
+
     static setActions() {
         const taskTitleField = document.getElementsByClassName('task-edit__title')[0],
             taskDescriptionField = document.getElementsByClassName('task-edit__description')[0],
@@ -138,8 +160,8 @@ class Edit extends Component {
         this.task.capacity = inputCapacity.value;
         this.task.fuelUsed = fuelUsedInput.value;
         this.task.distanceTraveled = distanceTraveledInput.value;
-
-        await Tasks.editTask(this.task);
+        this.task.daysInsuranceValidityLeft = this.getDaysInsuranceValidityLeft(taskTimeInput.value),
+            await Tasks.editTask(this.task);
 
         this.redirectToTaskInfo();
     }
