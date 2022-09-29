@@ -25,7 +25,8 @@ class Info extends Component {
 				fuelCost,
 				totalFuelUsed,
 				totalFuelCost,
-				insuranceStatus } = task;
+				insuranceStatus,
+				tireType } = task;
 
 			html = `
 				<h1 class="page-title">Информация об авто</h1>
@@ -80,6 +81,11 @@ class Info extends Component {
 					<p>
 						<b>Статус страховки:</b>
 						<b class="insuranceStatus__text">${insuranceStatus}</b>
+					</p>
+
+					<p>
+						<b>Установлены шины:</b>
+						${tireType}
 					</p>
 					
 					<div class="task-info__buttons">

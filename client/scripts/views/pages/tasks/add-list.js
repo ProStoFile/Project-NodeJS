@@ -18,6 +18,10 @@ class AddAndList extends Component {
                 <label>Израсходовано топлива<input class="task-add__fuel_used add" type="number" min="0" max="50" step="0.1" value="8.0"></label>
                 <label>Пройденное расстояние<input class="task-add__distance_traveled add" type="number" min="0" max="50" step="0.1" value="7.0"></label>
                 <label>Стоимость топлива<input class="task-add__fuel_cost add" type="number" min="0" max="50" step="0.1" value="6.0"></label>
+                <label>Тип шин<select class="task-add__tire_type add">
+                    <option>Летние</option>
+                    <option>Зимние</option> 
+                </select></label>
                 <button class="task-add__btn-add button" disabled>Добавить</button>
             </div>
      
@@ -72,7 +76,8 @@ class AddAndList extends Component {
             taskCapacityField = document.getElementsByClassName('task-add__capacity')[0],
             taskFuelUsedField = document.getElementsByClassName('task-add__fuel_used')[0],
             taskDistancetraveledField = document.getElementsByClassName('task-add__distance_traveled')[0],
-            taskFuelCostField = document.getElementsByClassName('task-add__fuel_cost')[0];
+            taskFuelCostField = document.getElementsByClassName('task-add__fuel_cost')[0],
+            taskTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0];
 
         taskTimeField.valueAsDate = new Date();
         taskTimeField.max = new Date().toISOString().split("T")[0];
@@ -88,7 +93,8 @@ class AddAndList extends Component {
             taskCapacityField,
             taskFuelUsedField,
             taskDistancetraveledField,
-            taskFuelCostField);
+            taskFuelCostField,
+            taskTireTypeSelect);
 
         tasksContainer.onclick = evt => {
             const target = evt.target,
@@ -142,7 +148,8 @@ class AddAndList extends Component {
         taskCapacityField,
         taskFuelUsedField,
         taskDistancetraveledField,
-        taskFuelCostField
+        taskFuelCostField,
+        taskTireTypeSelect
     ) {
         let newTask = {
             title: taskTitleField.value.trim(),
@@ -154,6 +161,7 @@ class AddAndList extends Component {
             fuelCost: taskFuelCostField.value,
             insuranceStatus: this.getInsuranceStatus(Date.parse(taskTimeField.value)),
             daysInsuranceValidityLeft: this.getDaysInsuranceValidityLeft(taskTimeField.value),
+            tireType: taskTireTypeSelect.value,
         };
 
         newTask = await Tasks.addTask(newTask);
