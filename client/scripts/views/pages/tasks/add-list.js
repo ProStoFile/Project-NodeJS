@@ -331,8 +331,8 @@ class AddAndList extends Component {
                 tasks[i].dateAdded.getMonth() !== new Date().getMonth() &&
                 tasks[i].dateAdded.getDate() !== new Date().getDate()) {
 
-                tasks.daysInsuranceValidityLeft(Date.parse(tasks[i].dateInsuranceStart));
-                tasks.getInsuranceStatus(tasks[i].dateInsuranceStart);
+                tasks.daysInsuranceValidityLeft(tasks[i].dateInsuranceStart);
+                tasks.getInsuranceStatus(Date.parse(tasks[i].dateInsuranceStart));
             }
         }
     }
