@@ -10,20 +10,37 @@ class AddAndList extends Component {
     static async render(tasks) {
         return `
         
+    <div id="myModal" class="modal__window-add__task">
+        <!-- Модальное содержание -->
+        <div class="modal__window-add__task-content">
+          <div class="modal__window-add__task-header">
+            <span class="modal__window-close">&times;</span>
+            <h2>Заполните поля</h2>
+          </div>
+          <div class="modal__window-add__task-body">
             <div class="task-add">
-                <input class="task-add__title add" type="text" placeholder="Модель">
-                <textarea class="task-add__description add" placeholder="Описание"></textarea>
-                <input class="task-add__time add" type="date" min="1980-01-01">
-                <input class="task-add__capacity add" type="number" min="1" max="20" step="0.1" value="2.2">
-                <label>Израсходовано топлива<input class="task-add__fuel_used add" type="number" min="0" max="50" step="0.1" value="8.0"></label>
-                <label>Пройденное расстояние<input class="task-add__distance_traveled add" type="number" min="0" max="50" step="0.1" value="7.0"></label>
-                <label>Стоимость топлива<input class="task-add__fuel_cost add" type="number" min="0" max="50" step="0.1" value="6.0"></label>
-                <label>Тип шин<select class="task-add__tire_type add">
-                    <option>Летние</option>
-                    <option>Зимние</option> 
+              <input class="task-add__title add" type="text" placeholder="Модель">
+              <textarea class="task-add__description add" placeholder="Описание"></textarea>
+              <input class="task-add__time add" type="date" min="1980-01-01">
+              <input class="task-add__capacity add" type="number" min="1" max="20" step="0.1" value="2.2">
+              <label>Израсходовано топлива<input class="task-add__fuel_used add" type="number" min="0" max="50" step="0.1"
+                  value="8.0"></label>
+              <label>Пройденное расстояние<input class="task-add__distance_traveled add" type="number" min="0" max="50"
+                  step="0.1" value="7.0"></label>
+              <label>Стоимость топлива<input class="task-add__fuel_cost add" type="number" min="0" max="50" step="0.1"
+                  value="6.0"></label>
+              <label>Тип шин<select class="task-add__tire_type add">
+                  <option>Летние</option>
+                  <option>Зимние</option>
                 </select></label>
-                <button class="task-add__btn-add button" disabled>Добавить</button>
+              <button class="task-add__btn-add button" disabled>Добавить</button>
             </div>
+          </div>
+        </div>
+  
+    </div>
+
+            
      
             <div class="tasks">
                 <div class="tasks__additional">
@@ -46,6 +63,10 @@ class AddAndList extends Component {
                     <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>
                         Очистить список
                     </button>
+
+                    <button class="tasks__btn-add button">
+                        Добавить
+                    </button>
                 </div>
                 
                 <div class="tasks__list">
@@ -64,10 +85,12 @@ class AddAndList extends Component {
     static setActions() {
         const taskTitleField = document.getElementsByClassName('task-add__title')[0],
             taskDescriptionField = document.getElementsByClassName('task-add__description')[0],
+
             addTaskBtn = document.getElementsByClassName('task-add__btn-add')[0],
             sortTasksListBtn = document.getElementsByClassName('tasks__btn-sort')[0],
             sortTasksListBydistanceTraveledBtn = document.getElementsByClassName('tasks__btn-sort_by_distanceTraveled')[0],
             sortTasksListByTotalFuelCostBtn = document.getElementsByClassName('tasks__btn-sort_by_totalFuelCost')[0],
+
             refreshTasksListBtn = document.getElementsByClassName('tasks__btn-refresh')[0],
             tasksContainer = document.getElementsByClassName('tasks')[0],
             clearTasksListBtn = tasksContainer.getElementsByClassName('tasks__btn-clear')[0],
@@ -77,10 +100,28 @@ class AddAndList extends Component {
             taskFuelUsedField = document.getElementsByClassName('task-add__fuel_used')[0],
             taskDistancetraveledField = document.getElementsByClassName('task-add__distance_traveled')[0],
             taskFuelCostField = document.getElementsByClassName('task-add__fuel_cost')[0],
-            taskTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0];
+            taskTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0],
+
+            modalAddTaskWindow = document.getElementsByClassName('modal__window-add__task')[0],
+            showAddTaskWindowBtn = document.getElementsByClassName('tasks__btn-add')[0],
+            closeModalWindowBtn = document.getElementsByClassName('modal__window-close')[0];
 
         taskTimeField.valueAsDate = new Date();
         taskTimeField.max = new Date().toISOString().split("T")[0];
+
+        showAddTaskWindowBtn.addEventListener('click', function () {
+            modalAddTaskWindow.style.display = "block";
+        })
+
+        closeModalWindowBtn.addEventListener('click', function () {
+            modalAddTaskWindow.style.display = "none";
+        })
+
+        window.addEventListener('click', function (event) {
+            if (event.target == modalAddTaskWindow) {
+                modalAddTaskWindow.style.display = "none";
+            }
+        })
 
         taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();
         addTaskBtn.onclick = () => this.addTask(
