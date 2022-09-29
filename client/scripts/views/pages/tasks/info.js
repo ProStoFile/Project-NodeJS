@@ -81,7 +81,6 @@ class Info extends Component {
 						<b>Статус страховки:</b>
 						<b class="insuranceStatus__text">${insuranceStatus}</b>
 					</p>
-
 					
 					<div class="task-info__buttons">
 						${status !== 'Выполнено' ?

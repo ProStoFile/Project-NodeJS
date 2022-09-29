@@ -35,7 +35,9 @@ class AddAndList extends Component {
                         </div>
                     </div>
                 
-                    
+                    <button class="tasks__btn-refresh button" ${!tasks.length ? 'disabled' : ''}>
+                        Обновить
+                    </button>
                     
                     <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>
                         Очистить список
@@ -62,6 +64,7 @@ class AddAndList extends Component {
             sortTasksListBtn = document.getElementsByClassName('tasks__btn-sort')[0],
             sortTasksListBydistanceTraveledBtn = document.getElementsByClassName('tasks__btn-sort_by_distanceTraveled')[0],
             sortTasksListByTotalFuelCostBtn = document.getElementsByClassName('tasks__btn-sort_by_totalFuelCost')[0],
+            refreshTasksListBtn = document.getElementsByClassName('tasks__btn-refresh')[0],
             tasksContainer = document.getElementsByClassName('tasks')[0],
             clearTasksListBtn = tasksContainer.getElementsByClassName('tasks__btn-clear')[0],
             tasksList = tasksContainer.getElementsByClassName('tasks__list')[0],
@@ -108,6 +111,10 @@ class AddAndList extends Component {
                     this.sortTasksListByTotalFuelCost(tasksList, sortTasksListByTotalFuelCostBtn);
                     break;
 
+                case targetClassList.contains('tasks__btn-refresh'):
+                    this.updateDateValues();
+                    break;
+
                 case targetClassList.contains('task'):
                 case targetClassList.contains('task__title'):
                     this.redirectToTaskInfo(target.dataset.id);
@@ -140,7 +147,7 @@ class AddAndList extends Component {
         let newTask = {
             title: taskTitleField.value.trim(),
             description: taskDescriptionField.value.trim(),
-            dateInsuranceStart: taskTimeField.value.trim(),
+            dateInsuranceStart: taskTimeField.value,
             capacity: taskCapacityField.value,
             fuelUsed: taskFuelUsedField.value,
             distanceTraveled: taskDistancetraveledField.value,
@@ -225,7 +232,7 @@ class AddAndList extends Component {
     static async sortTasksListByTotalFuelCost(tasksList) {
 
         tasksList.innerHTML = '';
-        await Tasks.sortTasksListByDistanceTraveled();
+        await Tasks.sortTasksListByTotalFuelCost();
         const tasks = await Tasks.getTasksList();
         const length = tasks.length;
 
@@ -277,6 +284,8 @@ class AddAndList extends Component {
             oneDay = 1000 * 60 * 60 * 24,
             diffInTime = dateEnd.getTime() - dateNow.getTime(),
             diffInDays = Math.round(diffInTime / oneDay);
+
+        if (diffInDays > 366) diffInDays = 0;
         return diffInDays;
     }
 
@@ -298,6 +307,25 @@ class AddAndList extends Component {
             Tasks.removeSelectedTask(taskContainer.dataset);
 
             this.countTasksAmount();
+        }
+    }
+
+    static getNowDate() {
+        return new Date();
+    }
+
+    static updateDateValues() {
+        const tasks = Tasks.getTasksList();
+        const length = tasks.length;
+
+        for (let i = 0; i < length; i++) {
+            if (tasks[i].dateAdded.getFullYear() !== new Date().getFullYear() &&
+                tasks[i].dateAdded.getMonth() !== new Date().getMonth() &&
+                tasks[i].dateAdded.getDate() !== new Date().getDate()) {
+
+                tasks.daysInsuranceValidityLeft(Date.parse(tasks[i].dateInsuranceStart));
+                tasks.getInsuranceStatus(tasks[i].dateInsuranceStart);
+            }
         }
     }
 }

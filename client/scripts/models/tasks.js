@@ -78,6 +78,18 @@ class Tasks {
 		});
 	}
 
+	static async updateDateValues(){
+    	await fetch(`http://localhost:3000/api/tasks/refresh`, {
+    		method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+
+			body: JSON.stringify(tasks)
+
+		});
+	}
+
 }
 
 export default Tasks;

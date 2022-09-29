@@ -37,6 +37,7 @@ app.post('/api/task', (req, res) => {
 	task.totalFuelCost = task.totalFuelUsed * task.fuelCost;
 
 	task.insuranceStatus = task.insuranceStatus;
+	task.dateAdded = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
 
 	tasksData.push(task);
 	setTasksToDB(tasksData);
@@ -143,4 +144,11 @@ app.get('/api/tasks/sortbysortbytotalfuelcost', (req, res) => {
 
 	res.send(tasksData);
 
+});
+
+app.put('/api/tasks/refresh', (req, res) => {
+
+	const updatedTasksData = req.body;
+	setTasksToDB(updatedTasksData);
+	res.sendStatus(204);
 });

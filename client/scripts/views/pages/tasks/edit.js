@@ -4,6 +4,8 @@ import Error404 from '../../../views/pages/error404.js';
 
 import Tasks from '../../../models/tasks.js';
 
+import AddAndList from './add-list.js';
+
 class Edit extends Component {
     static async getData() {
         this.task = await Tasks.getTask(this.urlParts.id);
@@ -99,34 +101,34 @@ class Edit extends Component {
             !location.hash.split(this.urlParts.action)[1];
     }
 
-    static getInsuranceStatus(date) {
-        const dateNow = Date.parse(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`);
-        const year = 31525200000;
+    // static getInsuranceStatus(date) {
+    //     const dateNow = Date.parse(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`);
+    //     const year = 31525200000;
 
-        if (date + year > dateNow) {
-            return 'Действительна';
-        } else {
-            return 'Истекла';
-        }
-    }
+    //     if (date + year > dateNow) {
+    //         return 'Действительна';
+    //     } else {
+    //         return 'Истекла';
+    //     }
+    // }
 
-    static getDaysInsuranceValidityLeft(date) {
-        const dateStart = new Date(date),
-            dateEnd = new Date(`
-            ${dateStart.getFullYear() + 1}-
-            ${dateStart.getMonth() + 1}-
-            ${dateStart.getDate()}
-            `),
-            dateNow = new Date(`
-            ${new Date().getFullYear()}-
-            ${new Date().getMonth() + 1}-
-            ${new Date().getDate()}
-            `),
-            oneDay = 1000 * 60 * 60 * 24,
-            diffInTime = dateEnd.getTime() - dateNow.getTime(),
-            diffInDays = Math.round(diffInTime / oneDay);
-        return diffInDays;
-    }
+    // static getDaysInsuranceValidityLeft(date) {
+    //     const dateStart = new Date(date),
+    //         dateEnd = new Date(`
+    //         ${dateStart.getFullYear() + 1}-
+    //         ${dateStart.getMonth() + 1}-
+    //         ${dateStart.getDate()}
+    //         `),
+    //         dateNow = new Date(`
+    //         ${new Date().getFullYear()}-
+    //         ${new Date().getMonth() + 1}-
+    //         ${new Date().getDate()}
+    //         `),
+    //         oneDay = 1000 * 60 * 60 * 24,
+    //         diffInTime = dateEnd.getTime() - dateNow.getTime(),
+    //         diffInDays = Math.round(diffInTime / oneDay);
+    //     return diffInDays;
+    // }
 
     static setActions() {
         const taskTitleField = document.getElementsByClassName('task-edit__title')[0],
@@ -156,11 +158,11 @@ class Edit extends Component {
         this.task.title = taskTitleField.value.trim();
         this.task.description = taskDescriptionField.value.trim();
         this.task.dateInsuranceStart = taskTimeInput.value;
-        this.task.insuranceStatus = this.getInsuranceStatus(Date.parse(taskTimeInput.value));
+        this.task.insuranceStatus = AddAndList.getInsuranceStatus(Date.parse(taskTimeInput.value));
         this.task.capacity = inputCapacity.value;
         this.task.fuelUsed = fuelUsedInput.value;
         this.task.distanceTraveled = distanceTraveledInput.value;
-        this.task.daysInsuranceValidityLeft = this.getDaysInsuranceValidityLeft(taskTimeInput.value),
+        this.task.daysInsuranceValidityLeft = AddAndList.getDaysInsuranceValidityLeft(taskTimeInput.value),
             await Tasks.editTask(this.task);
 
         this.redirectToTaskInfo();
