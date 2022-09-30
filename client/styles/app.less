@@ -14,6 +14,11 @@ body {
   min-width: 700px;
 }
 
+._container {
+  width: 100%;
+  padding: 0px 160px;
+}
+
 .page-container {
   display: flex;
   flex-direction: column;
@@ -109,25 +114,25 @@ body {
 .task-add {
   display: flex;
   flex-direction: column;
-  margin: 10px 0px 0px 0px;
+  margin: 0px;
 
   &__title,
   &__description {
     width: 100%;
+    height: 30px;
     border: solid #888888 1px;
-    border-radius: 4px;
+    border-radius: 5px;
     outline: none;
     margin: 0px auto 10px;
 
   }
 
   &__title {
-    height: 30px;
+
     padding: 0 8px;
   }
 
   &__description {
-    height: 60px;
     padding: 5px 8px;
     resize: none;
   }
@@ -278,41 +283,105 @@ body {
   }
 }
 
+.task-info {
+  max-width: 380px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &__text {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .task-info,
 .task-edit {
   line-height: 24px;
 
   &__buttons {
-    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
 
     .button {
       padding: 6px 14px;
       font-size: 12px;
     }
   }
+
+
+
+
 }
 
 .task-edit {
+
+  display: flex;
+  min-width: 400px;
+  margin: 0 auto;
+  border: #202020 solid 1px;
+  border-radius: 20px;
+  padding: 10px 14px;
+
+  &__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px;
+  }
+
+  &__params {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px;
+  }
+
+  &__params-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__params-container:not(:last-child) {
+    margin: 0px 0px 10px 0px;
+  }
+
+  &__text {
+    align-items: center;
+  }
+
+  &__text:not(:last-child) {
+    margin: 0px 0px 10px 0px;
+  }
+
   b {
     vertical-align: top;
   }
 
   &__title,
   &__description {
-    border: solid #0D5C63 1px;
+    border: solid #202020 1px;
     padding: 1px 3px;
-  }
-
-  &__title {
-    width: 230px;
+    width: 140px;
+    border-radius: 5px;
+    text-align: center;
   }
 
   &__description {
-    width: 175px;
-    height: 60px;
+
+    height: 40px;
     margin-top: 3px;
     resize: none;
   }
+}
+
+input {
+  border-radius: 5px;
+  border: #202020 1px solid;
 }
 
 .dropbtn {
@@ -384,20 +453,51 @@ body {
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+
+  &-content {
+    position: relative;
+    border-radius: 30px 30px 20px 20px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    max-width: 380px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+
+  &-header {
+    border-radius: 20px 20px 0px 0px;
+    display: flex;
+    padding: 0px;
+    background-color: #202020;
+    color: white;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-body {
+    padding: 10px;
+  }
 }
 
-.modal__window-add__task-content {
-  position: relative;
-  border-radius: 30px 30px 20px 20px;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  max-width: 380px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
+.modal__window-close {
+  position: absolute;
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  right: 8px;
+
+  &:hover,
+  &:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 
 @-webkit-keyframes animatetop {
@@ -424,33 +524,7 @@ body {
   }
 }
 
-.modal__window-close {
-  position: absolute;
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  right: 8px;
-}
-
-.modal__window-close:hover,
-.modal__window-close:focus {
-  color: red;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.modal__window-add__task-header {
-  border-radius: 20px 20px 0px 0px;
+td {
   display: flex;
-  padding: 0px;
-  background-color: #202020;
-  color: white;
-  height: 30px;
-  align-items: center;
-  justify-content: center;
-}
 
-.modal__window-add__task-body {
-  padding: 2px 16px;
 }

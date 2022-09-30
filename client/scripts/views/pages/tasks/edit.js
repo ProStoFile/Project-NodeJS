@@ -33,56 +33,106 @@ class Edit extends Component {
             html = `
                 <h1 class="page-title">Изменить</h1>
                 
-                <div class="task-edit">
-                    <p>
-                        <b>Task Title:</b>
+                <div class="_container">
+        <div class="task-edit">
+            <div class="task-edit__params">
+                <div class="task-edit__params-container">
+                    <b>Модель:</b>
+                    <div>
                         <input class="task-edit__title" type="text" value="${title}">
-                    </p>
-                    <p>
-                        <b>Описание:</b>
-                        <textarea class="task-edit__description">${(description === 'No Description') ? '' : description}</textarea>
-                    </p>
-                    <p>
-                        <b>Начало действия страховки:</b>
-                        <input class="task-edit__time" value="${dateInsuranceStart}" type="date" min="1980-01-01" max="2060-12-31">
-                    </p>
-                    <p>
-                        <b>Дней до окончания действия:</b>${daysInsuranceValidityLeft}
-                    </p>
-                    <p>
-                        <b>Объем:</b>
-                        <input class="task-add__capacity" type="number" min="1" max="20" step="0.1" value="${capacity}">
-                    </p>
-                    <p>
-                        <b>Расход топлива:</b>
-                        <input class="task-add__fuel_used" type="number" min="0" max="50" step="0.1" value="${fuelUsed}">
-                    </p>
-                    <p>
-                        <b>Пройденное расстояние:</b>
-                        <input class="task-add__distance_traveled" type="number" min="0" max="50" step="0.1" value="${distanceTraveled}">
-                    </p>
-                    <p>
-                        <b>Стоимость топлива:</b>
-                        <input class="task-add__fuel_cost add" type="number" min="0" max="50" step="0.1" value="${fuelCost}">
-                    </p>
-                    <p>
-                        <b>Израсходовано топлива:</b>
-                        <b>${totalFuelUsed}</b>
-                    </p>
-                    <p>
-                        <b>Затраты на топливо:</b>
-                        <b>${totalFuelCost}</b>
-                    </p>
-                    <p>
-                        <b>Статус страховки:</b>
-                        <b>${insuranceStatus}</b>
-                    </p>
-            
-                    <div class="task-edit__buttons">
-                        <button class="task-edit__btn-save button">Сохранить</button>
-                        <a class="task-edit__btn-back button" href="#/task/${id}">Назад</a>
                     </div>
                 </div>
+
+                <div class="task-edit__params-container">
+                    <b>Описание:</b>
+                    <div>
+                        <textarea class="task-edit__description">${(description === 'No Description') ? '' : description}
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="task-edit__params-container">
+                    <b>Застрахован:</b>
+                    <div>
+                        <input class="task-edit__time" value="${dateInsuranceStart}" type="date" min="1980-01-01"
+                            max="2060-12-31">
+                    </div>
+                </div>
+
+                <div class="task-edit__params-container">
+                    <b>Истекает через (дн):</b>
+                    <div>
+                        ${daysInsuranceValidityLeft}
+                    </div>
+                </div>
+
+                <div class="task-edit__params-container">
+                    <b>Объем двигателя (л):</b>
+                    <div>
+                        <input class="task-add__capacity" type="number" min="1" max="20" step="0.1" value="${capacity}">
+                    </div>
+                </div>
+
+                <div class="task-edit__params-container">
+                    <b>Расход топлива (л):</b>
+                    <div>
+                        <input class="task-add__fuel_used" type="number" min="0" max="50" step="0.1"
+                            value="${fuelUsed}">
+                    </div>
+                </div>
+
+                <div class="task-edit__params-container">
+                    <b>Пройдено (км):</b>
+                    <div>
+                        <input class="task-add__distance_traveled" type="number" min="0" max="50" step="0.1"
+                            value="${distanceTraveled}">
+                    </div>
+                </div>
+
+                <div class="task-edit__params-container">
+                    <b>Стоимость топлива (₽):</b>
+                    <div>
+                        <input class="task-add__fuel_cost" type="number" min="0" max="50" step="0.1"
+                            value="${fuelCost}">
+                    </div>
+                </div>
+
+                <div class="task-edit__params-container">
+                    <b>Затраты на топливо(₽):</b>
+                    <div>
+                        <b>${totalFuelCost}</b>
+                    </div>
+                </div>
+
+                <div class="task-edit__params-container">
+                    <b>Статус страховки:</b>
+                    <div>
+                        <b>${insuranceStatus}</b>
+                    </div>
+                </div>
+
+                <div class="task-edit__params-container">
+                    <b>Израсходовано топлива:</b>
+                    <div>
+                        <b>${totalFuelUsed}</b>
+                    </div>
+                </div>
+
+                <div class="task-edit__buttons">
+                    <div class="task-edit__buttons-container">
+                        <a class="task-edit__btn-back button" href="#/task/${id}">Вернуться</a>
+                        <button class="task-edit__btn-save button">Сохранить</button>
+                    </div>
+                </div>
+
+            </div>
+
+            
+
+        </div>
+    </div>
+
+                
             `;
         } else {
             html = Error404.render();
