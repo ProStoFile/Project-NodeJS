@@ -109,15 +109,16 @@ body {
 .task-add {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: 10px 0px 0px 0px;
 
   &__title,
   &__description {
-    width: 300px;
+    width: 100%;
     border: solid #888888 1px;
     border-radius: 4px;
     outline: none;
+    margin: 0px auto 10px;
+
   }
 
   &__title {
@@ -134,6 +135,11 @@ body {
   &__btn-add {
     padding: 8px 24px;
     font-size: 14px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
   }
 }
 

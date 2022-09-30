@@ -20,29 +20,41 @@ class AddAndList extends Component {
             <div class="task-add">
                 <input class="task-add__title add" type="text" placeholder="Модель">
                 <textarea class="task-add__description add" placeholder="Описание"></textarea>
-                <div>
+                <div class="task-add__info">
                     <label>Застрахован</label>
                     <input class="task-add__time add" type="date" min="1980-01-01">
                 </div>
-                <div>
+                <div class="task-add__info">
                     <label>Объем двигателя (л)</label>
-                    <input class="task-add__capacity add" type="number" min="1" max="20" step="0.1" value="2.2">
-                    
+                    <input class="task-add__capacity add" type="number" min="1" max="20" step="0.1" value="2.2">   
                 </div>
-                <div>
+                <div class="task-add__info">
                     <label>Израсходовано топлива (л)</label>
                     <input class="task-add__fuel_used add" type="number" min="0" max="50" step="0.1"
                   value="8.0">
                 </div>
+
+                <div class="task-add__info">
+                    <label>Пройденное расстояние (км)</label>
+                    <input class="task-add__distance_traveled add" type="number" 
+                    min="0" max="50" step="0.1" value="7.0">
+                </div>
               
-              <label>Пройденное расстояние (км)<input class="task-add__distance_traveled add" type="number" min="0" max="50"
-                  step="0.1" value="7.0"></label>
-              <label>Стоимость топлива (руб)<input class="task-add__fuel_cost add" type="number" min="0" max="50" step="0.1"
-                  value="6.0"></label>
-              <label>Установлены шины<select class="task-add__tire_type add">
-                  <option>Летние</option>
-                  <option>Зимние</option>
-                </select></label>
+                <div class="task-add__info">
+                    <label>Стоимость топлива (руб)</label>
+                    <input class="task-add__fuel_cost add" type="number" 
+                    min="0" max="50" step="0.1"
+                    value="6.0">
+                </div>
+
+                <div class="task-add__info">
+                    <label>Установлены шины</label>
+                    <select class="task-add__tire_type add">
+                        <option>Летние</option>
+                        <option>Зимние</option>
+                    </select>
+                </div>
+                
               <button class="task-add__btn-add button" disabled>Добавить</button>
             </div>
           </div>
