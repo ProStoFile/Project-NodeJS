@@ -10,26 +10,36 @@ class AddAndList extends Component {
     static async render(tasks) {
         return `
         
-    <div id="myModal" class="modal__window-add__task">
-        <!-- Модальное содержание -->
+    <div class="modal__window-add__task">
         <div class="modal__window-add__task-content">
           <div class="modal__window-add__task-header">
             <span class="modal__window-close">&times;</span>
-            <h2>Заполните поля</h2>
+            <h2>Информация о Вашем авто</h2>
           </div>
           <div class="modal__window-add__task-body">
             <div class="task-add">
-              <input class="task-add__title add" type="text" placeholder="Модель">
-              <textarea class="task-add__description add" placeholder="Описание"></textarea>
-              <input class="task-add__time add" type="date" min="1980-01-01">
-              <input class="task-add__capacity add" type="number" min="1" max="20" step="0.1" value="2.2">
-              <label>Израсходовано топлива<input class="task-add__fuel_used add" type="number" min="0" max="50" step="0.1"
-                  value="8.0"></label>
-              <label>Пройденное расстояние<input class="task-add__distance_traveled add" type="number" min="0" max="50"
+                <input class="task-add__title add" type="text" placeholder="Модель">
+                <textarea class="task-add__description add" placeholder="Описание"></textarea>
+                <div>
+                    <label>Застрахован</label>
+                    <input class="task-add__time add" type="date" min="1980-01-01">
+                </div>
+                <div>
+                    <label>Объем двигателя (л)</label>
+                    <input class="task-add__capacity add" type="number" min="1" max="20" step="0.1" value="2.2">
+                    
+                </div>
+                <div>
+                    <label>Израсходовано топлива (л)</label>
+                    <input class="task-add__fuel_used add" type="number" min="0" max="50" step="0.1"
+                  value="8.0">
+                </div>
+              
+              <label>Пройденное расстояние (км)<input class="task-add__distance_traveled add" type="number" min="0" max="50"
                   step="0.1" value="7.0"></label>
-              <label>Стоимость топлива<input class="task-add__fuel_cost add" type="number" min="0" max="50" step="0.1"
+              <label>Стоимость топлива (руб)<input class="task-add__fuel_cost add" type="number" min="0" max="50" step="0.1"
                   value="6.0"></label>
-              <label>Тип шин<select class="task-add__tire_type add">
+              <label>Установлены шины<select class="task-add__tire_type add">
                   <option>Летние</option>
                   <option>Зимние</option>
                 </select></label>

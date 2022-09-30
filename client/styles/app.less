@@ -366,38 +366,27 @@ body {
 
 /* ----- Modal Window ----- */
 
-/* Модальный (фон) */
 .modal__window-add__task {
   display: none;
-  /* Скрыто по умолчанию */
   position: fixed;
-  /* Оставаться на месте */
   z-index: 1;
-  /* Сидеть на вершине */
   padding-top: 100px;
-  /* Расположение коробки */
   left: 0;
   top: 0;
   width: 100%;
-  /* Полная ширина */
   height: 100%;
-  /* Полная высота */
   overflow: auto;
-  /* Включите прокрутку, если это необходимо */
   background-color: rgb(0, 0, 0);
-  /* Цвет запасной вариант  */
   background-color: rgba(0, 0, 0, 0.4);
-  /*Черный с непрозрачностью */
 }
 
-/* Модальное содержание */
 .modal__window-add__task-content {
   position: relative;
+  border-radius: 30px 30px 20px 20px;
   background-color: #fefefe;
   margin: auto;
   padding: 0;
-  border: 1px solid #888;
-  width: 80%;
+  max-width: 380px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -405,7 +394,6 @@ body {
   animation-duration: 0.4s
 }
 
-/* Добавить анимацию */
 @-webkit-keyframes animatetop {
   from {
     top: -300px;
@@ -430,25 +418,31 @@ body {
   }
 }
 
-/* Кнопка закрытия */
 .modal__window-close {
+  position: absolute;
   color: white;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  right: 8px;
 }
 
 .modal__window-close:hover,
 .modal__window-close:focus {
-  color: #000;
+  color: red;
   text-decoration: none;
   cursor: pointer;
 }
 
 .modal__window-add__task-header {
-  padding: 2px 16px;
-  background-color: #5cb85c;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  padding: 0px;
+  background-color: #202020;
   color: white;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal__window-add__task-body {
