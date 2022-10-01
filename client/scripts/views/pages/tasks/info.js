@@ -18,16 +18,13 @@ class Info extends Component {
 			const { id,
 				title,
 				description,
-				status,
 				dateInsuranceStart,
-				daysInsuranceValidityLeft,
 				capacity,
 				fuelUsed,
 				distanceTraveled,
 				fuelCost,
 				totalFuelUsed,
 				totalFuelCost,
-				insuranceStatus,
 				tireType } = task;
 
 			html = `

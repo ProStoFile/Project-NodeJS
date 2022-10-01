@@ -11,6 +11,9 @@ class Header extends Component {
                 </a>
                 <a class="header__link ${page === 'tasks' ? 'active' : ''}" href="#/tasks">
                     Авто
+                </a> 
+                <a class="header__link ${page === 'warning' ? 'active' : ''}" href="#/warning">
+                    Требуют внимания
                 </a>                                            
             </header>
         `;
