@@ -9,10 +9,12 @@ import Edit from './views/pages/tasks/edit.js';
 
 import About from './views/pages/about.js';
 import Error404 from './views/pages/error404.js';
+import Warning from './views/pages/tasks/warning-list.js';
 
 const Routes = {
     '/': About,
     '/tasks': AddAndList,
+    '/warning': Warning,
     '/task/:id': Info,
     '/task/:id/edit': Edit
 };
