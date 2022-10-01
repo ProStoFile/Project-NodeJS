@@ -6,9 +6,6 @@ const express = require('express'),
 	dbFilePath = 'tasks.json',
 	app = express();
 
-let dateNow = Date.parse(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`),
-	year = 31525200000;
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('common'));

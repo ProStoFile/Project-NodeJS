@@ -54,7 +54,7 @@ class Info extends Component {
 						<div class="task-edit__params-container">
 							<b>Застрахован:</b>
 							<div>
-								${dateInsuranceStart}
+								${AddAndList.changeDateFormat(dateInsuranceStart)}
 							</div>
 						</div>
 		

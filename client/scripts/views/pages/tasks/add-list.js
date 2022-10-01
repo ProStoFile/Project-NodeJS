@@ -329,6 +329,10 @@ class AddAndList extends Component {
         location.hash = `#/task/${id}`;
     }
 
+    static changeDateFormat(date) {
+        return date.split('-').reverse().join('-');
+    }
+
     static getInsuranceStatus(date) {
         const dateNow = Date.parse(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`);
         const year = 31525200000;
