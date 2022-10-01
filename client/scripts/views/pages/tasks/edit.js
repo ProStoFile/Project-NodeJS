@@ -100,21 +100,21 @@ class Edit extends Component {
                 <div class="task-edit__params-container">
                     <b>Затраты на топливо(₽):</b>
                     <div>
-                        <b>${totalFuelCost}</b>
+                        <p>${totalFuelCost}</p>
                     </div>
                 </div>
 
                 <div class="task-edit__params-container">
                     <b>Статус страховки:</b>
                     <div>
-                        <b>${insuranceStatus}</b>
+                        <p>${insuranceStatus}</p>
                     </div>
                 </div>
 
                 <div class="task-edit__params-container">
                     <b>Израсходовано топлива:</b>
                     <div>
-                        <b>${totalFuelUsed}</b>
+                        <p>${totalFuelUsed}</p>
                     </div>
                 </div>
 

@@ -5,6 +5,7 @@ class About extends Component {
         return `
         <body>
     <div class="cars__container">
+    <h1 class="big-title translate" data-speed="0.9">Максимум преимуществ.</h1>
         <img src="styles/img/car14.png" class="car__one translate" data-speed="-0.9" alt="">
         <img src="styles/img/car10.png" class="car__two translate" data-speed="-0.5" alt="">
         <img src="styles/img/car9.png" class="car__three translate" data-speed="-0.1" alt="">
@@ -18,14 +19,14 @@ class About extends Component {
         <div class="cars__container__text">
             <div class="container__cars opacity">
                 <h3 class="cars__title">
-                    About
+                    Ваше авто - Наша забота 
                     <div class="cars__border"></div>
                 </h3>
                 
-                <p class="cars__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque officiis quos expedita
-                    ipsa, a quidem inventore voluptates debitis accusamus tenetur qui et voluptas dicta, culpa earum,
-                    doloribus odio consectetur consequuntur soluta quasi nobis! Deserunt voluptatum reiciendis iure
-                    expedita sequi quisquam laboriosam temporibus exercitationem.</p>
+                <p class="cars__text">Автомобиль - машина на четырех колесах, 
+                позволяющая легко и быстро проезжать места, 
+                в которых вы никогда не были и никогда не будете, 
+                ибо всякий раз, когда вы оказываетесь рядом, негде припарковаться.</p>
             </div>
             
             <div class="about"></div>
@@ -50,6 +51,7 @@ class About extends Component {
     static setActions() {
         const translate = document.querySelectorAll(".translate"),
             cars__container = document.querySelector(".cars__container"),
+            big_title = document.querySelector(".big-title"),
             shadow = document.querySelector(".shadow"),
             content = document.querySelector(".cars__text"),
             section = document.querySelector(".cars__section"),
@@ -60,9 +62,9 @@ class About extends Component {
         let cars__container_height = cars__container.offsetHeight;
         let section_height = section.offsetHeight;
 
-        window.addEventListener('scroll', () => {
-            let scroll = window.pageYOffset;
-            let sectionY = section.getBoundingClientRect();
+        window.addEventListener('scroll', function () {
+            let scroll = window.pageYOffset,
+                sectionY = section.getBoundingClientRect();
 
             translate.forEach(element => {
                 let speed = element.dataset.speed;
@@ -73,12 +75,13 @@ class About extends Component {
                 element.style.opacity = scroll / (sectionY.top + section_height);
             })
 
+            big_title.style.opacity = - scroll / (cars__container_height / 2) + 1;
             shadow.style.cars__container_height = `${scroll * 0.5 + 300}px`;
 
             content.style.transform = `translateY(${scroll / (section_height + sectionY.top) * 50 - 50}px)`;
             image_container.style.transform = `translateY(${scroll / (section_height + sectionY.top) * -50 + 50}px)`;
 
-            border.style.width = `${scroll / (sectionY.top + section_height) * 30}%`;
+            border.style.width = `${scroll / (sectionY.top + section_height) * 45}%`;
         })
     };
 }
