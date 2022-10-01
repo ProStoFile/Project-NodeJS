@@ -58,12 +58,9 @@ class AddAndList extends Component {
               <button class="task-add__btn-add button" disabled>Добавить</button>
             </div>
           </div>
-        </div>
-  
-    </div>
-
-            
-     
+        </div>   
+    </div> 
+    
             <div class="tasks">
                 <div class="tasks__additional">
                     <p class="tasks__counter"></p>
@@ -112,6 +109,7 @@ class AddAndList extends Component {
             sortTasksListBtn = document.getElementsByClassName('tasks__btn-sort')[0],
             sortTasksListBydistanceTraveledBtn = document.getElementsByClassName('tasks__btn-sort_by_distanceTraveled')[0],
             sortTasksListByTotalFuelCostBtn = document.getElementsByClassName('tasks__btn-sort_by_totalFuelCost')[0],
+            deleteTaskBtn = document.getElementsByClassName('task__btn-remove')[0],
 
             refreshTasksListBtn = document.getElementsByClassName('tasks__btn-refresh')[0],
             tasksContainer = document.getElementsByClassName('tasks')[0],
@@ -126,23 +124,29 @@ class AddAndList extends Component {
 
             modalAddTaskWindow = document.getElementsByClassName('modal__window-add__task')[0],
             showAddTaskWindowBtn = document.getElementsByClassName('tasks__btn-add')[0],
-            closeModalWindowBtn = document.getElementsByClassName('modal__window-close')[0];
+            closeModalWindowBtn = document.getElementsByClassName('modal__window-close')[0],
+
+            modalDeleteTaskWindow = document.getElementsByClassName('modal__window-delete__task')[0];
 
         taskTimeField.valueAsDate = new Date();
-        taskTimeField.max = new Date().toISOString().split("T")[0];
+        taskTimeField.max = new Date().toISOString().split('T')[0];
 
         showAddTaskWindowBtn.addEventListener('click', function () {
-            modalAddTaskWindow.style.display = "block";
+            modalAddTaskWindow.style.display = 'block';
         })
 
         closeModalWindowBtn.addEventListener('click', function () {
-            modalAddTaskWindow.style.display = "none";
+            modalAddTaskWindow.style.display = 'none';
         })
 
         window.addEventListener('click', function (event) {
             if (event.target == modalAddTaskWindow) {
-                modalAddTaskWindow.style.display = "none";
+                modalAddTaskWindow.style.display = 'none';
             }
+        })
+
+        deleteTaskBtn.addEventListener('click', function () {
+            modalDeleteTaskWindow.style.display = 'block';
         })
 
         taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();

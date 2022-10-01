@@ -29,74 +29,98 @@ class Info extends Component {
 				tireType } = task;
 
 			html = `
-				<h1 class="page-title">Информация об авто</h1>
-				
-				<div class="task-info">
-        	<div class="task-info__params">
-        	    <p class="task-info__text">
-        	        <b>Модель:</b>
-        	        ${title}
-        	    </p>
-        	    <p class="task-info__text">
-        	        <b>Описание:</b>
-        	        ${description}
-        	    </p>
-        	    <p class="task-info__text">
-        	        <b>Статус:</b>
-        	        ${status}
-        	    </p>
-        	    <p class="task-info__text">
-        	        <b>Застрахован:</b>
-        	        ${dateInsuranceStart}
-        	    </p>
-        	    <p class="task-info__text">
-        	        <b>Дней до окончания действия:</b>
-        	        ${daysInsuranceValidityLeft}
-        	    </p>
-        	    <p class="task-info__text">
-        	        <b>Объем:</b>
-        	        ${capacity}
-        	    </p>
-        	    <p>Расчет расхода топлива</p>
-        	    <p class="task-info__text">
-        	        <b>Расход топлива:</b>
-        	        ${fuelUsed}
-        	    </p>
-        	    <p class="task-info__text">
-        	        <b>Пройденное расстояние:</b>
-        	        ${distanceTraveled}
-        	    </p>
-        	    <p class="task-info__text">
-        	        <b>Стоимость топлива:</b>
-        	        ${fuelCost}
-        	    </p>
-        	    <p class="task-info__text">
-        	        <b>Израсходовано топлива:</b>
-        	        ${totalFuelUsed}
-        	    </p>
-        	    <p class="task-info__text">
-        	        <b>Затраты на топливо:</b>
-        	        ${totalFuelCost}
-        	    </p>
+			<h1 class="page-title">Информация</h1>
 
-        	    <p class="task-info__text">
-        	        <b>Статус страховки:</b>
-        	        ${insuranceStatus}
-        	    </p>
+			<div class="_container">
+				<div class="task-edit">
+					<div class="task-edit__params">
+						<div class="task-edit__params-container">
+							<b>Модель:</b>
+							<div>
+								<input class="task-edit__title" type="text" value="${title}">
+							</div>
+						</div>
+		
+						<div class="task-edit__params-container">
+							<b>Описание:</b>
+							<div>
+								<textarea class="task-edit__description">${(description === 'No Description') ? '' : description}
+								</textarea>
+							</div>
+						</div>
+		
+						<div class="task-edit__params-container">
+							<b>Застрахован:</b>
+							<div>
+								${dateInsuranceStart}
+							</div>
+						</div>
+		
+						<div class="task-edit__params-container">
+							<b>Истекает через (дн):</b>
+							<div>
+								${daysInsuranceValidityLeft}
+							</div>
+						</div>
+		
+						<div class="task-edit__params-container">
+							<b>Объем двигателя (л):</b>
+							<div>
+								${capacity}
+							</div>
+						</div>
+		
+						<div class="task-edit__params-container">
+							<b>Расход топлива (л):</b>
+							<div>
+								${fuelUsed}
+							</div>
+						</div>
+		
+						<div class="task-edit__params-container">
+							<b>Пройдено (км):</b>
+							<div>
+								${distanceTraveled}
+							</div>
+						</div>
+		
+						<div class="task-edit__params-container">
+							<b>Стоимость топлива (₽):</b>
+							<div>
+								${fuelCost}
+							</div>
+						</div>
+		
+						<div class="task-edit__params-container">
+							<b>Затраты на топливо(₽):</b>
+							<div>
+								<p>${totalFuelCost}</p>
+							</div>
+						</div>
+		
+						<div class="task-edit__params-container">
+							<b>Статус страховки:</b>
+							<div>
+								<p>${insuranceStatus}</p>
+							</div>
+						</div>
+		
+						<div class="task-edit__params-container">
+							<b>Израсходовано топлива:</b>
+							<div>
+								<p>${totalFuelUsed}</p>
+							</div>
+						</div>
 
-        	    <p class="task-info__text">
-        	        <b>Установлены шины:</b>
-        	        ${tireType}
-        	    </p>
-        	</div>
-
-        <div class="task-info__buttons">
-            ${status !== 'Выполнено' ?
-					`<a class="task-info__btn-edit button" href="#/task/${id}/edit">Изменить</a>`
-					: ''}
-            <a class="task-info__btn-back button" href="#/tasks">Назад</a>
-        </div>
-    </div>
+						<div class="task-edit__buttons">
+							<div class="task-edit__buttons-container">
+								<a class="task-info__btn-back button" href="#/tasks">Вернуться</a>
+                    			<a class="task-info__btn-edit button" href="#/task/${id}/edit">Изменить</a>
+                			</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			`;
 		} else {
 			html = Error404.render();

@@ -33,7 +33,7 @@ class Edit extends Component {
             html = `
                 <h1 class="page-title">Изменить</h1>
                 
-                <div class="_container">
+    <div class="_container">
         <div class="task-edit">
             <div class="task-edit__params">
                 <div class="task-edit__params-container">
