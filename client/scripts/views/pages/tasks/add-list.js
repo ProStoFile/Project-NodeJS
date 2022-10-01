@@ -334,14 +334,20 @@ class AddAndList extends Component {
     }
 
     static getInsuranceStatus(date) {
-        const dateNow = Date.parse(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`);
-        const year = 31525200000;
+        const dateNow = Date.parse(`
+        ${new Date().getFullYear()}-
+        ${new Date().getMonth() + 1}-
+        ${new Date().getDate()}
+        `),
+        year = 31525200000;
 
-        if (date + year > dateNow) {
-            return 'Действительна';
-        } else {
-            return 'Истекла';
-        }
+        // if (date + year > dateNow) {
+        //     return 'Действительна';
+        // } else {
+        //     return 'Истекла';
+        // }
+
+        return (date + year > dateNow) ? 'Действительна' : 'Истекла';
     }
 
     static getDaysInsuranceValidityLeft(date) {

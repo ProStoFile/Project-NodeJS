@@ -62,7 +62,7 @@ class Edit extends Component {
                 <div class="task-edit__params-container">
                     <b>Истекает через (дн):</b>
                     <div>
-                        ${daysInsuranceValidityLeft}
+                    ${AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart)}
                     </div>
                 </div>
 
@@ -107,7 +107,7 @@ class Edit extends Component {
                 <div class="task-edit__params-container">
                     <b>Статус страховки:</b>
                     <div>
-                        <p>${insuranceStatus}</p>
+                        <p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
                     </div>
                 </div>
 
