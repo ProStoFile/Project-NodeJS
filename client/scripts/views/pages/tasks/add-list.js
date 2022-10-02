@@ -88,8 +88,10 @@ class AddAndList extends Component {
                     </button>
                 </div>
                 
-                <div class="tasks__list">
-                    ${tasks.map(task => this.getTaskHTML(task)).join('')}
+                <div class="_container">
+                    <div class="tasks__list">
+                        ${tasks.map(task => this.getTaskHTML(task)).join('')}
+                    </div>
                 </div>
             </div>
         `;
@@ -189,6 +191,12 @@ class AddAndList extends Component {
                     this.redirectToTaskInfo(target.dataset.id);
                     break;
 
+                case targetClassList.contains('task'):
+                case targetClassList.contains('task__img-container'):
+                case targetClassList.contains('task__img'):
+                    this.redirectToTaskInfo(target.dataset.id);
+                    break;
+
                 case targetClassList.contains('task__btn-done'):
                     this.changeTaskStatus(target.parentNode.parentNode,
                         target.previousElementSibling, target);
@@ -243,6 +251,10 @@ class AddAndList extends Component {
         return `
             <div class="task ${statusDone ? 'task_done' : ''}" data-id="${task.id}">
                 <a class="task__title" data-id="${task.id}">${task.title}</a>
+
+                <div class="task__img-container">
+                    <img class="task__img" src="styles/img/task__logo.png">
+                </div>
                 
                 <div class="task__buttons">
                 	${!statusDone ?
@@ -417,6 +429,8 @@ class AddAndList extends Component {
             new Date().getMonth() < 11 && tireType === 'Летние' ||
             new Date().getMonth() > 1 && tireType === 'Летние') ? 'Нет' : 'Да';
     }
+
+
 }
 
 export default AddAndList;

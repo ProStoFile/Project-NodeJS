@@ -194,8 +194,8 @@ body {
   &__list {
     display: flex;
     flex-wrap: wrap;
-    margin: 0px 0px;
-    justify-content: space-between;
+    margin: 0px;
+    width: 100%;
   }
 
   .task {
@@ -204,12 +204,12 @@ body {
     align-items: center;
     text-align: center;
     flex-direction: column;
-    min-height: 100px;
-    min-width: 150px;
-    max-width: 250px;
+    min-height: 230px;
+    min-width: 230px;
+    width: 100%;
     margin: 10px 10px;
     padding: 0px 15px;
-    flex: 0 1 25%;
+    max-width: 200px;
     border: solid #D3D3D3 1px;
     background-color: #D3D3D3;
     border-radius: 10px;
@@ -296,6 +296,14 @@ body {
       &:hover {
         background: #156615;
       }
+    }
+
+    &__img {
+        width: 80%;
+    }
+
+    &__img-container {
+      width: 100%;
     }
   }
 }
