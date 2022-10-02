@@ -35,8 +35,10 @@ app.post('/api/task', (req, res) => {
 
 	task.totalFuelUsed = task.fuelUsed * task.distanceTraveled;
 	task.totalFuelCost = task.totalFuelUsed * task.fuelCost;
-
+	task.tireType = task.tireType;
 	task.dateAdded = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
+
+	
 
 	tasksData.push(task);
 	setTasksToDB(tasksData);
@@ -64,6 +66,8 @@ app.put('/api/task/:id', (req, res) => {
 	task.distanceTraveled = updatedTask.distanceTraveled;
 	task.totalFuelUsed = updatedTask.fuelUsed * updatedTask.distanceTraveled;
 	task.totalFuelCost = updatedTask.fuelUsed * updatedTask.distanceTraveled * updatedTask.fuelCost;
+	task.tireType = updatedTask.tireType;
+
 	setTasksToDB(tasksData);
 
 	res.sendStatus(204);

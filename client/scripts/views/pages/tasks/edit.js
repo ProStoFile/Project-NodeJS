@@ -22,13 +22,12 @@ class Edit extends Component {
                 description,
                 capacity,
                 dateInsuranceStart,
-                daysInsuranceValidityLeft,
                 fuelUsed,
                 distanceTraveled,
                 fuelCost,
                 totalFuelUsed,
                 totalFuelCost,
-                insuranceStatus } = task;
+                tireType } = task;
 
             html = `
                 <h1 class="page-title">Изменить</h1>
@@ -118,6 +117,21 @@ class Edit extends Component {
                     </div>
                 </div>
 
+                <div class="task-edit__params-container">
+					<b>Установлены шины:</b>
+                    <select class="task-add__tire_type">
+                        <option>Летние</option>
+                        <option>Зимние</option>
+                    </select>
+				</div>
+
+                <div class="task-edit__params-container">
+					<b>Нужна ли замена:</b>
+					<div>
+						<p>${AddAndList.checkTiresStatus(tireType)}</p>
+					</div>
+				</div>
+
                 <div class="task-edit__buttons">
                     <div class="task-edit__buttons-container">
                         <a class="task-edit__btn-back button" href="#/task/${id}">Вернуться</a>
@@ -187,6 +201,7 @@ class Edit extends Component {
             inputCapacity = document.getElementsByClassName('task-add__capacity')[0],
             fuelUsedInput = document.getElementsByClassName('task-add__fuel_used')[0],
             distanceTraveledInput = document.getElementsByClassName('task-add__distance_traveled')[0],
+            taskTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0],
 
             saveTaskBtn = document.getElementsByClassName('task-edit__btn-save')[0];
 
@@ -196,7 +211,8 @@ class Edit extends Component {
             taskTimeInput,
             inputCapacity,
             fuelUsedInput,
-            distanceTraveledInput);
+            distanceTraveledInput,
+            taskTireTypeSelect);
     }
 
     static async editTask(taskTitleField,
@@ -204,7 +220,8 @@ class Edit extends Component {
         taskTimeInput,
         inputCapacity,
         fuelUsedInput,
-        distanceTraveledInput) {
+        distanceTraveledInput,
+        taskTireTypeSelect) {
         this.task.title = taskTitleField.value.trim();
         this.task.description = taskDescriptionField.value.trim();
         this.task.dateInsuranceStart = taskTimeInput.value;
@@ -212,8 +229,8 @@ class Edit extends Component {
         this.task.capacity = inputCapacity.value;
         this.task.fuelUsed = fuelUsedInput.value;
         this.task.distanceTraveled = distanceTraveledInput.value;
-        this.task.daysInsuranceValidityLeft = AddAndList.getDaysInsuranceValidityLeft(taskTimeInput.value),
-            await Tasks.editTask(this.task);
+        this.task.tireType = taskTireTypeSelect.value;
+        await Tasks.editTask(this.task);
 
         this.redirectToTaskInfo();
     }
