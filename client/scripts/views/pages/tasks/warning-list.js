@@ -13,13 +13,33 @@ class Warning extends Component {
 
     static async render(tasks) {
         return `
-            <div class="tasks">
-                <div class="tasks__list">
-                    ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').map(task => AddAndList.getTaskHTML(task)).join('')}
+        <div class="tasks__container">
+            <div class="warning-tasks__title">
+                Авто с просроченной страховкой: 
+                ${this.getCarsExpiredInsuranceCount}
+            </div> 
+                <div class="tasks">
+                    <div class="tasks__list expired__insurance">
+                        ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').map(task => AddAndList.getTaskHTML(task)).join('')}
+                    </div>
+                    <div class="tasks__list wrong__tire__type">
+                        
+                    </div>
                 </div>
-            </div>
+            </div>   
+        </div>
         `;
     }
+
+    static getCarsExpiredInsuranceCount() {
+        return tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length;
+    };
+
+    static getCarsExpiredInsuranceCount() {
+        return tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length;
+    };
+
 }
+
 
 export default Warning;
