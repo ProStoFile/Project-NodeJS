@@ -16,7 +16,7 @@ class Warning extends Component {
         <div class="tasks__container">
             <div class="warning-tasks__title">
                 Авто с просроченной страховкой: 
-                ${this.getCarsExpiredInsuranceCount}
+                ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length}
             </div> 
                 <div class="tasks">
                     <div class="tasks__list expired__insurance">
@@ -30,10 +30,6 @@ class Warning extends Component {
         </div>
         `;
     }
-
-    static getCarsExpiredInsuranceCount() {
-        return tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length;
-    };
 
     static getCarsExpiredInsuranceCount() {
         return tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length;

@@ -339,7 +339,7 @@ class AddAndList extends Component {
         ${new Date().getMonth() + 1}-
         ${new Date().getDate()}
         `),
-        year = 31525200000;
+            year = 31525200000;
 
         // if (date + year > dateNow) {
         //     return 'Действительна';
@@ -408,6 +408,14 @@ class AddAndList extends Component {
                 tasks.getInsuranceStatus(Date.parse(tasks[i].dateInsuranceStart));
             }
         }
+    }
+
+    static checkTiresStatus(tireType) {
+        return (
+            new Date().getMonth() > 10 && tireType === 'Зимние' ||
+            new Date().getMonth() < 2 && tireType === 'Зимние' ||
+            new Date().getMonth() < 11 && tireType === 'Летние' ||
+            new Date().getMonth() > 1 && tireType === 'Летние') ? 'Нет' : 'Да';
     }
 }
 

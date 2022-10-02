@@ -111,6 +111,20 @@ class Info extends Component {
 							</div>
 						</div>
 
+						<div class="task-edit__params-container">
+							<b>Установлены шины:</b>
+							<div>
+								<p>${tireType}</p>
+							</div>
+						</div>
+
+						<div class="task-edit__params-container">
+							<b>Нужна ли замена:</b>
+							<div>
+								<p>${AddAndList.checkTiresStatus(tireType)}</p>
+							</div>
+						</div>
+
 						<div class="task-edit__buttons">
 							<div class="task-edit__buttons-container">
 								<a class="task-info__btn-back button" href="#/tasks">Вернуться</a>
