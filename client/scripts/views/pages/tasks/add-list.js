@@ -182,10 +182,6 @@ class AddAndList extends Component {
                     this.sortTasksListByTotalFuelCost(tasksList, sortTasksListByTotalFuelCostBtn);
                     break;
 
-                case targetClassList.contains('tasks__btn-refresh'):
-                    this.updateDateValues();
-                    break;
-
                 case targetClassList.contains('task'):
                 case targetClassList.contains('task__title'):
                     this.redirectToTaskInfo(target.dataset.id);
@@ -252,8 +248,8 @@ class AddAndList extends Component {
             <div class="task ${statusDone ? 'task_done' : ''}" data-id="${task.id}">
                 <a class="task__title" data-id="${task.id}">${task.title}</a>
 
-                <div class="task__img-container">
-                    <img class="task__img" src="styles/img/task__logo.png">
+                <div class="task__img-container" data-id="${task.id}">
+                    <img class="task__img" data-id="${task.id}" src="styles/img/task__logo.png">
                 </div>
                 
                 <div class="task__buttons">
