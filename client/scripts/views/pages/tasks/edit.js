@@ -59,13 +59,6 @@ class Edit extends Component {
                 </div>
 
                 <div class="task-edit__params-container">
-                    <b>Истекает через (дн):</b>
-                    <div>
-                    ${AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart)}
-                    </div>
-                </div>
-
-                <div class="task-edit__params-container">
                     <b>Объем двигателя (л):</b>
                     <div>
                         <input class="task-add__capacity" type="number" min="1" max="20" step="0.1" value="${capacity}">
@@ -97,39 +90,11 @@ class Edit extends Component {
                 </div>
 
                 <div class="task-edit__params-container">
-                    <b>Затраты на топливо(₽):</b>
-                    <div>
-                        <p>${totalFuelCost}</p>
-                    </div>
-                </div>
-
-                <div class="task-edit__params-container">
-                    <b>Статус страховки:</b>
-                    <div>
-                        <p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
-                    </div>
-                </div>
-
-                <div class="task-edit__params-container">
-                    <b>Израсходовано топлива:</b>
-                    <div>
-                        <p>${totalFuelUsed}</p>
-                    </div>
-                </div>
-
-                <div class="task-edit__params-container">
 					<b>Установлены шины:</b>
                     <select class="task-add__tire_type">
                         <option>Летние</option>
                         <option>Зимние</option>
                     </select>
-				</div>
-
-                <div class="task-edit__params-container">
-					<b>Нужна ли замена:</b>
-					<div>
-						<p>${AddAndList.checkTiresStatus(tireType)}</p>
-					</div>
 				</div>
 
                 <div class="task-edit__buttons">

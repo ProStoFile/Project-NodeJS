@@ -314,7 +314,7 @@ class AddAndList extends Component {
     }
 
     static changeDateFormat(date) {
-        return date.split('-').reverse().join('-');
+        return date.split('-').reverse().join('.');
     }
 
     static getInsuranceStatus(date) {
@@ -350,7 +350,10 @@ class AddAndList extends Component {
             diffInTime = dateEnd.getTime() - dateNow.getTime(),
             diffInDays = Math.round(diffInTime / oneDay);
 
-        if (diffInDays > 366) diffInDays = 0;
+        if (diffInDays > 366) {
+            diffInDays = 0;
+        } 
+
         return diffInDays;
     }
 
