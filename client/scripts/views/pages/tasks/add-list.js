@@ -145,10 +145,6 @@ class AddAndList extends Component {
             }
         })
 
-        deleteTaskBtn.addEventListener('click', function () {
-            modalDeleteTaskWindow.style.display = 'block';
-        })
-
         taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();
         addTaskBtn.onclick = () => this.addTask(
             taskTitleField,
@@ -226,8 +222,8 @@ class AddAndList extends Component {
             fuelUsed: taskFuelUsedField.value,
             distanceTraveled: taskDistancetraveledField.value,
             fuelCost: taskFuelCostField.value,
-            insuranceStatus: this.getInsuranceStatus(Date.parse(taskTimeField.value)),
-            daysInsuranceValidityLeft: this.getDaysInsuranceValidityLeft(taskTimeField.value),
+            //insuranceStatus: this.getInsuranceStatus(Date.parse(taskTimeField.value)),
+            //daysInsuranceValidityLeft: this.getDaysInsuranceValidityLeft(taskTimeField.value),
             tireType: taskTireTypeSelect.value,
         };
 

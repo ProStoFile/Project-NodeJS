@@ -4,6 +4,8 @@ import Error404 from '../../../views/pages/error404.js';
 
 import Tasks from '../../../models/tasks.js';
 
+import AddAndList from './add-list.js';
+
 class Info extends Component {
 	static async getData() {
 		return await Tasks.getTask(this.urlParts.id);
@@ -59,7 +61,7 @@ class Info extends Component {
 						<div class="task-edit__params-container">
 							<b>Истекает через (дн):</b>
 							<div>
-								${daysInsuranceValidityLeft}
+								${AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart)}
 							</div>
 						</div>
 		
@@ -101,7 +103,7 @@ class Info extends Component {
 						<div class="task-edit__params-container">
 							<b>Статус страховки:</b>
 							<div>
-								<p>${insuranceStatus}</p>
+								<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
 							</div>
 						</div>
 		
