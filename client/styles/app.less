@@ -87,7 +87,7 @@ body {
   align-items: center;
 
   &:hover {
-    border-radius: 0;
+    background: #808080;
   }
 
   &:disabled {
@@ -172,7 +172,12 @@ body {
   &__additional {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    background: #bbbaba;
+    border: #bbbaba 1px solid;
+    border-radius: 20px;
+    padding: 5px;
+    width: 50%;
+    margin: 0 auto;
   }
 
   &__counter {
@@ -211,7 +216,7 @@ body {
     padding: 0px 15px;
     border: solid #D3D3D3 1px;
     background-color: #D3D3D3;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: pointer;
     transition: all .3s;
 
@@ -329,7 +334,7 @@ body {
   }
 
   .task__list {
-    justify-content: space-between;
+    flex-direction: center;
   }
 }
 
@@ -339,7 +344,7 @@ body {
     min-width: 200px;
     max-width: 280px;
   }
-  
+
 }
 
 .task-edit {
@@ -493,7 +498,7 @@ select {
   }
 
   &:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: #808080;
     border-radius: 20px 20px 0px 0px;
   }
 }

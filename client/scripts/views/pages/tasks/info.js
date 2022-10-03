@@ -36,15 +36,14 @@ class Info extends Component {
 						<div class="task-edit__params-container">
 							<b>Модель:</b>
 							<div>
-								<input class="task-edit__title" type="text" value="${title}">
+								${title}
 							</div>
 						</div>
 		
 						<div class="task-edit__params-container">
 							<b>Описание:</b>
 							<div>
-								<textarea class="task-edit__description">${(description === 'No Description') ? '' : description}
-								</textarea>
+								${description}
 							</div>
 						</div>
 		

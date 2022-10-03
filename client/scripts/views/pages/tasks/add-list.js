@@ -63,8 +63,6 @@ class AddAndList extends Component {
     
             <div class="tasks">
                 <div class="tasks__additional">
-                    <p class="tasks__counter"></p>
-                    
 
                     <div class="dropdown">
                         <button class="dropbtn button">Сортировать</button>
@@ -74,18 +72,15 @@ class AddAndList extends Component {
                             <button class="tasks__btn-sort_by_totalFuelCost dropdown__button">По затратам<br>на топливо</button>
                         </div>
                     </div>
-                
-                    <button class="tasks__btn-refresh button" ${!tasks.length ? 'disabled' : ''}>
-                        Обновить
-                    </button>
-                    
-                    <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>
-                        Очистить список
-                    </button>
 
                     <button class="tasks__btn-add button">
                         Добавить
                     </button>
+                                    
+                    <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>
+                        Очистить список
+                    </button>
+                    
                 </div>
                 
                 <div class="_container">
@@ -99,8 +94,6 @@ class AddAndList extends Component {
 
     static afterRender() {
         this.setActions();
-
-        this.countTasksAmount();
     }
 
     static setActions() {
@@ -111,9 +104,7 @@ class AddAndList extends Component {
             sortTasksListBtn = document.getElementsByClassName('tasks__btn-sort')[0],
             sortTasksListBydistanceTraveledBtn = document.getElementsByClassName('tasks__btn-sort_by_distanceTraveled')[0],
             sortTasksListByTotalFuelCostBtn = document.getElementsByClassName('tasks__btn-sort_by_totalFuelCost')[0],
-            deleteTaskBtn = document.getElementsByClassName('task__btn-remove')[0],
 
-            refreshTasksListBtn = document.getElementsByClassName('tasks__btn-refresh')[0],
             tasksContainer = document.getElementsByClassName('tasks')[0],
             clearTasksListBtn = tasksContainer.getElementsByClassName('tasks__btn-clear')[0],
             tasksList = tasksContainer.getElementsByClassName('tasks__list')[0],
@@ -126,9 +117,7 @@ class AddAndList extends Component {
 
             modalAddTaskWindow = document.getElementsByClassName('modal__window-add__task')[0],
             showAddTaskWindowBtn = document.getElementsByClassName('tasks__btn-add')[0],
-            closeModalWindowBtn = document.getElementsByClassName('modal__window-close')[0],
-
-            modalDeleteTaskWindow = document.getElementsByClassName('modal__window-delete__task')[0];
+            closeModalWindowBtn = document.getElementsByClassName('modal__window-close')[0];
 
         taskTimeField.valueAsDate = new Date();
         taskTimeField.max = new Date().toISOString().split('T')[0];
@@ -226,8 +215,6 @@ class AddAndList extends Component {
             fuelUsed: taskFuelUsedField.value,
             distanceTraveled: taskDistancetraveledField.value,
             fuelCost: taskFuelCostField.value,
-            //insuranceStatus: this.getInsuranceStatus(Date.parse(taskTimeField.value)),
-            //daysInsuranceValidityLeft: this.getDaysInsuranceValidityLeft(taskTimeField.value),
             tireType: taskTireTypeSelect.value,
         };
 
@@ -269,19 +256,6 @@ class AddAndList extends Component {
         taskTitleField.value = '';
         taskDescriptionField.value = '';
         addTaskBtn.disabled = true;
-    }
-
-    static countTasksAmount() {
-        const tasksCounter = document.getElementsByClassName('tasks__counter')[0],
-            totalAmount = document.getElementsByClassName('task').length,
-            doneAmount = document.getElementsByClassName('task_done').length,
-            toBeVerbForm = (doneAmount === 1) ? 'is' : 'are',
-            taskWordForm = (doneAmount === 1) ? 'task' : 'tasks';
-
-        tasksCounter.innerHTML = !totalAmount ?
-            'Список пуст' :
-            `There ${toBeVerbForm} <span class="tasks__counter-done">${doneAmount}</span> ${taskWordForm} of ` +
-            `<span class="tasks__counter-total">${totalAmount}</span> ${toBeVerbForm} done`;
     }
 
     static async sortTasksListByModel(tasksList) {
