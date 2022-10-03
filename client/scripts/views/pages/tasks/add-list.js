@@ -245,6 +245,7 @@ class AddAndList extends Component {
         const statusDone = task.status === 'Done';
 
         return `
+        <div class="task__item">
             <div class="task ${statusDone ? 'task_done' : ''}" data-id="${task.id}">
                 <a class="task__title" data-id="${task.id}">${task.title}</a>
 
@@ -260,6 +261,7 @@ class AddAndList extends Component {
                     <a class="task__btn-remove button">Удалить</a>   
                 </div>                            
             </div>
+        </div>
         `;
     }
 

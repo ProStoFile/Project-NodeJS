@@ -21,7 +21,7 @@ body {
 
 @media(min-width: 776px) {
   ._container {
-    padding: 0px 100px;
+    padding: 0px 50px;
   }
 
   .task-edit {
@@ -31,10 +31,6 @@ body {
     margin: 0 auto;
   }
 }
-
-
-
-
 
 .page-container {
   display: flex;
@@ -169,7 +165,7 @@ body {
   max-width: 1200px;
   margin: 10px auto 0;
 
-  &__container{
+  &__container {
     padding: 10px;
   }
 
@@ -209,14 +205,21 @@ body {
     text-align: center;
     flex-direction: column;
     min-height: 230px;
-    width: 230px;
-    margin: 10px 10px;
+    width: 100%;
+
+    margin: 5px;
     padding: 0px 15px;
     border: solid #D3D3D3 1px;
     background-color: #D3D3D3;
     border-radius: 10px;
     cursor: pointer;
     transition: all .3s;
+
+    &__item {
+      flex: 0 1 25%;
+      padding: 5px;
+      display: flex;
+    }
 
     &__date {
       display: block;
@@ -302,11 +305,41 @@ body {
   }
 }
 
+@media(max-width: 1102px) {
+  .task__item {
+    flex: 0 1 33%;
+  }
+
+  .task {
+    min-width: 275px;
+    max-width: 280px;
+  }
+}
+
 @media(max-width: 992px) {
   .task {
-    width: 300px;
-    height: 300px;
+    min-width: 300px;
   }
+}
+
+@media(max-width: 776px) {
+
+  .task {
+    width: 100%;
+  }
+
+  .task__list {
+    justify-content: space-between;
+  }
+}
+
+@media(max-width: 596px) {
+
+  .task {
+    min-width: 200px;
+    max-width: 280px;
+  }
+  
 }
 
 .task-edit {
@@ -391,9 +424,9 @@ body {
 }
 
 .warning-task__title {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .green {
