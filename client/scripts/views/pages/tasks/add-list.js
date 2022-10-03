@@ -177,8 +177,18 @@ class AddAndList extends Component {
                     break;
 
                 case targetClassList.contains('task'):
+                case targetClassList.contains('task__content'):
                 case targetClassList.contains('task__img-container'):
                 case targetClassList.contains('task__img'):
+                    this.redirectToTaskInfo(target.dataset.id);
+                    break;
+
+                case targetClassList.contains('task'):
+                case targetClassList.contains('task-content'):
+                case targetClassList.contains('task-content__params'):
+                case targetClassList.contains('task-edit__params-container'):
+                case targetClassList.contains('task__params-values'):
+
                     this.redirectToTaskInfo(target.dataset.id);
                     break;
 
@@ -231,13 +241,49 @@ class AddAndList extends Component {
     static getTaskHTML(task) {
         const statusDone = task.status === 'Done';
 
+
         return `
         <div class="task__item">
             <div class="task ${statusDone ? 'task_done' : ''}" data-id="${task.id}">
                 <a class="task__title" data-id="${task.id}">${task.title}</a>
 
-                <div class="task__img-container" data-id="${task.id}">
-                    <img class="task__img" data-id="${task.id}" src="styles/img/task__logo.png">
+                <div class="task-content" data-id="${task.id}">
+                    <div class="task__img-container" data-id="${task.id}">
+                        <img class="task__img" data-id="${task.id}" src="styles/img/task__logo.png">
+                    </div>
+                    <div class="task-content__params" data-id="${task.id}">
+                    
+					    <div class="task-edit__params-container" data-id="${task.id}">
+					    	<b class="task__params-values" data-id="${task.id}">Описание:</b>
+					    	<div class="task__params-values" data-id="${task.id}">
+					    		${task.description}
+					    	</div>
+					    </div>
+
+                        <div class="task-edit__params-container" data-id="${task.id}">
+					    	<b class="task__params-values" data-id="${task.id}">Объем двигателя:</b>
+					    	<div class="task__params-values" data-id="${task.id}">
+					    		${task.capacity}
+					    		<p class="task__params-values" data-id="${task.id}">л</p>
+					    	</div>
+					    </div>
+                        <div class="task-edit__params-container" data-id="${task.id}">
+					    	<b class="task__params-values" data-id="${task.id}">Расход топлива:</b>
+					    	<div class="task__params-values" data-id="${task.id}">
+					    		${task.fuelUsed}
+					    		<p class="task__params-values" data-id="${task.id}">л</p>
+					    	</div>
+					    </div>
+                        <div class="task-edit__params-container" data-id="${task.id}">
+					    	<b class="task__params-values" data-id="${task.id}" data-id="${task.id}">Пройдено:</b>
+					    	<div class="task__params-values" data-id="${task.id}">
+					    		${task.distanceTraveled}
+					    		<p class="task__params-values" data-id="${task.id}">км</p>
+					    	</div>
+					    </div>
+
+                        
+					</div>
                 </div>
                 
                 <div class="task__buttons">

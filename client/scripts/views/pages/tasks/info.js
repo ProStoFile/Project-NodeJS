@@ -90,7 +90,7 @@ class Info extends Component {
 							<b>Пройдено:</b>
 							<div class="task-edit__params-item">
 								${distanceTraveled}
-								<p>л</p>
+								<p>км</p>
 							</div>
 						</div>
 		
@@ -120,9 +120,7 @@ class Info extends Component {
 							</div>` :
 					`<div class="red">
 							<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
-						</div>`
-
-				}
+						</div>`}
 							
 						</div>
 		

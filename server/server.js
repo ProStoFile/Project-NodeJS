@@ -25,7 +25,7 @@ app.post('/api/task', (req, res) => {
 	task.dateInsuranceStart = task.dateInsuranceStart || 'Не указано';
 	task.daysInsuranceValidityLeft = task.daysInsuranceValidityLeft;
 	task.id = shortId.generate();
-	task.description = task.description || 'Нет описания';
+	task.description = task.description || 'Пусто';
 	task.status = 'In Progress';
 	task.capacity = task.capacity || 'Объем не указан';
 

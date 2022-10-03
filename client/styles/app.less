@@ -210,6 +210,7 @@ body {
     text-align: center;
     flex-direction: column;
     min-height: 230px;
+    max-height: 260px;
     width: 100%;
 
     margin: 5px;
@@ -220,10 +221,27 @@ body {
     cursor: pointer;
     transition: all .3s;
 
+    &-content {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-content__params {
+      width: 70%;
+    }
+
     &__item {
-      flex: 0 1 25%;
+      flex: 0 1 50%;
       padding: 5px;
       display: flex;
+    }
+
+    &__params-values {
+      display: flex;
+    }
+
+    &__params-values p {
+      padding: 0px 0px 0px 5px;
     }
 
     &__date {
@@ -301,49 +319,25 @@ body {
     }
 
     &__img {
-      width: 80%;
+      width: 70%;
     }
 
     &__img-container {
-      width: 100%;
+      width: 30%;
     }
-  }
-}
-
-@media(max-width: 1102px) {
-  .task__item {
-    flex: 0 1 33%;
-  }
-
-  .task {
-    min-width: 275px;
-    max-width: 280px;
-  }
-}
-
-@media(max-width: 992px) {
-  .task {
-    min-width: 300px;
   }
 }
 
 @media(max-width: 776px) {
-
-  .task {
-    width: 100%;
+  .tasks__list {
+    flex-direction: column;
+    justify-content: center;
   }
 
-  .task__list {
-    flex-direction: center;
+  .task__img-container {
+    width: 20%;
   }
-}
 
-@media(max-width: 596px) {
-
-  .task {
-    min-width: 200px;
-    max-width: 280px;
-  }
 
 }
 
@@ -403,7 +397,7 @@ body {
     display: flex;
   }
 
-  &__params-item p{
+  &__params-item p {
     padding: 0px 0px 0px 5px;
   }
 
