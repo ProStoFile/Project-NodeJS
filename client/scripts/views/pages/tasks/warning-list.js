@@ -13,27 +13,32 @@ class Warning extends Component {
 
     static async render(tasks) {
         return `
-        <div class="tasks__container">
-        <div class="warning-tasks__title">
-            Авто с просроченной страховкой:
-            ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length}
-        </div>
         <div class="tasks">
-            <div class="tasks__list expired__insurance">
+            <div class="_container">
+                <div class="warning-tasks__title">
+                    <div class="warning-tasks__title-text">
+                        Авто с просроченной страховкой:
+                        ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length}
+                    </div>
+                </div>
+            
+        
+            <div class="tasks__list">
                 ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) ===
             'Истекла').map(task => AddAndList.getTaskHTML(task)).join('')}
             </div>
-        </div>
-        <div class="warning-tasks__title">
-            Авто с неверными типом шин:
-            ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length}
-        </div>
-        <div class="tasks">
-            <div class="tasks__list wrong__tire__type">
+        
+            <div class="warning-tasks__title">
+                Авто с неверными типом шин:
+                ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length}
+            </div>
+        
+            <div class="tasks__list">
                 ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').map(task => AddAndList.getTaskHTML(task)).join('')}
             </div>
+            </div>
+        
         </div>
-    </div>
         `;
     }
 

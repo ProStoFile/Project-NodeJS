@@ -99,9 +99,17 @@ class Info extends Component {
 		
 						<div class="task-edit__params-container">
 							<b>Статус страховки:</b>
-							<div>
-								<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
-							</div>
+							${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart)) === 'Действительна' ?
+						
+						`<div class="green">
+							<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
+						</div>` : 
+						`<div class="red">
+							<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
+						</div>`
+
+						}
+							
 						</div>
 		
 						<div class="task-edit__params-container">
