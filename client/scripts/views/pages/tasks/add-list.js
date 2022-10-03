@@ -350,10 +350,6 @@ class AddAndList extends Component {
             diffInTime = dateEnd.getTime() - dateNow.getTime(),
             diffInDays = Math.round(diffInTime / oneDay);
 
-        if (diffInDays > 366) {
-            diffInDays = 0;
-        } 
-
         return diffInDays;
     }
 

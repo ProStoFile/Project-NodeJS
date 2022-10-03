@@ -55,67 +55,84 @@ class Info extends Component {
 						</div>
 		
 						<div class="task-edit__params-container">
-							<b>Истекает через (дн):</b>
-							<div>
+								${AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart) < 0 ?
+								`<b>Страховка просрочена:</b>
+								<div class="task-edit__params-item">
+								${Math.abs(AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart))}
+								<p>дней назад</p>
+							</div>
+								` : `
+
+						<b>Истекает через:</b>
+							<div class="task-edit__params-item">
 								${AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart)}
-							</div>
+								<p>дней</p>
+							</div>`}
 						</div>
 		
 						<div class="task-edit__params-container">
-							<b>Объем двигателя (л):</b>
-							<div>
+							<b>Объем двигателя:</b>
+							<div class="task-edit__params-item">
 								${capacity}
+								<p>л</p>
 							</div>
 						</div>
 		
 						<div class="task-edit__params-container">
-							<b>Расход топлива (л):</b>
-							<div>
+							<b>Расход топлива:</b>
+							<div class="task-edit__params-item">
 								${fuelUsed}
+								<p>л</p>
 							</div>
 						</div>
 		
 						<div class="task-edit__params-container">
-							<b>Пройдено (км):</b>
-							<div>
+							<b>Пройдено:</b>
+							<div class="task-edit__params-item">
 								${distanceTraveled}
+								<p>л</p>
 							</div>
 						</div>
 		
 						<div class="task-edit__params-container">
-							<b>Стоимость топлива (₽):</b>
-							<div>
+							<b>Стоимость топлива:</b>
+							<div class="task-edit__params-item">
 								${fuelCost}
+								<p>₽</p>
 							</div>
+							
 						</div>
 		
 						<div class="task-edit__params-container">
-							<b>Затраты на топливо(₽):</b>
-							<div>
+							<b>Затраты на топливо:</b>
+							<div class="task-edit__params-item">
 								<p>${totalFuelCost}</p>
+								<p>₽</p>
 							</div>
 						</div>
 		
 						<div class="task-edit__params-container">
 							<b>Статус страховки:</b>
 							${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart)) === 'Действительна' ?
-						
-						`<div class="green">
+
+					`<div class="green">
 							<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
-						</div>` : 
-						`<div class="red">
+							</div>` :
+					`<div class="red">
 							<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
 						</div>`
 
-						}
+				}
 							
 						</div>
 		
 						<div class="task-edit__params-container">
 							<b>Израсходовано топлива:</b>
-							<div>
+							<div class="task-edit__params-item">
 								<p>${totalFuelUsed}</p>
+								<p>л</p>
 							</div>
+							
 						</div>
 
 						<div class="task-edit__params-container">

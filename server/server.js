@@ -34,7 +34,7 @@ app.post('/api/task', (req, res) => {
 	task.fuelCost = task.fuelCost
 
 	task.totalFuelUsed = task.fuelUsed * task.distanceTraveled;
-	task.totalFuelCost = task.totalFuelUsed * task.fuelCost;
+	task.totalFuelCost = (task.totalFuelUsed * task.fuelCost).toFixed(2);
 	task.tireType = task.tireType;
 	task.dateAdded = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
 
@@ -65,7 +65,7 @@ app.put('/api/task/:id', (req, res) => {
 	task.fuelUsed = updatedTask.fuelUsed;
 	task.distanceTraveled = updatedTask.distanceTraveled;
 	task.totalFuelUsed = updatedTask.fuelUsed * updatedTask.distanceTraveled;
-	task.totalFuelCost = updatedTask.fuelUsed * updatedTask.distanceTraveled * updatedTask.fuelCost;
+	task.totalFuelCost = (updatedTask.fuelUsed * updatedTask.distanceTraveled * updatedTask.fuelCost).toFixed(2);
 	task.tireType = updatedTask.tireType;
 
 	setTasksToDB(tasksData);
@@ -81,7 +81,7 @@ function setTasksToDB(tasksData) {
 	fs.writeFileSync(dbFilePath, JSON.stringify(tasksData));
 }
 
-app.listen(3000, () => console.log('Server has been started...'));
+app.listen(3000, () => console.log('Сервер запущен...'));
 
 app.delete('/api/tasks', (req, res) => {
 	setTasksToDB([]);

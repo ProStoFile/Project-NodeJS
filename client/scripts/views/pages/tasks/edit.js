@@ -24,10 +24,7 @@ class Edit extends Component {
                 dateInsuranceStart,
                 fuelUsed,
                 distanceTraveled,
-                fuelCost,
-                totalFuelUsed,
-                totalFuelCost,
-                tireType } = task;
+                fuelCost } = task;
 
             html = `
                 <h1 class="page-title">Изменить</h1>
@@ -88,6 +85,7 @@ class Edit extends Component {
                             value="${fuelCost}">
                     </div>
                 </div>
+
 
                 <div class="task-edit__params-container">
 					<b>Установлены шины:</b>
