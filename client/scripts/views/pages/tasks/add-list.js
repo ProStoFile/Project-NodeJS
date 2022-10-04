@@ -107,7 +107,10 @@ class AddAndList extends Component {
 
             tasksContainer = document.getElementsByClassName('tasks')[0],
             clearTasksListBtn = tasksContainer.getElementsByClassName('tasks__btn-clear')[0],
+
             tasksList = tasksContainer.getElementsByClassName('tasks__list')[0],
+            taskElements = tasksList.getElementsByClassName('task__item'),
+
             taskTimeField = document.getElementsByClassName('task-add__time')[0],
             taskCapacityField = document.getElementsByClassName('task-add__capacity')[0],
             taskFuelUsedField = document.getElementsByClassName('task-add__fuel_used')[0],
@@ -135,6 +138,57 @@ class AddAndList extends Component {
                 modalAddTaskWindow.style.display = 'none';
             }
         })
+
+        /* ---------------- Drag'n'Drop ---------------- */
+
+        for (const task of taskElements) {
+            task.draggable = true;
+        }
+
+        tasksList.addEventListener('dragstart', (event) => {
+            event.target.classList.add('selected');
+        });
+
+        tasksList.addEventListener('dragend', (event) => {
+            event.target.classList.remove('selected');
+        });
+
+        const getNextElement = (cursorPosition, currentElement) => {
+            const currentElementCoord = currentElement.getBoundingClientRect(),
+                currentElementCenter = currentElementCoord.y + currentElementCoord.height / 2,
+                nextElement = (cursorPosition < currentElementCenter) ?
+                    currentElement :
+                    currentElement.nextElementSibling;
+
+            return nextElement;
+        };
+
+        tasksList.addEventListener('dragover', (event) => {
+            event.preventDefault();
+
+            const activeElement = tasksList.querySelector(`.selected`);
+            const currentElement = event.target;
+            const isMoveable = activeElement !== currentElement &&
+                currentElement.classList.contains(`task__item`);
+
+            if (!isMoveable) {
+                return;
+            }
+
+            const nextElement = getNextElement(event.clientY, currentElement);
+
+            if (
+                nextElement &&
+                activeElement === nextElement.previousElementSibling ||
+                activeElement === nextElement
+            ) {
+                return;
+            }
+
+            tasksList.insertBefore(activeElement, nextElement);
+        });
+
+        /* ---------------- Drag'n'Drop ---------------- */
 
         taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();
         addTaskBtn.onclick = () => this.addTask(

@@ -29,7 +29,7 @@ class About extends Component {
                 ибо всякий раз, когда вы оказываетесь рядом, негде припарковаться.</p>
             </div>
             
-            <div class="about"></div>
+
 
             <div class="cars__img__container opacity">
                 <img class="cars__image" src="styles/img/car1.png">
@@ -59,8 +59,8 @@ class About extends Component {
             opacity = document.querySelectorAll(".opacity"),
             border = document.querySelector(".cars__border");
 
-        let cars__container_height = cars__container.offsetHeight;
-        let section_height = section.offsetHeight;
+        let cars__container_height = cars__container.offsetHeight,
+        section_height = section.offsetHeight;
 
         window.addEventListener('scroll', function () {
             let scroll = window.pageYOffset,
