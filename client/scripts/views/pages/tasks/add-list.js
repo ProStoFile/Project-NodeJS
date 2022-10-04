@@ -166,10 +166,10 @@ class AddAndList extends Component {
         tasksList.addEventListener('dragover', (event) => {
             event.preventDefault();
 
-            const activeElement = tasksList.querySelector(`.selected`);
+            const activeElement = tasksList.querySelector('.selected');
             const currentElement = event.target;
             const isMoveable = activeElement !== currentElement &&
-                currentElement.classList.contains(`task__item`);
+                currentElement.classList.contains('task__item');
 
             if (!isMoveable) {
                 return;
