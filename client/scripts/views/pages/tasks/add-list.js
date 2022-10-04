@@ -12,11 +12,11 @@ class AddAndList extends Component {
         
     <div class="modal__window-add__task">
         <div class="modal__window-add__task-content">
-          <div class="modal__window-add__task-header">
-            <span class="modal__window-close">&times;</span>
-            <h2>Информация о Вашем авто</h2>
-          </div>
-          <div class="modal__window-add__task-body">
+            <div class="modal__window-add__task-header">
+                <span class="modal__window-close">&times;</span>
+                <h2>Информация о Вашем авто</h2>
+            </div>
+            <div class="modal__window-add__task-body">
             <div class="task-add">
                 <input class="task-add__title add" type="text" placeholder="Модель">
                 <textarea class="task-add__description add" placeholder="Описание"></textarea>
@@ -78,7 +78,7 @@ class AddAndList extends Component {
                     </button>
                                     
                     <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>
-                        Очистить список
+                        Очистить
                     </button>
                     
                 </div>
@@ -239,14 +239,22 @@ class AddAndList extends Component {
     }
 
     static getTaskHTML(task) {
-        const statusDone = task.status === 'Done';
-
-
         return `
         <div class="task__item">
-            <div class="task ${statusDone ? 'task_done' : ''}" data-id="${task.id}">
-                <a class="task__title" data-id="${task.id}">${task.title}</a>
+            
+            <div class="task" data-id="${task.id}">
 
+            
+                <div class="task__title" data-id="${task.id}">
+                <div class="task__title-images"></div>
+                    ${task.title}
+                    <div class="task__title-images">
+                    <a class="task__btn-edit" href="#/task/${task.id}/edit"><img class="task__title-img task__btn-edit" href="#/task/${task.id}/edit" src="styles/img/icons/pencil.png"></a>
+                        <img class="task__title-img task__btn-remove" data-id="${task.id}" src="styles/img/icons/bin.png">
+                    </div>
+                    
+                </div>                  
+                
                 <div class="task-content" data-id="${task.id}">
                     <div class="task__img-container" data-id="${task.id}">
                         <img class="task__img" data-id="${task.id}" src="styles/img/task__logo.png">
@@ -284,16 +292,12 @@ class AddAndList extends Component {
 
                         
 					</div>
-                </div>
+                </div>   
                 
-                <div class="task__buttons">
-                	${!statusDone ?
-                `<a class="task__btn-edit button" href="#/task/${task.id}/edit">Edit</a>
-                    	 <a class="task__btn-done button">Done</a>`
-                : ''}
-                    <a class="task__btn-remove button">Удалить</a>   
-                </div>                            
+                
             </div>
+
+            
         </div>
         `;
     }

@@ -16,12 +16,12 @@ body {
 
 ._container {
   width: 100%;
-  padding: 0px 30px;
+  padding: 10px 30px;
 }
 
 @media(min-width: 776px) {
   ._container {
-    padding: 0px 50px;
+    padding: 10px 50px;
   }
 
   .task-edit {
@@ -161,9 +161,26 @@ body {
   }
 }
 
+.task__btn-remove {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+
+
+
+  &:hover,
+  &:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
 .tasks {
   max-width: 1200px;
-  margin: 10px auto 0;
+  margin: 0 auto;
 
   &__container {
     padding: 10px;
@@ -174,9 +191,9 @@ body {
     justify-content: space-between;
     background: #bbbaba;
     border: #bbbaba 1px solid;
-    border-radius: 20px;
+    border-radius: 0px 0px 20px 20px;
     padding: 5px;
-    width: 50%;
+    max-width: 386px;
     margin: 0 auto;
   }
 
@@ -196,6 +213,13 @@ body {
     padding: 8px 16px;
   }
 
+  &__btn-clear,
+  &__btn-add,
+  .dropbtn {
+    padding: 8px 16px;
+    width: 122px;
+  }
+
   &__list {
     display: flex;
     flex-wrap: wrap;
@@ -209,21 +233,21 @@ body {
     align-items: center;
     text-align: center;
     flex-direction: column;
-    min-height: 230px;
     max-height: 260px;
     width: 100%;
-
     margin: 5px;
-    padding: 0px 15px;
-    border: solid #D3D3D3 1px;
+    padding: 0px;
     background-color: #D3D3D3;
-    border-radius: 20px;
+    border-radius: 40px 40px 20px 20px;
     cursor: pointer;
     transition: all .3s;
 
     &-content {
       display: flex;
       justify-content: space-between;
+      padding: 10px 15px;
+      align-items: center;
+      text-align: center;
     }
 
     &-content__params {
@@ -234,6 +258,11 @@ body {
       flex: 0 1 50%;
       padding: 5px;
       display: flex;
+    }
+
+
+    &__header {
+      width: 100%;
     }
 
     &__params-values {
@@ -265,21 +294,31 @@ body {
       }
     }
 
-    &__btn-remove {
-      background-color: crimson;
-    }
-
-    &__btn-edit {
-      background-color: #38ac38
-    }
-
     &__title {
-      max-width: 400px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: black 1px solid;
+      border-radius: 20px 20px 0px 0px;
+      background: #202020;
+      color: #fefefe;
+      font-size: 20px;
+      width: 100%;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      padding: 1px 0;
+      padding: 10px;
       transition: all .3s;
+
+      &-img{
+        width: 20px;
+        height: 20px;
+      }
+
+      &-images{
+        width: 50px;
+      }
+
     }
 
     &__buttons {
@@ -324,6 +363,7 @@ body {
 
     &__img-container {
       width: 30%;
+      align-items: center;
     }
   }
 }
@@ -453,7 +493,6 @@ select {
 .dropbtn {
   border: none;
   padding: 8px 16px;
-  min-width: 122px;
 }
 
 .dropdown {
