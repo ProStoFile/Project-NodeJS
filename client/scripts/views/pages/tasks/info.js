@@ -34,21 +34,31 @@ class Info extends Component {
 				<div class="task-edit">
 					<div class="task-edit__params">
 						<div class="task-edit__params-container">
-							<b>Модель:</b>
+							<div>
+								<img class="params-icon" src="styles/img/icons/params/car.png">
+								<b>Модель: </b>
+							</div>
+						
 							<div>
 								${title}
 							</div>
 						</div>
 		
 						<div class="task-edit__params-container">
+						<div>
+							<img class="params-icon" src="styles/img/icons/params/document.png">
 							<b>Описание:</b>
+						</div>
 							<div>
 								${description}
 							</div>
 						</div>
 		
 						<div class="task-edit__params-container">
+						<div>
+							<img class="params-icon" src="styles/img/icons/params/calendar.png">
 							<b>Застрахован:</b>
+						</div>
 							<div>
 								${AddAndList.changeDateFormat(dateInsuranceStart)}
 							</div>
@@ -56,14 +66,19 @@ class Info extends Component {
 		
 						<div class="task-edit__params-container">
 								${AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart) < 0 ?
-								`<b>Страховка просрочена:</b>
+						`<div>
+						<img class="params-icon" src="styles/img/icons/params/document.png">
+						<b>Страховка просрочена:</b>
+						</div>
 								<div class="task-edit__params-item">
 								${Math.abs(AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart))}
 								<p>дней назад</p>
 							</div>
 								` : `
-
+								<div>
+								<img class="params-icon" src="styles/img/icons/params/document.png">
 						<b>Истекает через:</b>
+						</div>
 							<div class="task-edit__params-item">
 								${AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart)}
 								<p>дней</p>
@@ -71,7 +86,10 @@ class Info extends Component {
 						</div>
 		
 						<div class="task-edit__params-container">
+						<div>
+							<img class="params-icon" src="styles/img/icons/params/car-engine.png">
 							<b>Объем двигателя:</b>
+						</div>
 							<div class="task-edit__params-item">
 								${capacity}
 								<p>л</p>
@@ -79,7 +97,10 @@ class Info extends Component {
 						</div>
 		
 						<div class="task-edit__params-container">
+						<div>
+							<img class="params-icon" src="styles/img/icons/params/petrol.png">
 							<b>Расход топлива:</b>
+						</div>
 							<div class="task-edit__params-item">
 								${fuelUsed}
 								<p>л</p>
@@ -87,7 +108,10 @@ class Info extends Component {
 						</div>
 		
 						<div class="task-edit__params-container">
+						<div>
+							<img class="params-icon" src="styles/img/icons/params/road.png">
 							<b>Пройдено:</b>
+						</div>
 							<div class="task-edit__params-item">
 								${distanceTraveled}
 								<p>км</p>
@@ -95,7 +119,10 @@ class Info extends Component {
 						</div>
 		
 						<div class="task-edit__params-container">
-							<b>Стоимость топлива:</b>
+							<div>
+								<img class="params-icon" src="styles/img/icons/params/salary.png">
+								<b>Стоимость топлива:</b>
+							</div>
 							<div class="task-edit__params-item">
 								${fuelCost}
 								<p>₽</p>
@@ -104,7 +131,10 @@ class Info extends Component {
 						</div>
 		
 						<div class="task-edit__params-container">
+						<div>
+							<img class="params-icon" src="styles/img/icons/params/profits.png">
 							<b>Затраты на топливо:</b>
+						</div>
 							<div class="task-edit__params-item">
 								<p>${totalFuelCost}</p>
 								<p>₽</p>
@@ -112,7 +142,10 @@ class Info extends Component {
 						</div>
 		
 						<div class="task-edit__params-container">
+						<div>
+							<img class="params-icon" src="styles/img/icons/params/file.png">
 							<b>Статус страховки:</b>
+						</div>
 							${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart)) === 'Действительна' ?
 
 					`<div class="green">
@@ -125,7 +158,10 @@ class Info extends Component {
 						</div>
 		
 						<div class="task-edit__params-container">
+						<div>
+							<img class="params-icon" src="styles/img/icons/params/gasoline.png">
 							<b>Израсходовано топлива:</b>
+						</div>
 							<div class="task-edit__params-item">
 								<p>${totalFuelUsed}</p>
 								<p>л</p>
@@ -134,14 +170,20 @@ class Info extends Component {
 						</div>
 
 						<div class="task-edit__params-container">
+						<div>
+							<img class="params-icon" src="styles/img/icons/params/wheel.png">
 							<b>Установлены шины:</b>
+						</div>
 							<div>
 								<p>${tireType}</p>
 							</div>
 						</div>
 
 						<div class="task-edit__params-container">
+						<div>
+							<img class="params-icon" src="styles/img/icons/params/wheel2.png">
 							<b>Нужна ли замена:</b>
+						</div>
 							<div>
 								<p>${AddAndList.checkTiresStatus(tireType)}</p>
 							</div>

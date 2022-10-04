@@ -61,34 +61,34 @@ class AddAndList extends Component {
         </div>   
     </div> 
     
-            <div class="tasks">
-                <div class="tasks__additional">
+    <div class="tasks">
+        <div class="tasks__additional">
 
-                    <div class="dropdown">
-                        <button class="dropbtn button">Сортировать</button>
-                        <div class="dropdown-content">
-                            <button class="tasks__btn-sort dropdown__button">По модели</button>
-                            <button class="tasks__btn-sort_by_distanceTraveled dropdown__button">По расстоянию</button>
-                            <button class="tasks__btn-sort_by_totalFuelCost dropdown__button">По затратам<br>на топливо</button>
-                        </div>
+            <div class="dropdown">
+                <button class="dropbtn button">Сортировать</button>
+                    <div class="dropdown-content">
+                        <button class="tasks__btn-sort dropdown__button">По модели</button>
+                        <button class="tasks__btn-sort_by_distanceTraveled dropdown__button">По расстоянию</button>
+                        <button class="tasks__btn-sort_by_totalFuelCost dropdown__button">По затратам<br>на топливо</button>
                     </div>
-
-                    <button class="tasks__btn-add button">
-                        Добавить
-                    </button>
-                                    
-                    <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>
-                        Очистить
-                    </button>
-                    
                 </div>
+
+                <button class="tasks__btn-add button">Добавить</button>
+                                    
+                <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>
+                    Очистить
+                </button>
+                    
+            </div>
                 
-                <div class="_container">
-                    <div class="tasks__list">
-                        ${tasks.map(task => this.getTaskHTML(task)).join('')}
-                    </div>
+            <div class="_container">
+                <div class="tasks__list">
+                    ${tasks.map(task => this.getTaskHTML(task)).join('')}
                 </div>
             </div>
+
+        </div>
+    </div>
         `;
     }
 
@@ -122,15 +122,15 @@ class AddAndList extends Component {
         taskTimeField.valueAsDate = new Date();
         taskTimeField.max = new Date().toISOString().split('T')[0];
 
-        showAddTaskWindowBtn.addEventListener('click', function () {
+        showAddTaskWindowBtn.addEventListener('click', () => {
             modalAddTaskWindow.style.display = 'block';
         })
 
-        closeModalWindowBtn.addEventListener('click', function () {
+        closeModalWindowBtn.addEventListener('click', () => {
             modalAddTaskWindow.style.display = 'none';
         })
 
-        window.addEventListener('click', function (event) {
+        window.addEventListener('click', (event) => {
             if (event.target == modalAddTaskWindow) {
                 modalAddTaskWindow.style.display = 'none';
             }
@@ -150,8 +150,8 @@ class AddAndList extends Component {
             taskFuelCostField,
             taskTireTypeSelect);
 
-        tasksContainer.onclick = evt => {
-            const target = evt.target,
+        tasksContainer.onclick = event => {
+            const target = event.target,
                 targetClassList = target.classList;
 
             switch (true) {
@@ -288,16 +288,10 @@ class AddAndList extends Component {
 					    		${task.distanceTraveled}
 					    		<p class="task__params-values" data-id="${task.id}">км</p>
 					    	</div>
-					    </div>
-
-                        
+					    </div>                       
 					</div>
-                </div>   
-                
-                
-            </div>
-
-            
+                </div>                  
+            </div>            
         </div>
         `;
     }
@@ -375,12 +369,6 @@ class AddAndList extends Component {
         `),
             year = 31525200000;
 
-        // if (date + year > dateNow) {
-        //     return 'Действительна';
-        // } else {
-        //     return 'Истекла';
-        // }
-
         return (date + year > dateNow) ? 'Действительна' : 'Истекла';
     }
 
@@ -403,16 +391,6 @@ class AddAndList extends Component {
         return diffInDays;
     }
 
-    static changeTaskStatus(taskContainer, editTaskBtn, doneTaskBtn) {
-        taskContainer.classList.add('task_done');
-        editTaskBtn.remove();
-        doneTaskBtn.remove();
-
-        Tasks.setTaskStatus(taskContainer.dataset);
-
-        this.countTasksAmount();
-    }
-
     static removeTask(tasksList, taskContainer, clearTasksListBtn) {
         if (confirm('Are you sure?')) {
             taskContainer.remove();
@@ -421,25 +399,6 @@ class AddAndList extends Component {
             Tasks.removeSelectedTask(taskContainer.dataset);
 
             this.countTasksAmount();
-        }
-    }
-
-    static getNowDate() {
-        return new Date();
-    }
-
-    static updateDateValues() {
-        const tasks = Tasks.getTasksList();
-        const length = tasks.length;
-
-        for (let i = 0; i < length; i++) {
-            if (tasks[i].dateAdded.getFullYear() !== new Date().getFullYear() &&
-                tasks[i].dateAdded.getMonth() !== new Date().getMonth() &&
-                tasks[i].dateAdded.getDate() !== new Date().getDate()) {
-
-                tasks.daysInsuranceValidityLeft(tasks[i].dateInsuranceStart);
-                tasks.getInsuranceStatus(Date.parse(tasks[i].dateInsuranceStart));
-            }
         }
     }
 

@@ -349,14 +349,6 @@ body {
       }
     }
 
-    &_done {
-      background: @green;
-
-      &:hover {
-        background: #156615;
-      }
-    }
-
     &__img {
       width: 70%;
     }
@@ -379,6 +371,11 @@ body {
   }
 
 
+}
+
+.params-icon{
+  height: 35px;
+  width: 35px;
 }
 
 .task-edit {
@@ -431,6 +428,16 @@ body {
 
   &__params-container:not(:last-child) {
     margin: 0px 0px 10px 0px;
+  }
+
+  &__params-container div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__params-container b{
+    padding: 0px 0px 0px 10px;
   }
 
   &__params-item {
