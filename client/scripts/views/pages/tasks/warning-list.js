@@ -12,35 +12,88 @@ class Warning extends Component {
     }
 
     static async render(tasks) {
-        return `
-        <div class="tasks">
-            <div class="_container">
+        let html;
+
+        if (!tasks.error) {
+
+            if (tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length > 0 &&
+                tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length > 0) {
+                html =
+                    `   <div class="tasks">
+                <div class="_container">
+                    <div class="warning-tasks__title">
+                        <div class="warning-tasks__title-text">
+                            Авто с просроченной страховкой:
+                            ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length}
+                        </div>
+                    </div>           
+                    <div class="tasks__list">
+                        ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').map(task => this.getTaskInsuranceWarningHTML(task)).join('')}
+                </div>                   
                 <div class="warning-tasks__title">
-                    <div class="warning-tasks__title-text">
-                        Авто с просроченной страховкой:
-                        ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length}
-                    </div>
+                    Авто с неверным типом шин:
+                    ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length}
+                </div>                  
+                <div class="tasks__list">
+                    ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').map(task => this.getTaskTireTypeWarningHTML(task)).join('')}
                 </div>
-            
-        
-            <div class="tasks__list">
-                ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) ===
-            'Истекла').map(task => this.getTaskInsuranceWarningHTML(task)).join('')}
-            </div>
-        
-            <div class="warning-tasks__title">
-                Авто с неверными типом шин:
+                </div>        
+            </div>`
+            } else if (tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length == 0 &&
+                tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length == 0) {
+                html = `<div class="tasks">
+                            <div class="_container">
+                                <div class="warning-tasks__title">
+                                    Все Ваши авто в порядке. Так держать!
+                                    <div class="tasks__list"></div>
+                                </div>
+                            </div>
+                        </div>`
+            } else if (tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length > 0 &&
+                tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length == 0) {
+                html = `   
+                <div class="tasks">
+                    <div class="_container">
+                        <div class="warning-tasks__title">
+                            <div class="warning-tasks__title-text">
+                                Авто с просроченной страховкой:
+                                ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length}
+                            </div>
+                        </div>           
+                        <div class="tasks__list">
+                            ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').map(task => this.getTaskInsuranceWarningHTML(task)).join('')}
+                        </div>                                  
+                    </div>        
+                </div>
+                `
+            } else if (tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length == 0 &&
+                tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length >> 0) {
+                html = `   
+            <div class="tasks">
+                <div class="_container">
+                <div class="warning-tasks__title">
+                Авто с неверным типом шин:
                 ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length}
-            </div>
-        
+            </div>                  
             <div class="tasks__list">
                 ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').map(task => this.getTaskTireTypeWarningHTML(task)).join('')}
             </div>
+            </div>                                  
+                </div>        
             </div>
-        
-        </div>
-        `;
+            `}
+
+
+
+            ;
+        } else {
+            html = Error404.render();
+        }
+
+        return html;
     }
+
+
 
     static getTaskInsuranceWarningHTML(task) {
         return `
