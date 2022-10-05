@@ -1,10 +1,17 @@
+@black: #222629;
+@dark: #474B4F;
+@grey: #6B6E70;
+@light: #bbbaba;
+@lime: #86C232;
+@green: #61892F;
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-.big-title{
+.big-title {
     position: absolute;
     z-index: 30;
     line-height: 4rem;
@@ -13,7 +20,7 @@
     text-align: center;
     font-size: 5rem;
     font-weight: 600;
-    color: #fff;
+    color: white;
 }
 
 .container__cars {
@@ -114,6 +121,7 @@ section {
 }
 
 .cars__title {
+    color: @lime;
     font-weight: 600;
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -125,7 +133,7 @@ section {
     position: absolute;
     width: 0%;
     height: 3px;
-    background-color: #fff;
+    background-color: @lime;
     bottom: 0;
     left: 0;
 }
@@ -170,7 +178,7 @@ section {
         left: 40%;
     }
 
-    .car__four{
+    .car__four {
         bottom: 370px;
     }
 

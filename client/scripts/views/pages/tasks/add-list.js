@@ -167,24 +167,18 @@ class AddAndList extends Component {
         tasksList.addEventListener('dragover', (event) => {
             event.preventDefault();
 
-            const activeElement = tasksList.querySelector('.selected');
-            const currentElement = event.target;
-            const isMoveable = activeElement !== currentElement &&
-                currentElement.classList.contains('task__item');
+            const activeElement = tasksList.querySelector('.selected'),
+                currentElement = event.target,
+                isMoveable = activeElement !== currentElement && currentElement.classList.contains('task__item'),
+                nextElement = getNextElement(event.clientY, currentElement);
 
-            if (!isMoveable) {
-                return;
-            }
-
-            const nextElement = getNextElement(event.clientY, currentElement);
+            if (!isMoveable) { return; }
 
             if (
                 nextElement &&
                 activeElement === nextElement.previousElementSibling ||
                 activeElement === nextElement
-            ) {
-                return;
-            }
+            ) { return; }
 
             tasksList.insertBefore(activeElement, nextElement);
         });
@@ -402,6 +396,7 @@ class AddAndList extends Component {
         for (const id of tasksElements) {
             tasksID.push(id.getAttribute('data-id'));
         }
+        console.log(tasksElements);
         console.log(tasksID);
     }
 

@@ -83,7 +83,7 @@ body {
 }
 
 .button {
-  background: #707070;
+  background: @lime;
   min-width: 50px;
   color: white;
   outline: none;
@@ -95,7 +95,7 @@ body {
   align-items: center;
 
   &:hover {
-    background: #808080;
+    background: @green;
   }
 
   &:disabled {
@@ -220,6 +220,7 @@ body {
   &__btn-clear,
   &__btn-add,
   .dropbtn {
+    background: @lime;
     padding: 8px 16px;
     width: 122px;
   }
@@ -289,7 +290,7 @@ body {
       border-color: white;
 
       &>.task__title {
-        color: white;
+        color: @green;
       }
 
       &>.task__buttons .button {
@@ -302,10 +303,10 @@ body {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border: @lime 1px solid;
+      border: @black 1px solid;
       border-radius: 20px 20px 0px 0px;
-      background: @lime;
-      color: #fefefe;
+      background: @black;
+      color: @lime;
       font-size: 20px;
       width: 100%;
       text-overflow: ellipsis;
@@ -383,10 +384,25 @@ body {
 }
 
 .task-edit {
+  display: flex;
+  min-width: 400px;
+  margin: 0 auto;
+  color: @black;
+  border: @grey solid 1px;
+  border-radius: 20px;
+  padding: 10px 14px;
   line-height: 24px;
   min-width: 400px;
   margin: 0 auto;
+  background: @grey;
 
+  &__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px;
+  }
 
   &__buttons {
     display: flex;
@@ -397,24 +413,6 @@ body {
       padding: 6px 14px;
       font-size: 12px;
     }
-  }
-
-}
-
-.task-edit {
-  display: flex;
-  min-width: 400px;
-  margin: 0 auto;
-  border: #202020 solid 1px;
-  border-radius: 20px;
-  padding: 10px 14px;
-
-  &__text {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0px;
   }
 
   &__params {
@@ -481,14 +479,22 @@ body {
   }
 }
 
-.warning-task__title {
-  width: 100%;
-  justify-content: center;
+.warning-tasks__title {
+  color: @lime;
   align-items: center;
+  width: 100%;
+  font-size: 20px;
+  padding: 0px 30px;
+
+  &-text {
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
 }
 
 .green {
-  color: #38ac38;
+  color: @lime;
 }
 
 .red {
