@@ -1,9 +1,8 @@
-@black: #222629;
-@dark: #474B4F;
-@grey: #6B6E70;
-@light: #bbbaba;
-@lime: #86C232;
-@green: #61892F;
+@purple: #802BB1;
+@dark: #2D283E;
+@lilac: #564F6F;
+@grey: #4C495D;
+@light: #D1D7E0;
 
 * {
     padding: 0;
@@ -20,7 +19,7 @@
     text-align: center;
     font-size: 5rem;
     font-weight: 600;
-    color: white;
+    color: @light;
 }
 
 .container__cars {
@@ -112,7 +111,7 @@ section {
 .cars__container__text {
     align-items: center;
     display: flex;
-    color: #fff;
+    color: @light;
     transform: translateY(-50px);
 }
 
@@ -121,7 +120,7 @@ section {
 }
 
 .cars__title {
-    color: @lime;
+    color: @purple;
     font-weight: 600;
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -133,7 +132,7 @@ section {
     position: absolute;
     width: 0%;
     height: 3px;
-    background-color: @lime;
+    background-color: @purple;
     bottom: 0;
     left: 0;
 }

@@ -2,12 +2,11 @@
 @import "parallax";
 
 
-@black: #222629;
-@dark: #474B4F;
-@grey: #6B6E70;
-@light: #bbbaba;
-@lime: #86C232;
-@green: #61892F;
+@purple: #802BB1;
+@dark: #2D283E;
+@lilac: #564F6F;
+@grey: #4C495D;
+@light: #D1D7E0;
 
 
 * {
@@ -17,7 +16,7 @@
 }
 
 body {
-  min-width: 700px;
+  min-width: 450px;
 }
 
 ._container {
@@ -32,9 +31,14 @@ body {
 
   .task-edit {
     line-height: 24px;
-    min-width: 400px;
-    max-width: 450px;
+    max-width: 300px;
     margin: 0 auto;
+  }
+}
+
+@media(max-width: 596px) {
+  ._container {
+    padding: 10px;
   }
 }
 
@@ -51,12 +55,12 @@ body {
   justify-content: center;
   align-items: center;
   height: 56px;
-  background: @black;
+  background: @grey;
 }
 
 .header__link,
 .footer__info {
-  color: white;
+  color: @light;
 }
 
 .header__link {
@@ -65,7 +69,7 @@ body {
 
   &:hover,
   &.active {
-    color: @lime;
+    color: @purple;
   }
 }
 
@@ -75,7 +79,7 @@ body {
 }
 
 .page-title {
-  color: @lime;
+  color: @purple;
   margin: 10px 0px;
   text-align: center;
   font-weight: bold;
@@ -83,9 +87,9 @@ body {
 }
 
 .button {
-  background: @lime;
+  background: @purple;
   min-width: 50px;
-  color: white;
+  color: @light;
   outline: none;
   cursor: pointer;
   border: none;
@@ -95,7 +99,7 @@ body {
   align-items: center;
 
   &:hover {
-    background: @green;
+    background: @lilac;
   }
 
   &:disabled {
@@ -139,9 +143,11 @@ body {
 
   &__title,
   &__description {
+    font-weight: 500;
     width: 100%;
     height: 30px;
-    border: solid @black 1px;
+    background: @light;
+    border: solid @dark 1px;
     border-radius: 5px;
     outline: none;
     margin: 0px auto 10px;
@@ -154,6 +160,7 @@ body {
   }
 
   &__description {
+    font-weight: 500;
     padding: 5px 8px;
     resize: none;
   }
@@ -164,6 +171,7 @@ body {
   }
 
   &__info {
+    background: @light;
     display: flex;
     justify-content: space-between;
   }
@@ -193,8 +201,8 @@ body {
   &__additional {
     display: flex;
     justify-content: space-between;
-    background: #bbbaba;
-    border: #bbbaba 1px solid;
+    background: @grey;
+    border: @grey 1px solid;
     border-radius: 0px 0px 20px 20px;
     padding: 5px;
     max-width: 386px;
@@ -220,7 +228,7 @@ body {
   &__btn-clear,
   &__btn-add,
   .dropbtn {
-    background: @lime;
+    background: @purple;
     padding: 8px 16px;
     width: 122px;
   }
@@ -286,16 +294,19 @@ body {
     }
 
     &:hover {
-      background: #606060;
-      border-color: white;
+      background: @lilac;
+      border-color: @lilac;
+      color: @light;
 
       &>.task__title {
-        color: @green;
+        color: @dark;
+        background: @purple;
+        border: @purple 1px solid;
       }
 
       &>.task__buttons .button {
-        background: white;
-        color: #0D5C63;
+        background: @light;
+        color: @purple;
       }
     }
 
@@ -303,10 +314,10 @@ body {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border: @black 1px solid;
+      border: @lilac 1px solid;
       border-radius: 20px 20px 0px 0px;
-      background: @black;
-      color: @lime;
+      background: @lilac;
+      color: @light;
       font-size: 20px;
       width: 100%;
       text-overflow: ellipsis;
@@ -383,18 +394,20 @@ body {
   width: 35px;
 }
 
+/* ----- task-edit -----*/
+
 .task-edit {
   display: flex;
   min-width: 400px;
   margin: 0 auto;
-  color: @black;
-  border: @grey solid 1px;
+  color: @dark;
+  border: @light solid 1px;
   border-radius: 20px;
   padding: 10px 14px;
   line-height: 24px;
-  min-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
-  background: @grey;
+  background: @light;
 
   &__text {
     display: flex;
@@ -436,6 +449,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: 500;
   }
 
   &__params-container b {
@@ -464,7 +478,8 @@ body {
 
   &__title,
   &__description {
-    border: solid #202020 1px;
+    border: solid @dark 1px;
+    font-weight: 500;
     padding: 1px 3px;
     width: 140px;
     border-radius: 5px;
@@ -472,20 +487,43 @@ body {
   }
 
   &__description {
-
+    font-weight: 500;
+    background: @light;
     height: 40px;
     margin-top: 3px;
     resize: none;
   }
 }
 
+.green {
+  color: green;
+  font-weight: 700;
+}
+
+.red {
+  color: red;
+  font-weight: 700;
+}
+
+input,
+select {
+  border-radius: 5px;
+  border: @dark 1px solid;
+  background-color: @light;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ----- warning-list -----*/
+
 .warning-tasks__title {
-  color: @lime;
+  color: @purple;
   align-items: center;
   justify-content: center;
   text-align: center;
   width: 100%;
   font-size: 20px;
+  font-weight: 700;
 
   &-text {
     justify-content: center;
@@ -494,21 +532,7 @@ body {
   }
 }
 
-.green {
-  color: @lime;
-}
 
-.red {
-  color: red;
-}
-
-input,
-select {
-  border-radius: 5px;
-  border: #202020 1px solid;
-  background-color: @dark;
-  text-align: center;
-}
 
 .dropbtn {
   border: none;
@@ -520,9 +544,9 @@ select {
   display: inline-block;
 
   &__button {
-    background: #606060;
+    background: @grey;
     min-width: 122px;
-    color: white;
+    color: @light;
     outline: none;
     cursor: pointer;
     border: none;
@@ -549,7 +573,7 @@ select {
     }
 
     & .dropdown__button:hover {
-      background-color: #ddd;
+      background-color: @purple;
     }
   }
 
@@ -559,7 +583,7 @@ select {
   }
 
   &:hover .dropbtn {
-    background-color: #808080;
+    background-color: @lilac;
     border-radius: 20px 20px 0px 0px;
   }
 }
@@ -582,7 +606,7 @@ select {
   &-content {
     position: relative;
     border-radius: 30px 30px 20px 20px;
-    background-color: #fefefe;
+    background-color: @light;
     margin: auto;
     padding: 0;
     max-width: 380px;
@@ -597,8 +621,8 @@ select {
     border-radius: 20px 20px 0px 0px;
     display: flex;
     padding: 0px;
-    background-color: #202020;
-    color: white;
+    background-color: @grey;
+    color: @light;
     height: 30px;
     align-items: center;
     justify-content: center;
@@ -611,7 +635,7 @@ select {
 
 .modal__window-close {
   position: absolute;
-  color: white;
+  color: @light;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -619,7 +643,7 @@ select {
 
   &:hover,
   &:focus {
-    color: red;
+    color: @purple;
     text-decoration: none;
     cursor: pointer;
   }

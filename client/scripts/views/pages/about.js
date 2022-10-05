@@ -83,7 +83,7 @@ class About extends Component {
             content.style.transform = `translateY(${scroll / (section_height + sectionY.top) * 50 - 50}px)`;
             image__container.style.transform = `translateY(${scroll / (section_height + sectionY.top) * -50 + 50}px)`;
 
-            border.style.width = `${scroll / (sectionY.top + section_height) * 45}%`;
+            border.style.width = `${scroll / (sectionY.top + section_height) * 43.5}%`;
         })
     };
 }

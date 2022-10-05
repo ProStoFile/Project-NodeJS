@@ -63,10 +63,26 @@ class Info extends Component {
 								${AddAndList.changeDateFormat(dateInsuranceStart)}
 							</div>
 						</div>
+
+						<div class="task-edit__params-container">
+							<div>
+								<img class="params-icon" src="styles/img/icons/params/file.png">
+								<b>Статус страховки:</b>
+							</div>
+							${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart)) === 'Действительна' ?
+
+					`<div class="green">
+								<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
+									</div>` :
+					`<div class="red">
+								<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
+							</div>`}
+							
+						</div>
 		
 						<div class="task-edit__params-container">
 								${AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart) < 0 ?
-						`<div>
+					`<div>
 						<img class="params-icon" src="styles/img/icons/params/document.png">
 						<b>Страховка просрочена:</b>
 						</div>
@@ -143,22 +159,6 @@ class Info extends Component {
 		
 						<div class="task-edit__params-container">
 						<div>
-							<img class="params-icon" src="styles/img/icons/params/file.png">
-							<b>Статус страховки:</b>
-						</div>
-							${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart)) === 'Действительна' ?
-
-					`<div class="green">
-							<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
-							</div>` :
-					`<div class="red">
-							<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
-						</div>`}
-							
-						</div>
-		
-						<div class="task-edit__params-container">
-						<div>
 							<img class="params-icon" src="styles/img/icons/params/gasoline.png">
 							<b>Израсходовано топлива:</b>
 						</div>
@@ -180,13 +180,21 @@ class Info extends Component {
 						</div>
 
 						<div class="task-edit__params-container">
-						<div>
-							<img class="params-icon" src="styles/img/icons/params/wheel2.png">
-							<b>Нужна ли замена:</b>
-						</div>
 							<div>
-								<p>${AddAndList.checkTiresStatus(tireType)}</p>
+								<img class="params-icon" src="styles/img/icons/params/wheel2.png">
+								<b>Нужна ли замена:</b>
 							</div>
+							${AddAndList.checkTiresStatus(tireType) === 'Да' ?
+
+					`<div class="red">
+								<p>${AddAndList.checkTiresStatus(tireType)}</p>
+							</div>` :
+
+					`<div class="green">
+								<p>${AddAndList.checkTiresStatus(tireType)}</p>
+							</div>`
+				} 
+							
 						</div>
 
 						<div class="task-edit__buttons">
