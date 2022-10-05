@@ -1,9 +1,9 @@
 class Tasks {
-    static async getTasksList() {
+	static async getTasksList() {
 		const response = await fetch('http://localhost:3000/api/tasks');
 
 		return await response.json();
-    }
+	}
 
 	static async addTask(newTask) {
 		const response = await fetch('http://localhost:3000/api/task', {
@@ -33,6 +33,16 @@ class Tasks {
 		});
 	}
 
+	static async setTasksOrder() {
+		await fetch(`http://localhost:3000/api/task/setorder`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(tasksID)
+		});
+	}
+
 	static async clearTasksList() {
 		await fetch('http://localhost:3000/api/tasks', {
 			method: 'DELETE',
@@ -42,50 +52,38 @@ class Tasks {
 		});
 	}
 
-	static async sortTasksListByModel(){
+	static async sortTasksListByModel() {
 		const response = await fetch('http://localhost:3000/api/tasks/sortbymodel');
 		return await response.json();
 	}
 
-	static async sortTasksListByDistanceTraveled(){
+	static async sortTasksListByDistanceTraveled() {
 		const response = await fetch('http://localhost:3000/api/tasks/sortbydistancetraveled');
 		return await response.json();
 	}
 
-	static async sortTasksListByTotalFuelCost(){
+	static async sortTasksListByTotalFuelCost() {
 		const response = await fetch('http://localhost:3000/api/tasks/sortbytotalfuelcost');
 		return await response.json();
 	}
 
-	
 
-	static async removeSelectedTask(selectedTask){
-    	await fetch(`http://localhost:3000/api/task/${selectedTask.id}`,{
-    		method: 'DELETE',
+
+	static async removeSelectedTask(selectedTask) {
+		await fetch(`http://localhost:3000/api/task/${selectedTask.id}`, {
+			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 		});
 	}
 
-	static async setTaskStatus(selectedTask){
-    	await fetch(`http://localhost:3000/api/task/${selectedTask.id}/done`, {
-    		method: 'PUT',
+	static async setTaskStatus(selectedTask) {
+		await fetch(`http://localhost:3000/api/task/${selectedTask.id}/done`, {
+			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-
-		});
-	}
-
-	static async updateDateValues(){
-    	await fetch(`http://localhost:3000/api/tasks/refresh`, {
-    		method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-
-			body: JSON.stringify(tasks)
 
 		});
 	}

@@ -38,7 +38,7 @@ app.post('/api/task', (req, res) => {
 	task.tireType = task.tireType;
 	task.dateAdded = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
 
-	
+
 
 	tasksData.push(task);
 	setTasksToDB(tasksData);
@@ -71,6 +71,13 @@ app.put('/api/task/:id', (req, res) => {
 	setTasksToDB(tasksData);
 
 	res.sendStatus(204);
+});
+
+app.put('/api/task/setorder', (req, res) => {
+	const tasksData = getTasksFromDB(),
+		tasksOrder = req.body;
+	tasksData.sort((one, two) => tasksOrder.indexOf(one.id) - tasksOrder.indexOf(two.id));
+	setTasksToDB(tasksData);
 });
 
 function getTasksFromDB() {

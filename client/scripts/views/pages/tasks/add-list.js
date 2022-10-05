@@ -151,6 +151,7 @@ class AddAndList extends Component {
 
         tasksList.addEventListener('dragend', (event) => {
             event.target.classList.remove('selected');
+            this.setTasksOrder();
         });
 
         const getNextElement = (cursorPosition, currentElement) => {
@@ -395,6 +396,15 @@ class AddAndList extends Component {
 
     }
 
+    static async setTasksOrder() {
+        const tasksElements = document.getElementsByClassName('task');
+        const tasksID = [];
+        for (const id of tasksElements) {
+            tasksID.push(id.getAttribute('data-id'));
+        }
+        console.log(tasksID);
+    }
+
 
     static clearTasksList(tasksList, clearTasksListBtn) {
         if (confirm('Are you sure?')) {
@@ -403,7 +413,7 @@ class AddAndList extends Component {
 
             Tasks.clearTasksList();
 
-            this.countTasksAmount();
+            Tasks.countTasksAmount();
         }
     }
 

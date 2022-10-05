@@ -50,17 +50,19 @@ class About extends Component {
 
     static setActions() {
         const translate = document.querySelectorAll(".translate"),
+
             cars__container = document.querySelector(".cars__container"),
-            big_title = document.querySelector(".big-title"),
+            image__container = document.querySelector(".cars__img__container"),
+
+            big__title = document.querySelector(".big-title"),
             shadow = document.querySelector(".shadow"),
             content = document.querySelector(".cars__text"),
             section = document.querySelector(".cars__section"),
-            image_container = document.querySelector(".cars__img__container"),
             opacity = document.querySelectorAll(".opacity"),
             border = document.querySelector(".cars__border");
 
-        let cars__container_height = cars__container.offsetHeight,
-        section_height = section.offsetHeight;
+        let cars__container__height = cars__container.offsetHeight,
+            section_height = section.offsetHeight;
 
         window.addEventListener('scroll', function () {
             let scroll = window.pageYOffset,
@@ -75,11 +77,11 @@ class About extends Component {
                 element.style.opacity = scroll / (sectionY.top + section_height);
             })
 
-            big_title.style.opacity = - scroll / (cars__container_height / 2) + 1;
-            shadow.style.cars__container_height = `${scroll * 0.5 + 300}px`;
+            big__title.style.opacity = - scroll / (cars__container__height / 2) + 1;
+            shadow.style.cars__container__height = `${scroll * 0.5 + 300}px`;
 
             content.style.transform = `translateY(${scroll / (section_height + sectionY.top) * 50 - 50}px)`;
-            image_container.style.transform = `translateY(${scroll / (section_height + sectionY.top) * -50 + 50}px)`;
+            image__container.style.transform = `translateY(${scroll / (section_height + sectionY.top) * -50 + 50}px)`;
 
             border.style.width = `${scroll / (sectionY.top + section_height) * 45}%`;
         })
