@@ -60,6 +60,18 @@ class AddAndList extends Component {
           </div>
         </div>   
     </div> 
+
+    <div class="modal__window-remove__task">
+        <div class="modal__window-add__task-content">
+            <div class="modal__window-add__task-header">
+                <h2>Желаете удалить?</h2>
+            </div>
+            <div class="modal__window-remove__task-body">
+                <button class="task-add__btn-cancel button">Нет, отмена</button>
+                <button class="task-add__btn-delete button">Да, удалить</button>
+            </div>
+        </div>   
+    </div> 
     
     <div class="tasks">
         <div class="tasks__additional">
@@ -119,11 +131,16 @@ class AddAndList extends Component {
             taskTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0],
 
             modalAddTaskWindow = document.getElementsByClassName('modal__window-add__task')[0],
+            modalRemoveTaskWindow = document.getElementsByClassName('modal__window-remove__task')[0],
             showAddTaskWindowBtn = document.getElementsByClassName('tasks__btn-add')[0],
-            closeModalWindowBtn = document.getElementsByClassName('modal__window-close')[0];
+            closeModalWindowBtn = document.getElementsByClassName('modal__window-close')[0],
+            closeModalWindowRemoveBtn = document.getElementsByClassName('task-add__btn-cancel')[0],
+            deledeTaskConfirmBtn = document.getElementsByClassName('task-add__btn-delete')[0];
 
         taskTimeField.valueAsDate = new Date();
         taskTimeField.max = new Date().toISOString().split('T')[0];
+
+        /* ---------------- Modal Windows ---------------- */
 
         showAddTaskWindowBtn.addEventListener('click', () => {
             modalAddTaskWindow.style.display = 'block';
@@ -138,6 +155,22 @@ class AddAndList extends Component {
                 modalAddTaskWindow.style.display = 'none';
             }
         })
+
+        closeModalWindowRemoveBtn.addEventListener('click', () => {
+            modalRemoveTaskWindow.style.display = 'none';
+        })
+
+        deledeTaskConfirmBtn.addEventListener('click', () => {
+            this.removeTask();
+        })
+
+        window.addEventListener('click', (event) => {
+            if (event.target == modalRemoveTaskWindow) {
+                modalRemoveTaskWindow.style.display = 'none';
+            }
+        })
+
+
 
         /* ---------------- Drag'n'Drop ---------------- */
 
@@ -247,7 +280,12 @@ class AddAndList extends Component {
                     break;
 
                 case targetClassList.contains('task__btn-remove'):
-                    this.removeTask(tasksList, target.parentNode.parentNode, clearTasksListBtn);
+
+                    modalRemoveTaskWindow.style.display = 'block';
+
+                    //case targetClassList.contains('task-add__btn-delete'):
+
+                    this.removeTask(tasksList, target.parentNode.parentNode, clearTasksListBtn, deledeTaskConfirmBtn, closeModalWindowRemoveBtn);
                     break;
             }
         };
@@ -450,15 +488,31 @@ class AddAndList extends Component {
         return diffInDays;
     }
 
-    static removeTask(tasksList, taskContainer, clearTasksListBtn) {
-        if (confirm('Are you sure?')) {
+    static removeTask(
+        tasksList,
+        taskContainer,
+        clearTasksListBtn,
+        deledeTaskConfirmBtn,
+        closeModalWindowRemoveBtn
+    ) {
+
+
+        deledeTaskConfirmBtn.addEventListener('click', () => {
             taskContainer.remove();
             !tasksList.children.length && (clearTasksListBtn.disabled = true);
 
             Tasks.removeSelectedTask(taskContainer.dataset);
 
-            this.countTasksAmount();
-        }
+        })
+
+        closeModalWindowRemoveBtn.addEventListener('click', () => {
+            modalAddTaskWindow.style.display = 'none';
+        })
+
+
+        //if (confirm('Are you sure?')) {
+
+        //}
     }
 
     static checkTiresStatus(tireType) {
