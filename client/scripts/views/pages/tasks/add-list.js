@@ -216,8 +216,9 @@ class AddAndList extends Component {
         });
 
         tasksList.addEventListener('dragend', (event) => {
-            event.target.classList.remove('selected');
             this.setTasksOrder();
+            event.target.classList.remove('selected');
+
         });
 
         const getNextElement = (cursorPosition, currentElement) => {
@@ -469,13 +470,13 @@ class AddAndList extends Component {
     }
 
     static async setTasksOrder() {
-        const tasksElements = document.getElementsByClassName('task');
-        const tasksID = [];
+        const tasksElements = document.getElementsByClassName('task'),
+            tasksID = [];
         for (const id of tasksElements) {
             tasksID.push(id.getAttribute('data-id'));
         }
-        console.log(tasksElements);
-        console.log(tasksID);
+        alert(tasksElements);
+        alert(tasksID);
     }
 
 
@@ -550,10 +551,6 @@ class AddAndList extends Component {
             modalAddTaskWindow.style.display = 'none';
         })
 
-
-        //if (confirm('Are you sure?')) {
-
-        //}
     }
 
     static checkTiresStatus(tireType) {

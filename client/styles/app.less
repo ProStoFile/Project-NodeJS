@@ -1,5 +1,6 @@
 @import "reset";
 @import "parallax";
+@import "media";
 
 
 @purple: #802BB1;
@@ -8,6 +9,10 @@
 @grey: #4C495D;
 @light: #D1D7E0;
 
+
+::-webkit-scrollbar {
+  width: 0;
+}
 
 * {
   box-sizing: border-box;
@@ -22,24 +27,6 @@ body {
 ._container {
   width: 100%;
   padding: 10px 30px;
-}
-
-@media(min-width: 776px) {
-  ._container {
-    padding: 10px 50px;
-  }
-
-  .task-edit {
-    line-height: 24px;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-}
-
-@media(max-width: 596px) {
-  ._container {
-    padding: 10px;
-  }
 }
 
 .page-container {
@@ -395,19 +382,6 @@ body {
       align-items: center;
     }
   }
-}
-
-@media(max-width: 776px) {
-  .tasks__list {
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .task__img-container {
-    width: 20%;
-  }
-
-
 }
 
 .params-icon {
