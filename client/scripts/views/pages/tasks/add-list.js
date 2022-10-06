@@ -72,6 +72,18 @@ class AddAndList extends Component {
             </div>
         </div>   
     </div> 
+
+    <div class="modal__window-clear__task">
+        <div class="modal__window-add__task-content">
+            <div class="modal__window-add__task-header">
+                <h2>Очистить весь список?</h2>
+            </div>
+            <div class="modal__window-remove__task-body">
+                <button class="task-add__btn-back button">Нет, отмена</button>
+                <button class="task-add__btn-clear button">Да, очистить</button>
+            </div>
+        </div>   
+    </div>
     
     <div class="tasks">
         <div class="tasks__additional">
@@ -132,15 +144,19 @@ class AddAndList extends Component {
 
             modalAddTaskWindow = document.getElementsByClassName('modal__window-add__task')[0],
             modalRemoveTaskWindow = document.getElementsByClassName('modal__window-remove__task')[0],
+            modalClearTasksListWindow = document.getElementsByClassName('modal__window-clear__task')[0],
+
             showAddTaskWindowBtn = document.getElementsByClassName('tasks__btn-add')[0],
             closeModalWindowBtn = document.getElementsByClassName('modal__window-close')[0],
             closeModalWindowRemoveBtn = document.getElementsByClassName('task-add__btn-cancel')[0],
-            deledeTaskConfirmBtn = document.getElementsByClassName('task-add__btn-delete')[0];
+            deledeTaskConfirmBtn = document.getElementsByClassName('task-add__btn-delete')[0],
+            closeModalWindowClearBtn = document.getElementsByClassName('task-add__btn-back')[0],
+            clearTasksListConfirmBtn = document.getElementsByClassName('task-add__btn-clear')[0];
 
         taskTimeField.valueAsDate = new Date();
         taskTimeField.max = new Date().toISOString().split('T')[0];
 
-        /* ---------------- Modal Windows ---------------- */
+        /* ---------------- Add Modal Window ---------------- */
 
         showAddTaskWindowBtn.addEventListener('click', () => {
             modalAddTaskWindow.style.display = 'block';
@@ -156,6 +172,8 @@ class AddAndList extends Component {
             }
         })
 
+        /* ---------------- Remove Modal Window ---------------- */
+
         closeModalWindowRemoveBtn.addEventListener('click', () => {
             modalRemoveTaskWindow.style.display = 'none';
         })
@@ -170,6 +188,21 @@ class AddAndList extends Component {
             }
         })
 
+        /* ---------------- Clear Modal Window ---------------- */
+
+        closeModalWindowClearBtn.addEventListener('click', () => {
+            modalClearTasksListWindow.style.display = 'none';
+        })
+
+        deledeTaskConfirmBtn.addEventListener('click', () => {
+            this.clearTasksList();
+        })
+
+        window.addEventListener('click', (event) => {
+            if (event.target == modalClearTasksListWindow) {
+                modalClearTasksListWindow.style.display = 'none';
+            }
+        })
 
 
         /* ---------------- Drag'n'Drop ---------------- */
@@ -238,7 +271,10 @@ class AddAndList extends Component {
 
             switch (true) {
                 case targetClassList.contains('tasks__btn-clear'):
-                    this.clearTasksList(tasksList, clearTasksListBtn);
+
+                    modalClearTasksListWindow.style.display = 'block';
+
+                    this.clearTasksList(tasksList, clearTasksListBtn, clearTasksListConfirmBtn);
                     break;
 
                 case targetClassList.contains('tasks__btn-sort'):
@@ -282,8 +318,6 @@ class AddAndList extends Component {
                 case targetClassList.contains('task__btn-remove'):
 
                     modalRemoveTaskWindow.style.display = 'block';
-
-                    //case targetClassList.contains('task-add__btn-delete'):
 
                     this.removeTask(tasksList, target.parentNode.parentNode, clearTasksListBtn, deledeTaskConfirmBtn, closeModalWindowRemoveBtn);
                     break;
@@ -383,7 +417,13 @@ class AddAndList extends Component {
         `;
     }
 
-    static clearAddTask(taskTitleField, taskDescriptionField, addTaskBtn) {
+    static clearAddTask(taskTitleField, taskDescriptionField, addTaskBtn, clearTasksListConfirmBtn) {
+
+        clearTasksListConfirmBtn.addEventListener('click', () => {
+            this.clearTasksList();
+        })
+
+
         taskTitleField.value = '';
         taskDescriptionField.value = '';
         addTaskBtn.disabled = true;
@@ -439,15 +479,16 @@ class AddAndList extends Component {
     }
 
 
-    static clearTasksList(tasksList, clearTasksListBtn) {
-        if (confirm('Are you sure?')) {
+    static clearTasksList(tasksList, clearTasksListBtn, clearTasksListConfirmBtn) {
+
+        clearTasksListConfirmBtn.addEventListener('click', () => {
             clearTasksListBtn.disabled = true;
             tasksList.innerHTML = '';
 
             Tasks.clearTasksList();
 
             Tasks.countTasksAmount();
-        }
+        })
     }
 
     static redirectToTaskInfo(id) {
