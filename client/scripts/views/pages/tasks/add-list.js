@@ -475,8 +475,8 @@ class AddAndList extends Component {
         for (const id of tasksElements) {
             tasksID.push(id.getAttribute('data-id'));
         }
-        alert(tasksElements);
-        alert(tasksID);
+        // alert(tasksElements);
+        // alert(tasksID); считается корректно
     }
 
 
