@@ -106,11 +106,7 @@ class Warning extends Component {
                 <div class="task__title" data-id="${task.id}">
                     <div class="task__title-images"></div>
                     ${task.title}
-                    <div class="task__title-images">
-                        <a class="task__btn-edit" href="#/task/${task.id}/edit"><img class="task__title-img task__btn-edit" href="#/task/${task.id}/edit" src="styles/img/icons/pencil.png"></a>
-                        <img class="task__title-img task__btn-remove" data-id="${task.id}" src="styles/img/icons/bin.png">
-                    </div>
-   
+                    <div class="task__title-images"></div>  
                 </div>                  
                 
                 <div class="task-content" data-id="${task.id}">
@@ -156,14 +152,10 @@ class Warning extends Component {
             <div class="task" data-id="${task.id}">
 
             
-                <div class="task__title" data-id="${task.id}">
+                <div class="task__title warning" data-id="${task.id}">
                     <div class="task__title-images"></div>
-                    ${task.title}
-                    <div class="task__title-images">
-                        <a class="task__btn-edit" href="#/task/${task.id}/edit"><img class="task__title-img task__btn-edit" href="#/task/${task.id}/edit" src="styles/img/icons/pencil.png"></a>
-                        <img class="task__title-img task__btn-remove" data-id="${task.id}" src="styles/img/icons/bin.png">
-                    </div>
-   
+                        ${task.title}
+                    <div class="task__title-images"></div> 
                 </div>                  
                 
                 <div class="task-content" data-id="${task.id}">
