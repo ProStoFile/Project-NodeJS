@@ -19,7 +19,8 @@ class Warning extends Component {
             if (tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length > 0 &&
                 tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length > 0) {
                 html =
-                    `   <div class="tasks">
+                    `   
+            <div class="tasks">
                 <div class="_container">
                     <div class="warning-tasks__title">
                         <div class="warning-tasks__title-text">
@@ -138,7 +139,7 @@ class Warning extends Component {
 					    	<b class="task__params-values" data-id="${task.id}">Опоздание:</b>
 					    	<div class="task__params-values" data-id="${task.id}">
                             ${Math.abs(AddAndList.getDaysInsuranceValidityLeft(task.dateInsuranceStart))}
-					    		<p class="task__params-values" data-id="${task.id}">дней</p>
+					    		<p class="task__params-values" data-id="${task.id}">${AddAndList.getWordDaysForm(Math.abs(AddAndList.getDaysInsuranceValidityLeft(task.dateInsuranceStart)))}</p>
 					    	</div>
 					    </div>                   
 					</div>
@@ -189,7 +190,7 @@ class Warning extends Component {
 					    	<b class="task__params-values" data-id="${task.id}">До смены сезона:</b>
 					    	<div class="task__params-values" data-id="${task.id}">
                                 ${this.getDaysUntilNextSeason()}
-                                <p class="task__params-values" data-id="${task.id}">дней</p>
+                                <p class="task__params-values" data-id="${task.id}">${AddAndList.getWordDaysForm(this.getDaysUntilNextSeason())}</p>
 					    	</div>
 					    </div>
                   
@@ -226,18 +227,7 @@ class Warning extends Component {
     }
 
     static setActions() {
-        const taskTitleField = document.getElementsByClassName('task-add__title')[0],
-
-
-            tasksContainer = document.getElementsByClassName('tasks')[0],
-
-
-            tasksList = tasksContainer.getElementsByClassName('tasks__list')[0],
-            taskElements = tasksList.getElementsByClassName('task__item'),
-
-            modalAddTaskWindow = document.getElementsByClassName('modal__window-add__task')[0],
-            showAddTaskWindowBtn = document.getElementsByClassName('tasks__btn-add')[0],
-            closeModalWindowBtn = document.getElementsByClassName('modal__window-close')[0];
+        const tasksContainer = document.getElementsByClassName('tasks')[0];
 
         tasksContainer.onclick = event => {
             const target = event.target,

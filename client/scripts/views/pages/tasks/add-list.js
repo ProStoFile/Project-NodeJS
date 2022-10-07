@@ -530,6 +530,21 @@ class AddAndList extends Component {
         return diffInDays;
     }
 
+    static getWordDaysForm(number) {
+
+        if (number == 11) {
+            return 'дней';
+        } else if (number % 10 == 1) {
+            return 'день';
+        } else if (number % 10 > 1 && number % 10 < 5) {
+            return 'дня';
+        } else if (number == 11) {
+            return 'дней';
+        } else {
+            return 'дней';
+        }
+    }
+
     static removeTask(
         tasksList,
         taskContainer,
