@@ -5,7 +5,7 @@ class Footer extends Component {
         return `
             <footer class="footer">                   
                 <p class="footer__info">
-                    &copy; All Rights Reserved, 2019
+                    &copy; Все права защищены, 2022
                 </p>                  
             </footer>
         `;
