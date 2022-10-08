@@ -159,23 +159,23 @@ class AddAndList extends Component {
         /* ---------------- Add Modal Window ---------------- */
 
         showAddTaskWindowBtn.addEventListener('click', () => {
-            modalAddTaskWindow.style.display = 'block';
+            modalAddTaskWindow.classList.add('display-block');
         })
 
         closeModalWindowBtn.addEventListener('click', () => {
-            modalAddTaskWindow.style.display = 'none';
+            modalAddTaskWindow.classList.remove('display-block');
         })
 
         window.addEventListener('click', (event) => {
             if (event.target == modalAddTaskWindow) {
-                modalAddTaskWindow.style.display = 'none';
+                modalAddTaskWindow.classList.remove('display-block');
             }
         })
 
         /* ---------------- Remove Modal Window ---------------- */
 
         closeModalWindowRemoveBtn.addEventListener('click', () => {
-            modalRemoveTaskWindow.style.display = 'none';
+            modalRemoveTaskWindow.classList.remove('display-block');
         })
 
         deledeTaskConfirmBtn.addEventListener('click', () => {
@@ -184,14 +184,14 @@ class AddAndList extends Component {
 
         window.addEventListener('click', (event) => {
             if (event.target == modalRemoveTaskWindow) {
-                modalRemoveTaskWindow.style.display = 'none';
+                modalRemoveTaskWindow.classList.remove('display-block');
             }
         })
 
         /* ---------------- Clear Modal Window ---------------- */
 
         closeModalWindowClearBtn.addEventListener('click', () => {
-            modalClearTasksListWindow.style.display = 'none';
+            modalClearTasksListWindow.classList.remove('display-block');
         })
 
         deledeTaskConfirmBtn.addEventListener('click', () => {
@@ -200,7 +200,7 @@ class AddAndList extends Component {
 
         window.addEventListener('click', (event) => {
             if (event.target == modalClearTasksListWindow) {
-                modalClearTasksListWindow.style.display = 'none';
+                modalClearTasksListWindow.classList.remove('display-block');
             }
         })
 
@@ -273,7 +273,7 @@ class AddAndList extends Component {
             switch (true) {
                 case targetClassList.contains('tasks__btn-clear'):
 
-                    modalClearTasksListWindow.style.display = 'block';
+                    modalClearTasksListWindow.classList.add('display-block');
 
                     this.clearTasksList(tasksList, clearTasksListBtn, clearTasksListConfirmBtn);
                     break;
@@ -322,7 +322,7 @@ class AddAndList extends Component {
 
                 case targetClassList.contains('task__btn-remove'):
 
-                    modalRemoveTaskWindow.style.display = 'block';
+                    modalRemoveTaskWindow.classList.add('display-block');
 
                     this.removeTask(tasksList, target.parentNode.parentNode, clearTasksListBtn, deledeTaskConfirmBtn, closeModalWindowRemoveBtn);
                     break;
@@ -568,7 +568,7 @@ class AddAndList extends Component {
         })
 
         closeModalWindowRemoveBtn.addEventListener('click', () => {
-            modalAddTaskWindow.style.display = 'none';
+            modalAddTaskWindow.classList.remove('display-block');
         })
 
     }
