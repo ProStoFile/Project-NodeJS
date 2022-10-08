@@ -100,44 +100,44 @@ class Warning extends Component {
 
     static getTaskInsuranceWarningHTML(task) {
         return `
-        <div class="task__item">
+        <div class="task__item car-redirect">
             
-            <div class="task" data-id="${task.id}">
+            <div class="task car-redirect" data-id="${task.id}">
 
             
-                <div class="task__title" data-id="${task.id}">
-                    <div class="task__title-images"></div>
+                <div class="task__title car-redirect" data-id="${task.id}">
+                    <div class="task__title-images car-redirect"></div>
                     ${task.title}
-                    <div class="task__title-images"></div>  
+                    <div class="task__title-images car-redirect"></div>  
                 </div>                  
                 
-                <div class="task-content" data-id="${task.id}">
-                    <div class="task__img-container" data-id="${task.id}">
-                        <img class="task__img" data-id="${task.id}" src="styles/img/task__logo.png">
+                <div class="task-content car-redirect" data-id="${task.id}">
+                    <div class="task__img-container car-redirect" data-id="${task.id}">
+                        <img class="task__img car-redirect" data-id="${task.id}" src="styles/img/task__logo.png">
                     </div>
-                    <div class="task-content__params" data-id="${task.id}">
+                    <div class="task-content__params car-redirect" data-id="${task.id}">
                     
-					    <div class="task-edit__params-container" data-id="${task.id}">
-					    	<b class="task__params-values" data-id="${task.id}">Оформлена:</b>
-					    	<div class="task__params-values" data-id="${task.id}">
+					    <div class="task-edit__params-container car-redirect" data-id="${task.id}">
+					    	<b class="task__params-values car-redirect" data-id="${task.id}">Оформлена:</b>
+					    	<div class="task__params-values car-redirect" data-id="${task.id}">
                             ${AddAndList.changeDateFormat(task.dateInsuranceStart)}
 					    	</div>
 					    </div>
 
-                        <div class="task-edit__params-container" data-id="${task.id}">
-					    	<b class="task__params-values" data-id="${task.id}">Истекла:</b>
-					    	<div class="task__params-values" data-id="${task.id}">
-                                <p class="task__params-values" data-id="${task.id}">
+                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
+					    	<b class="task__params-values car-redirect" data-id="${task.id}">Истекла:</b>
+					    	<div class="task__params-values car-redirect" data-id="${task.id}">
+                                <p class="task__params-values car-redirect" data-id="${task.id}">
                                     ${this.getInsuranceDateEnd(task.dateInsuranceStart)}
                                 </p>
 					    	</div>
 					    </div>
 
-                        <div class="task-edit__params-container" data-id="${task.id}">
-					    	<b class="task__params-values" data-id="${task.id}">Опоздание:</b>
-					    	<div class="task__params-values" data-id="${task.id}">
+                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
+					    	<b class="task__params-values car-redirect" data-id="${task.id}">Опоздание:</b>
+					    	<div class="task__params-values car-redirect" data-id="${task.id}">
                             ${Math.abs(AddAndList.getDaysInsuranceValidityLeft(task.dateInsuranceStart))}
-					    		<p class="task__params-values" data-id="${task.id}">${AddAndList.getWordDaysForm(Math.abs(AddAndList.getDaysInsuranceValidityLeft(task.dateInsuranceStart)))}</p>
+					    		<p class="task__params-values car-redirect" data-id="${task.id}">${AddAndList.getWordDaysForm(Math.abs(AddAndList.getDaysInsuranceValidityLeft(task.dateInsuranceStart)))}</p>
 					    	</div>
 					    </div>                   
 					</div>
@@ -149,42 +149,42 @@ class Warning extends Component {
 
     static getTaskTireTypeWarningHTML(task) {
         return `
-        <div class="task__item">
+        <div class="task__item car-redirect">
             
-            <div class="task" data-id="${task.id}">
+            <div class="task car-redirect" data-id="${task.id}">
 
             
-                <div class="task__title warning" data-id="${task.id}">
-                    <div class="task__title-images"></div>
+                <div class="task__title car-redirect" data-id="${task.id}">
+                    <div class="task__title-images car-redirect"></div>
                         ${task.title}
-                    <div class="task__title-images"></div> 
+                    <div class="task__title-images car-redirect"></div> 
                 </div>                  
                 
-                <div class="task-content" data-id="${task.id}">
-                    <div class="task__img-container" data-id="${task.id}">
-                        <img class="task__img" data-id="${task.id}" src="styles/img/task__logo.png">
+                <div class="task-content car-redirect" data-id="${task.id}">
+                    <div class="task__img-container car-redirect" data-id="${task.id}">
+                        <img class="task__img car-redirect" data-id="${task.id}" src="styles/img/task__logo.png">
                     </div>
-                    <div class="task-content__params" data-id="${task.id}">
+                    <div class="task-content__params car-redirect" data-id="${task.id}">
                     
-                        <div class="task-edit__params-container" data-id="${task.id}">
-                            <b class="task__params-values" data-id="${task.id}">Текущий сезон:</b>
-                            <div class="task__params-values" data-id="${task.id}">
+                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
+                            <b class="task__params-values car-redirect" data-id="${task.id}">Текущий сезон:</b>
+                            <div class="task__params-values car-redirect" data-id="${task.id}">
                                 ${this.getCurrentSeason()}
                             </div>
                         </div>
 
-					    <div class="task-edit__params-container" data-id="${task.id}">
-					    	<b class="task__params-values" data-id="${task.id}">Установлены шины:</b>
-					    	<div class="task__params-values" data-id="${task.id}">
+					    <div class="task-edit__params-container car-redirect" data-id="${task.id}">
+					    	<b class="task__params-values car-redirect" data-id="${task.id}">Установлены шины:</b>
+					    	<div class="task__params-values car-redirect" data-id="${task.id}">
                                 ${task.tireType}
 					    	</div>
 					    </div>
 
-                        <div class="task-edit__params-container" data-id="${task.id}">
-					    	<b class="task__params-values" data-id="${task.id}">До смены сезона:</b>
-					    	<div class="task__params-values" data-id="${task.id}">
+                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
+					    	<b class="task__params-values car-redirect" data-id="${task.id}">До смены сезона:</b>
+					    	<div class="task__params-values car-redirect" data-id="${task.id}">
                                 ${this.getDaysUntilNextSeason()}
-                                <p class="task__params-values" data-id="${task.id}">${AddAndList.getWordDaysForm(this.getDaysUntilNextSeason())}</p>
+                                <p class="task__params-values car-redirect" data-id="${task.id}">${AddAndList.getWordDaysForm(this.getDaysUntilNextSeason())}</p>
 					    	</div>
 					    </div>                
 					</div>
@@ -232,26 +232,30 @@ class Warning extends Component {
 
             switch (true) {
 
-                case targetClassList.contains('task'):
-                case targetClassList.contains('task__title'):
+                // case targetClassList.contains('task'):
+                // case targetClassList.contains('task__title'):
+                //     AddAndList.redirectToTaskInfo(target.dataset.id);
+                //     break;
+
+                // case targetClassList.contains('task'):
+                // case targetClassList.contains('task__content'):
+                // case targetClassList.contains('task__img-container'):
+                // case targetClassList.contains('task__img'):
+                //     AddAndList.redirectToTaskInfo(target.dataset.id);
+                //     break;
+
+                case targetClassList.contains('car-redirect'):
                     AddAndList.redirectToTaskInfo(target.dataset.id);
                     break;
 
-                case targetClassList.contains('task'):
-                case targetClassList.contains('task__content'):
-                case targetClassList.contains('task__img-container'):
-                case targetClassList.contains('task__img'):
-                    AddAndList.redirectToTaskInfo(target.dataset.id);
-                    break;
+                // case targetClassList.contains('task'):
+                // case targetClassList.contains('task-content'):
+                // case targetClassList.contains('task-content__params'):
+                // case targetClassList.contains('task-edit__params-container'):
+                // case targetClassList.contains('task__params-values'):
 
-                case targetClassList.contains('task'):
-                case targetClassList.contains('task-content'):
-                case targetClassList.contains('task-content__params'):
-                case targetClassList.contains('task-edit__params-container'):
-                case targetClassList.contains('task__params-values'):
-
-                    AddAndList.redirectToTaskInfo(target.dataset.id);
-                    break;
+                    // AddAndList.redirectToTaskInfo(target.dataset.id);
+                    // break;
             }
         };
     }
