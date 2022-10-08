@@ -290,38 +290,35 @@ class AddAndList extends Component {
                     this.sortTasksListByTotalFuelCost(tasksList, sortTasksListByTotalFuelCostBtn);
                     break;
 
-                case targetClassList.contains('task'):
-                case targetClassList.contains('task__content'):
-                case targetClassList.contains('task__img-container'):
-                case targetClassList.contains('task__img'):
+                case targetClassList.contains('car-redirect'):
                     this.redirectToTaskInfo(target.dataset.id);
                     break;
 
-                case targetClassList.contains('task'):
-                case targetClassList.contains('task__title'):
-                    this.redirectToTaskInfo(target.dataset.id);
-                    break;
+                // case targetClassList.contains('task'):
+                // case targetClassList.contains('task__title'):
+                //     this.redirectToTaskInfo(target.dataset.id);
+                //     break;
 
-                case targetClassList.contains('task'):
-                case targetClassList.contains('task__content'):
-                case targetClassList.contains('task__img-container'):
-                case targetClassList.contains('task__img'):
-                    this.redirectToTaskInfo(target.dataset.id);
-                    break;
+                // case targetClassList.contains('task'):
+                // case targetClassList.contains('task__content'):
+                // case targetClassList.contains('task__img-container'):
+                // case targetClassList.contains('task__img'):
+                //     this.redirectToTaskInfo(target.dataset.id);
+                //     break;
 
-                case targetClassList.contains('task'):
-                case targetClassList.contains('task-content'):
-                case targetClassList.contains('task-content__params'):
-                case targetClassList.contains('task-edit__params-container'):
-                case targetClassList.contains('task__params-values'):
+                // case targetClassList.contains('task'):
+                // case targetClassList.contains('task-content'):
+                // case targetClassList.contains('task-content__params'):
+                // case targetClassList.contains('task-edit__params-container'):
+                // case targetClassList.contains('task__params-values'):
 
-                    this.redirectToTaskInfo(target.dataset.id);
-                    break;
+                //     this.redirectToTaskInfo(target.dataset.id);
+                //     break;
 
-                case targetClassList.contains('task__btn-done'):
-                    this.changeTaskStatus(target.parentNode.parentNode,
-                        target.previousElementSibling, target);
-                    break;
+                // case targetClassList.contains('task__btn-done'):
+                //     this.changeTaskStatus(target.parentNode.parentNode,
+                //         target.previousElementSibling, target);
+                //     break;
 
                 case targetClassList.contains('task__btn-remove'):
 
@@ -374,48 +371,48 @@ class AddAndList extends Component {
             <div class="task car-redirect" data-id="${task.id}">
 
             
-                <div class="task__title" data-id="${task.id}">
-                    <div class="task__title-images"></div>
+                <div class="task__title car-redirect" data-id="${task.id}">
+                    <div class="task__title-images car-redirect"></div>
                     ${task.title}
-                    <div class="task__title-images">
+                    <div class="task__title-images car-redirect">
                         <a class="task__btn-edit" href="#/task/${task.id}/edit"><img class="task__title-img task__btn-edit" href="#/task/${task.id}/edit" src="styles/img/icons/pencil.png"></a>
                         <img class="task__title-img task__btn-remove" data-id="${task.id}" src="styles/img/icons/bin.png">
                     </div>
    
                 </div>                  
                 
-                <div class="task-content" data-id="${task.id}">
-                    <div class="task__img-container" data-id="${task.id}">
-                        <img class="task__img" data-id="${task.id}" src="styles/img/task__logo.png">
+                <div class="task-content car-redirect" data-id="${task.id}">
+                    <div class="task__img-container car-redirect" data-id="${task.id}">
+                        <img class="task__img car-redirect" data-id="${task.id}" src="styles/img/task__logo.png">
                     </div>
-                    <div class="task-content__params" data-id="${task.id}">
+                    <div class="task-content__params car-redirect" data-id="${task.id}">
                     
-					    <div class="task-edit__params-container" data-id="${task.id}">
-					    	<b class="task__params-values" data-id="${task.id}">Описание:</b>
-					    	<div class="task__params-values" data-id="${task.id}">
+					    <div class="task-edit__params-container car-redirect" data-id="${task.id}">
+					    	<b class="task__params-values car-redirect" data-id="${task.id}">Описание:</b>
+					    	<div class="task__params-values car-redirect" data-id="${task.id}">
 					    		${task.description}
 					    	</div>
 					    </div>
 
-                        <div class="task-edit__params-container" data-id="${task.id}">
-					    	<b class="task__params-values" data-id="${task.id}">Объем двигателя:</b>
-					    	<div class="task__params-values" data-id="${task.id}">
+                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
+					    	<b class="task__params-values car-redirect" data-id="${task.id}">Объем двигателя:</b>
+					    	<div class="task__params-values car-redirect" data-id="${task.id}">
 					    		${task.capacity}
-					    		<p class="task__params-values" data-id="${task.id}">л</p>
+					    		<p class="task__params-values car-redirect" data-id="${task.id}">л</p>
 					    	</div>
 					    </div>
-                        <div class="task-edit__params-container" data-id="${task.id}">
-					    	<b class="task__params-values" data-id="${task.id}">Расход топлива:</b>
-					    	<div class="task__params-values" data-id="${task.id}">
+                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
+					    	<b class="task__params-values car-redirect" data-id="${task.id}">Расход топлива:</b>
+					    	<div class="task__params-values car-redirect" data-id="${task.id}">
 					    		${task.fuelUsed}
-					    		<p class="task__params-values" data-id="${task.id}">л</p>
+					    		<p class="task__params-values car-redirect" data-id="${task.id}">л</p>
 					    	</div>
 					    </div>
-                        <div class="task-edit__params-container" data-id="${task.id}">
-					    	<b class="task__params-values" data-id="${task.id}" data-id="${task.id}">Пройдено:</b>
-					    	<div class="task__params-values" data-id="${task.id}">
+                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
+					    	<b class="task__params-values car-redirect" data-id="${task.id}" data-id="${task.id}">Пройдено:</b>
+					    	<div class="task__params-values car-redirect" data-id="${task.id}">
 					    		${task.distanceTraveled}
-					    		<p class="task__params-values" data-id="${task.id}">км</p>
+					    		<p class="task__params-values car-redirect" data-id="${task.id}">км</p>
 					    	</div>
 					    </div>                       
 					</div>
