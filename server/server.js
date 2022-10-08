@@ -31,9 +31,9 @@ app.post('/api/task', (req, res) => {
 
 	task.fuelUsed = task.fuelUsed || 'Не указано';
 	task.distanceTraveled = task.distanceTraveled || 'Не указано';
-	task.fuelCost = task.fuelCost
+	task.fuelCost = task.fuelCost;
 
-	task.totalFuelUsed = task.fuelUsed * task.distanceTraveled;
+	task.totalFuelUsed = (task.fuelUsed * task.distanceTraveled).toFixed(1);
 	task.totalFuelCost = (task.totalFuelUsed * task.fuelCost).toFixed(2);
 	task.tireType = task.tireType;
 	task.dateAdded = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
@@ -63,8 +63,9 @@ app.put('/api/task/:id', (req, res) => {
 	task.dateInsuranceStart = updatedTask.dateInsuranceStart;
 	task.capacity = updatedTask.capacity;
 	task.fuelUsed = updatedTask.fuelUsed;
+	task.fuelCost = updatedTask.fuelCost;
 	task.distanceTraveled = updatedTask.distanceTraveled;
-	task.totalFuelUsed = updatedTask.fuelUsed * updatedTask.distanceTraveled;
+	task.totalFuelUsed = (updatedTask.fuelUsed * updatedTask.distanceTraveled).toFixed(1);
 	task.totalFuelCost = (updatedTask.fuelUsed * updatedTask.distanceTraveled * updatedTask.fuelCost).toFixed(2);
 	task.tireType = updatedTask.tireType;
 

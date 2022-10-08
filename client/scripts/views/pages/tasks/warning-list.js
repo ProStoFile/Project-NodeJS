@@ -100,7 +100,7 @@ class Warning extends Component {
 
     static getTaskInsuranceWarningHTML(task) {
         return `
-        <div class="task__item car-redirect">
+        <div class="task__item">
             
             <div class="task car-redirect" data-id="${task.id}">
 
@@ -149,7 +149,7 @@ class Warning extends Component {
 
     static getTaskTireTypeWarningHTML(task) {
         return `
-        <div class="task__item car-redirect">
+        <div class="task__item">
             
             <div class="task car-redirect" data-id="${task.id}">
 

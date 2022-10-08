@@ -291,6 +291,13 @@ class AddAndList extends Component {
                     break;
 
                 case targetClassList.contains('task'):
+                case targetClassList.contains('task__content'):
+                case targetClassList.contains('task__img-container'):
+                case targetClassList.contains('task__img'):
+                    this.redirectToTaskInfo(target.dataset.id);
+                    break;
+
+                case targetClassList.contains('task'):
                 case targetClassList.contains('task__title'):
                     this.redirectToTaskInfo(target.dataset.id);
                     break;
@@ -364,7 +371,7 @@ class AddAndList extends Component {
         return `
         <div class="task__item">
             
-            <div class="task" data-id="${task.id}">
+            <div class="task car-redirect" data-id="${task.id}">
 
             
                 <div class="task__title" data-id="${task.id}">

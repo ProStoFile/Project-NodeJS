@@ -163,6 +163,7 @@ class Edit extends Component {
             taskTimeInput = document.getElementsByClassName('task-edit__time')[0],
             inputCapacity = document.getElementsByClassName('task-add__capacity')[0],
             fuelUsedInput = document.getElementsByClassName('task-add__fuel_used')[0],
+            fuelCostInput = document.getElementsByClassName('task-add__fuel_cost')[0],
             distanceTraveledInput = document.getElementsByClassName('task-add__distance_traveled')[0],
             taskTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0],
 
@@ -173,6 +174,7 @@ class Edit extends Component {
             taskDescriptionField,
             taskTimeInput,
             inputCapacity,
+            fuelCostInput,
             fuelUsedInput,
             distanceTraveledInput,
             taskTireTypeSelect);
@@ -182,6 +184,7 @@ class Edit extends Component {
         taskDescriptionField,
         taskTimeInput,
         inputCapacity,
+        fuelCostInput,
         fuelUsedInput,
         distanceTraveledInput,
         taskTireTypeSelect) {
@@ -190,6 +193,7 @@ class Edit extends Component {
         this.task.dateInsuranceStart = taskTimeInput.value;
         this.task.insuranceStatus = AddAndList.getInsuranceStatus(Date.parse(taskTimeInput.value));
         this.task.capacity = inputCapacity.value;
+        this.task.fuelCost = fuelCostInput.value;
         this.task.fuelUsed = fuelUsedInput.value;
         this.task.distanceTraveled = distanceTraveledInput.value;
         this.task.tireType = taskTireTypeSelect.value;
