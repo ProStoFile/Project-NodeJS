@@ -64,7 +64,7 @@ class About extends Component {
         let cars__container__height = cars__container.offsetHeight,
             section_height = section.offsetHeight;
 
-        window.addEventListener('scroll', function () {
+        window.addEventListener('scroll', () => {
             let scroll = window.pageYOffset,
                 sectionY = section.getBoundingClientRect();
 
