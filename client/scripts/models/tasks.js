@@ -33,13 +33,13 @@ class Tasks {
 		});
 	}
 
-	static async setTasksOrder() {
+	static async setTasksOrder(tasksOrder) {
 		await fetch(`http://localhost:3000/api/task/setorder`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(tasksID)
+			body: JSON.stringify(tasksOrder)
 		});
 	}
 

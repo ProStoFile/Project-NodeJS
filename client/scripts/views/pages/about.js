@@ -49,17 +49,17 @@ class About extends Component {
     }
 
     static setActions() {
-        const translate = document.querySelectorAll(".translate"),
+        const translate = document.querySelectorAll('.translate'),
 
-            cars__container = document.querySelector(".cars__container"),
-            image__container = document.querySelector(".cars__img__container"),
+            cars__container = document.querySelector('.cars__container'),
+            image__container = document.querySelector('.cars__img__container'),
 
-            big__title = document.querySelector(".big-title"),
-            shadow = document.querySelector(".shadow"),
-            content = document.querySelector(".cars__text"),
-            section = document.querySelector(".cars__section"),
-            opacity = document.querySelectorAll(".opacity"),
-            border = document.querySelector(".cars__border");
+            big__title = document.querySelector('.big-title'),
+            shadow = document.querySelector('.shadow'),
+            content = document.querySelector('.cars__text'),
+            section = document.querySelector('.cars__section'),
+            opacity = document.querySelectorAll('.opacity'),
+            border = document.querySelector('.cars__border');
 
         let cars__container__height = cars__container.offsetHeight,
             section_height = section.offsetHeight;

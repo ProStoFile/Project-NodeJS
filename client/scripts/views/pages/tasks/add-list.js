@@ -471,12 +471,13 @@ class AddAndList extends Component {
 
     static async setTasksOrder() { // не сохраняются новые позиции
         const tasksElements = document.getElementsByClassName('task'),
-            tasksID = [];
+            tasksOrder = [];
         for (const id of tasksElements) {
-            tasksID.push(id.getAttribute('data-id'));
+            tasksOrder.push(id.getAttribute('data-id'));
         }
+        await Tasks.setTasksOrder(tasksOrder);
         // alert(tasksElements);
-        // alert(tasksID); считается корректно
+        // alert(tasksID); //считается корректно
     }
 
 

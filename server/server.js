@@ -77,6 +77,15 @@ app.put('/api/task/setorder', (req, res) => {
 	const tasksData = getTasksFromDB(),
 		tasksOrder = req.body;
 	tasksData.sort((one, two) => tasksOrder.indexOf(one.id) - tasksOrder.indexOf(two.id));
+
+	// for (let i = 0; i < tasksData.length; i++) {
+	// 	for (let j = 0; j < tasksData.length; j++) {
+	// 		if (tasksOrder[i] === tasksData[j].id) {
+	// 			updatedTasksData.push(tasksData[j]);
+	// 		}
+	// 	}
+	// }
+
 	setTasksToDB(tasksData);
 });
 

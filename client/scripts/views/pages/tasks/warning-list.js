@@ -16,7 +16,7 @@ class Warning extends Component {
 
         if (!tasks.error) {
 
-            if (tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length > 0 &&
+            if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length > 0 &&
                 tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length > 0) {
                 html =
                     `   
@@ -25,11 +25,11 @@ class Warning extends Component {
                     <div class="warning-tasks__title">
                         <div class="warning-tasks__title-text">
                             Авто с просроченной страховкой:
-                            ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length}
+                            ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length}
                         </div>
                     </div>           
                     <div class="tasks__list">
-                        ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').map(task => this.getTaskInsuranceWarningHTML(task)).join('')}
+                        ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).map(task => this.getTaskInsuranceWarningHTML(task)).join('')}
                 </div>                   
                 <div class="warning-tasks__title">
                     Авто с неверным типом шин:
@@ -40,7 +40,7 @@ class Warning extends Component {
                 </div>
                 </div>        
             </div>`
-            } else if (tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length == 0 &&
+            } else if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length == 0 &&
                 tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length == 0) {
                 html = `<div class="tasks">
                             <div class="_container">
@@ -50,7 +50,7 @@ class Warning extends Component {
                                 </div>
                             </div>
                         </div>`
-            } else if (tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length > 0 &&
+            } else if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length > 0 &&
                 tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length == 0) {
                 html = `   
                 <div class="tasks">
@@ -58,16 +58,16 @@ class Warning extends Component {
                         <div class="warning-tasks__title">
                             <div class="warning-tasks__title-text">
                                 Авто с просроченной страховкой:
-                                ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length}
+                                ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length}
                             </div>
                         </div>           
                         <div class="tasks__list">
-                            ${tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').map(task => this.getTaskInsuranceWarningHTML(task)).join('')}
+                            ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).map(task => this.getTaskInsuranceWarningHTML(task)).join('')}
                         </div>                                  
                     </div>        
                 </div>
                 `
-            } else if (tasks.filter(task => AddAndList.getInsuranceStatus(Date.parse(task.dateInsuranceStart)) === 'Истекла').length == 0 &&
+            } else if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length == 0 &&
                 tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length >> 0) {
                 html = `   
             <div class="tasks">
@@ -94,7 +94,9 @@ class Warning extends Component {
         return html;
     }
 
-
+    static checkIfInsuranceIsExpired(date) {
+        return AddAndList.getInsuranceStatus(Date.parse(date)) === 'Истекла';
+    }
 
     static getTaskInsuranceWarningHTML(task) {
         return `
@@ -184,8 +186,7 @@ class Warning extends Component {
                                 ${this.getDaysUntilNextSeason()}
                                 <p class="task__params-values" data-id="${task.id}">${AddAndList.getWordDaysForm(this.getDaysUntilNextSeason())}</p>
 					    	</div>
-					    </div>
-                  
+					    </div>                
 					</div>
                 </div>                  
             </div>            
@@ -212,6 +213,10 @@ class Warning extends Component {
         return (this.getCurrentSeason() === 'Летний') ?
             Math.trunc((winter.getTime() - new Date().getTime()) / oneDay) :
             Math.trunc((summer.getTime() - new Date().getTime()) / oneDay)
+    }
+
+    static() {
+
     }
 
     static afterRender() {
