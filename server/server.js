@@ -74,7 +74,7 @@ app.put('/api/task/:id', (req, res) => {
 	res.sendStatus(204);
 });
 
-app.put('/api/task/setorder', (req, res) => {
+app.put('/api/tasks/setorder', (req, res) => {
 	const tasksData = getTasksFromDB(),
 		tasksOrder = req.body;
 	tasksData.sort((one, two) => tasksOrder.indexOf(one.id) - tasksOrder.indexOf(two.id));

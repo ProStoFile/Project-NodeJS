@@ -34,7 +34,7 @@ class Tasks {
 	}
 
 	static async setTasksOrder(tasksOrder) {
-		await fetch(`http://localhost:3000/api/task/setorder`, {
+		await fetch(`http://localhost:3000/api/tasks/setorder`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
