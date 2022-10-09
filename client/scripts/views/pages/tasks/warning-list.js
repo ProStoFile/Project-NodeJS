@@ -45,11 +45,18 @@ class Warning extends Component {
                 html = `<div class="tasks">
                             <div class="_container">
                                 <div class="warning-tasks__title">
-                                    Все Ваши авто в порядке. Так держать!
-                                    <div class="tasks__list"></div>
+                                    <div class="warning-images">
+                                    <img class="warning-icon" src="styles/img/icons/congratulations/party.png">
+                                    <img class="warning-icon" src="styles/img/icons/congratulations/garland.png">
+                                    <img class="warning-icon" src="styles/img/icons/congratulations/balloons.png">
+                                    <img class="warning-icon" src="styles/img/icons/congratulations/balloons.png">
+                                    <img class="warning-icon" src="styles/img/icons/congratulations/garland.png">
+                                    <img class="warning-icon" src="styles/img/icons/congratulations/party.png">
+                                    </div>
+                                        Все Ваши авто в порядке. Так держать!                                       
+                                    </div>
                                 </div>
-                            </div>
-                        </div>`
+                            </div>`
             } else if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length > 0 &&
                 tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length == 0) {
                 html = `   
@@ -254,8 +261,8 @@ class Warning extends Component {
                 // case targetClassList.contains('task-edit__params-container'):
                 // case targetClassList.contains('task__params-values'):
 
-                    // AddAndList.redirectToTaskInfo(target.dataset.id);
-                    // break;
+                // AddAndList.redirectToTaskInfo(target.dataset.id);
+                // break;
             }
         };
     }
