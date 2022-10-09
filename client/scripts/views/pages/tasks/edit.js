@@ -33,14 +33,20 @@ class Edit extends Component {
         <div class="task-edit">
             <div class="task-edit__params">
                 <div class="task-edit__params-container">
-                    <b>Модель:</b>
+                    <div>
+					    <img class="params-icon" src="styles/img/icons/params/car.png">
+                        <b>Модель:</b>
+                    </div>
                     <div>
                         <input class="task-edit__title" type="text" value="${title}">
                     </div>
                 </div>
 
                 <div class="task-edit__params-container">
-                    <b>Описание:</b>
+                    <div>
+                        <img class="params-icon" src="styles/img/icons/params/document.png">
+                        <b>Описание:</b>
+                    </div>
                     <div>
                         <textarea class="task-edit__description">${(description === 'No Description') ? '' : description}
                         </textarea>
@@ -48,7 +54,10 @@ class Edit extends Component {
                 </div>
 
                 <div class="task-edit__params-container">
-                    <b>Застрахован:</b>
+                    <div>
+						<img class="params-icon" src="styles/img/icons/params/calendar.png">
+                        <b>Застрахован:</b>
+                    </div>
                     <div>
                         <input class="task-edit__time" value="${dateInsuranceStart}" type="date" min="1980-01-01"
                             max="2060-12-31">
@@ -56,14 +65,20 @@ class Edit extends Component {
                 </div>
 
                 <div class="task-edit__params-container">
+                <div>
+					<img class="params-icon" src="styles/img/icons/params/car-engine.png">
                     <b>Объем двигателя (л):</b>
+                </div>
                     <div>
                         <input class="task-add__capacity" type="number" min="1" max="20" step="0.1" value="${capacity}">
                     </div>
                 </div>
 
                 <div class="task-edit__params-container">
-                    <b>Расход топлива (л):</b>
+                    <div>
+						<img class="params-icon" src="styles/img/icons/params/petrol.png">
+                        <b>Расход топлива (л):</b>
+                    </div>
                     <div>
                         <input class="task-add__fuel_used" type="number" min="0" max="50" step="0.1"
                             value="${fuelUsed}">
@@ -71,7 +86,10 @@ class Edit extends Component {
                 </div>
 
                 <div class="task-edit__params-container">
-                    <b>Пройдено (км):</b>
+                    <div>
+						<img class="params-icon" src="styles/img/icons/params/road.png">
+                        <b>Пройдено (км):</b>
+                    </div>
                     <div>
                         <input class="task-add__distance_traveled" type="number" min="0" max="50" step="0.1"
                             value="${distanceTraveled}">
@@ -79,7 +97,10 @@ class Edit extends Component {
                 </div>
 
                 <div class="task-edit__params-container">
-                    <b>Стоимость топлива (₽):</b>
+                    <div>
+					    <img class="params-icon" src="styles/img/icons/params/salary.png">
+                        <b>Стоимость топлива (₽):</b>
+                    </div>
                     <div>
                         <input class="task-add__fuel_cost" type="number" min="0" max="50" step="0.1"
                             value="${fuelCost}">
@@ -88,7 +109,10 @@ class Edit extends Component {
 
 
                 <div class="task-edit__params-container">
-					<b>Установлены шины:</b>
+                    <div>
+						<img class="params-icon" src="styles/img/icons/params/wheel.png">
+					    <b>Установлены шины:</b>
+                    </div>
                     <select class="task-add__tire_type">
                         <option>Летние</option>
                         <option>Зимние</option>
