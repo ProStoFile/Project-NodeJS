@@ -9,14 +9,14 @@ const express = require('express'),
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('common'));
-app.use((req, res, next) => {
+app.use((res, next) => {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	next();
 });
 
-app.get('/api/tasks', (req, res) => res.send(getTasksFromDB()));
+app.get('/api/tasks', (res) => res.send(getTasksFromDB()));
 
 app.post('/api/task', (req, res) => {
 	const tasksData = getTasksFromDB(),
@@ -28,17 +28,13 @@ app.post('/api/task', (req, res) => {
 	task.description = task.description || 'Пусто';
 	task.status = 'In Progress';
 	task.capacity = task.capacity || 'Объем не указан';
-
 	task.fuelUsed = task.fuelUsed || 'Не указано';
 	task.distanceTraveled = task.distanceTraveled || 'Не указано';
 	task.fuelCost = task.fuelCost;
-
 	task.totalFuelUsed = (task.fuelUsed * task.distanceTraveled).toFixed(1);
 	task.totalFuelCost = (task.totalFuelUsed * task.fuelCost).toFixed(2);
 	task.tireType = task.tireType;
 	task.dateAdded = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
-
-
 
 	tasksData.push(task);
 	setTasksToDB(tasksData);
@@ -70,23 +66,13 @@ app.put('/api/task/:id', (req, res) => {
 	task.tireType = updatedTask.tireType;
 
 	setTasksToDB(tasksData);
-
 	res.sendStatus(204);
 });
 
-app.put('/api/tasks/setorder', (req, res) => {
+app.put('/api/tasks/setorder', (req) => {
 	const tasksData = getTasksFromDB(),
 		tasksOrder = req.body;
 	tasksData.sort((one, two) => tasksOrder.indexOf(one.id) - tasksOrder.indexOf(two.id));
-
-	// for (let i = 0; i < tasksData.length; i++) {
-	// 	for (let j = 0; j < tasksData.length; j++) {
-	// 		if (tasksOrder[i] === tasksData[j].id) {
-	// 			updatedTasksData.push(tasksData[j]);
-	// 		}
-	// 	}
-	// }
-
 	setTasksToDB(tasksData);
 });
 
@@ -100,7 +86,7 @@ function setTasksToDB(tasksData) {
 
 app.listen(3000, () => console.log('Сервер запущен...'));
 
-app.delete('/api/tasks', (req, res) => {
+app.delete('/api/tasks', (res) => {
 	setTasksToDB([]);
 	res.sendStatus(204);
 });
@@ -109,9 +95,7 @@ app.delete('/api/task/:id', (req, res) => {
 	const tasksData = getTasksFromDB(),
 		selectedTask = tasksData.find((task) => task.id === req.params.id),
 		updatedTaskList = tasksData.filter((task) => task.id !== selectedTask.id);
-
 	setTasksToDB(updatedTaskList);
-
 	res.sendStatus(204);
 })
 
@@ -125,7 +109,7 @@ app.put('/api/task/:id/done', (req, res) => {
 	res.sendStatus(204);
 });
 
-app.get('/api/tasks/sortbymodel', (req, res) => {
+app.get('/api/tasks/sortbymodel', (res) => {
 	const tasksData = getTasksFromDB();
 	tasksData.sort((one, two) => {
 		let modelOne = one.title.toLowerCase(), modelTwo = two.title.toLowerCase();
@@ -136,36 +120,25 @@ app.get('/api/tasks/sortbymodel', (req, res) => {
 		return 0
 	});
 	setTasksToDB(tasksData);
-
 	res.send(tasksData);
 
 });
 
-app.get('/api/tasks/sortbydistancetraveled', (req, res) => {
+app.get('/api/tasks/sortbydistancetraveled', (res) => {
 	const tasksData = getTasksFromDB();
 	tasksData.sort((one, two) => {
 		return two.distanceTraveled - one.distanceTraveled;
 	});
 	setTasksToDB(tasksData);
-
 	res.send(tasksData);
 
 });
 
-app.get('/api/tasks/sortbytotalfuelcost', (req, res) => {
+app.get('/api/tasks/sortbytotalfuelcost', (res) => {
 	const tasksData = getTasksFromDB();
 	tasksData.sort((one, two) => {
 		return two.totalFuelCost - one.totalFuelCost;
 	});
 	setTasksToDB(tasksData);
-
 	res.send(tasksData);
-
-});
-
-app.put('/api/tasks/refresh', (req, res) => {
-
-	const updatedTasksData = req.body;
-	setTasksToDB(updatedTasksData);
-	res.sendStatus(204);
 });
