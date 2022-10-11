@@ -10,109 +10,93 @@ class AddAndList extends Component {
     static async render(tasks) {
         return `
         
-    <div class="modal__window-add__task">
-        <div class="modal__window-add__task-content">
-            <div class="modal__window-add__task-header">
-                <span class="modal__window-close">&times;</span>
-                <h2>Информация о Вашем авто</h2>
-            </div>
-            <div class="modal__window-add__task-body">
-            <div class="task-add">
-                <input class="task-add__title add" type="text" placeholder="Модель">
-                <textarea class="task-add__description add" placeholder="Описание"></textarea>
-                <div class="task-add__info">
-                    <label>Застрахован</label>
-                    <input class="task-add__time add" type="date" min="1980-01-01">
+        <div class="modal__window-add__task">
+            <div class="modal__window-add__task-content">
+                <div class="modal__window-add__task-header">
+                    <span class="modal__window-close">&times;</span>
+                    <h2>Информация о Вашем авто</h2>
                 </div>
-                <div class="task-add__info">
-                    <label>Объем двигателя (л)</label>
-                    <input class="task-add__capacity add" type="number" min="1" max="20" step="0.1" value="2.2">   
-                </div>
-                <div class="task-add__info">
-                    <label>Израсходовано топлива (л)</label>
-                    <input class="task-add__fuel_used add" type="number" min="0" max="50" step="0.1"
-                  value="8.0">
-                </div>
-
-                <div class="task-add__info">
-                    <label>Пройденное расстояние (км)</label>
-                    <input class="task-add__distance_traveled add" type="number" 
-                    min="0" max="50" step="0.1" value="7.0">
-                </div>
-              
-                <div class="task-add__info">
-                    <label>Стоимость топлива (руб)</label>
-                    <input class="task-add__fuel_cost add" type="number" 
-                    min="0" max="50" step="0.1"
-                    value="6.0">
-                </div>
-
-                <div class="task-add__info">
-                    <label>Установлены шины</label>
-                    <select class="task-add__tire_type add">
-                        <option>Летние</option>
-                        <option>Зимние</option>
-                    </select>
-                </div>
-                
-              <button class="task-add__btn-add button" disabled>Добавить</button>
-            </div>
-          </div>
-        </div>   
-    </div> 
-
-    <div class="modal__window-remove__task">
-        <div class="modal__window-add__task-content">
-            <div class="modal__window-add__task-header">
-                <h2>Желаете удалить?</h2>
-            </div>
-            <div class="modal__window-remove__task-body">
-                <button class="task-add__btn-cancel button">Нет, отмена</button>
-                <button class="task-add__btn-delete button">Да, удалить</button>
-            </div>
-        </div>   
-    </div> 
-
-    <div class="modal__window-clear__task">
-        <div class="modal__window-add__task-content">
-            <div class="modal__window-add__task-header">
-                <h2>Очистить весь список?</h2>
-            </div>
-            <div class="modal__window-remove__task-body">
-                <button class="task-add__btn-back button">Нет, отмена</button>
-                <button class="task-add__btn-clear button">Да, очистить</button>
-            </div>
-        </div>   
-    </div>
-    
-    <div class="tasks">
-        <div class="tasks__additional">
-
-            <div class="dropdown">
-                <button class="dropbtn button">Сортировать</button>
-                    <div class="dropdown-content">
-                        <button class="tasks__btn-sort dropdown__button">По модели</button>
-                        <button class="tasks__btn-sort_by_distanceTraveled dropdown__button">По расстоянию</button>
-                        <button class="tasks__btn-sort_by_totalFuelCost dropdown__button">По затратам<br>на топливо</button>
+                <div class="modal__window-add__task-body">
+                    <div class="task-add">
+                        <input class="task-add__title add" type="text" placeholder="Модель">
+                        <textarea class="task-add__description add" placeholder="Описание"></textarea>
+                        <div class="task-add__info">
+                            <label>Застрахован</label>
+                            <input class="task-add__time add" type="date" min="1980-01-01">
+                        </div>
+                        <div class="task-add__info">
+                            <label>Объем двигателя (л)</label>
+                            <input class="task-add__capacity add" type="number" min="1" max="20" step="0.1" value="2.2">   
+                        </div>
+                        <div class="task-add__info">
+                            <label>Израсходовано топлива (л)</label>
+                            <input class="task-add__fuel_used add" type="number" min="0" max="50" step="0.1" value="8.0">
+                        </div>
+                        <div class="task-add__info">
+                            <label>Пройденное расстояние (км)</label>
+                            <input class="task-add__distance_traveled add" type="number" min="0" max="50" step="0.1" value="7.0">
+                        </div>
+                        <div class="task-add__info">
+                            <label>Стоимость топлива (руб)</label>
+                            <input class="task-add__fuel_cost add" type="number" min="0" max="50" step="0.1" value="6.0">
+                        </div>
+                        <div class="task-add__info">
+                            <label>Установлены шины</label>
+                            <select class="task-add__tire_type add">
+                                <option>Летние</option>
+                                <option>Зимние</option>
+                            </select>
+                        </div>               
+                        <button class="task-add__btn-add button" disabled>Добавить</button>
                     </div>
                 </div>
+            </div>   
+        </div> 
 
-                <button class="tasks__btn-add button">Добавить</button>
-                                    
-                <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>
-                    Очистить
-                </button>
-                    
-            </div>
-                
-            <div class="_container">
-                <div class="tasks__list">
-                    ${tasks.map(task => this.getTaskHTML(task)).join('')}
+        <div class="modal__window-remove__task">
+            <div class="modal__window-add__task-content">
+                <div class="modal__window-add__task-header">
+                    <h2>Желаете удалить?</h2>
+                </div>
+                <div class="modal__window-remove__task-body">
+                    <button class="task-add__btn-cancel button">Нет, отмена</button>
+                    <button class="task-add__btn-delete button">Да, удалить</button>
+                </div>
+            </div>   
+        </div> 
+
+        <div class="modal__window-clear__task">
+            <div class="modal__window-add__task-content">
+                <div class="modal__window-add__task-header">
+                    <h2>Очистить весь список?</h2>
+                </div>
+                <div class="modal__window-remove__task-body">
+                    <button class="task-add__btn-back button">Нет, отмена</button>
+                    <button class="task-add__btn-clear button">Да, очистить</button>
+                </div>
+            </div>   
+        </div>
+    
+        <div class="tasks">
+            <div class="tasks__additional">
+                <div class="dropdown">
+                    <button class="dropbtn button">Сортировать</button>
+                        <div class="dropdown-content">
+                            <button class="tasks__btn-sort dropdown__button">По модели</button>
+                            <button class="tasks__btn-sort_by_distanceTraveled dropdown__button">По расстоянию</button>
+                            <button class="tasks__btn-sort_by_totalFuelCost dropdown__button">По затратам<br>на топливо</button>
+                        </div>
+                    </div>
+                    <button class="tasks__btn-add button">Добавить</button>                                   
+                    <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>Очистить</button>                  
+                </div>               
+                <div class="_container">
+                    <div class="tasks__list">
+                        ${tasks.map(task => this.getTaskHTML(task)).join('')}
+                    </div>
                 </div>
             </div>
-
         </div>
-    </div>
         `;
     }
 
@@ -204,7 +188,6 @@ class AddAndList extends Component {
             }
         })
 
-
         /* ---------------- Drag'n'Drop ---------------- */
 
         for (const task of taskElements) {
@@ -221,36 +204,23 @@ class AddAndList extends Component {
 
         });
 
-        const getNextElement = (cursorPosition, currentElement) => {
-            const currentElementCoord = currentElement.getBoundingClientRect(),
-                currentElementCenter = currentElementCoord.y + currentElementCoord.height / 2,
-                nextElement = (cursorPosition < currentElementCenter) ?
-                    currentElement :
-                    currentElement.nextElementSibling;
-
-            return nextElement;
-        };
-
         tasksList.addEventListener('dragover', (event) => {
             event.preventDefault();
 
             const activeElement = tasksList.querySelector('.selected'),
                 currentElement = event.target,
                 isMoveable = activeElement !== currentElement && currentElement.classList.contains('task__item'),
-                nextElement = getNextElement(event.clientY, currentElement);
+                nextElement = this.getNextElement(event.clientY, currentElement);
 
             if (!isMoveable) { return; }
 
-            if (
-                nextElement &&
+            if (nextElement &&
                 activeElement === nextElement.previousElementSibling ||
                 activeElement === nextElement
             ) { return; }
 
             tasksList.insertBefore(activeElement, nextElement);
         });
-
-        /* ---------------- Drag'n'Drop ---------------- */
 
         taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();
         addTaskBtn.onclick = () => this.addTask(
@@ -272,9 +242,7 @@ class AddAndList extends Component {
 
             switch (true) {
                 case targetClassList.contains('tasks__btn-clear'):
-
                     modalClearTasksListWindow.classList.add('display-block');
-
                     this.clearTasksList(tasksList, clearTasksListBtn, clearTasksListConfirmBtn);
                     break;
 
@@ -294,36 +262,8 @@ class AddAndList extends Component {
                     this.redirectToTaskInfo(target.dataset.id);
                     break;
 
-                // case targetClassList.contains('task'):
-                // case targetClassList.contains('task__title'):
-                //     this.redirectToTaskInfo(target.dataset.id);
-                //     break;
-
-                // case targetClassList.contains('task'):
-                // case targetClassList.contains('task__content'):
-                // case targetClassList.contains('task__img-container'):
-                // case targetClassList.contains('task__img'):
-                //     this.redirectToTaskInfo(target.dataset.id);
-                //     break;
-
-                // case targetClassList.contains('task'):
-                // case targetClassList.contains('task-content'):
-                // case targetClassList.contains('task-content__params'):
-                // case targetClassList.contains('task-edit__params-container'):
-                // case targetClassList.contains('task__params-values'):
-
-                //     this.redirectToTaskInfo(target.dataset.id);
-                //     break;
-
-                // case targetClassList.contains('task__btn-done'):
-                //     this.changeTaskStatus(target.parentNode.parentNode,
-                //         target.previousElementSibling, target);
-                //     break;
-
                 case targetClassList.contains('task__btn-remove'):
-
                     modalRemoveTaskWindow.classList.add('display-block');
-
                     this.removeTask(tasksList, target.parentNode.parentNode, clearTasksListBtn, deledeTaskConfirmBtn, closeModalWindowRemoveBtn);
                     break;
             }
@@ -422,6 +362,16 @@ class AddAndList extends Component {
         `;
     }
 
+    static getNextElement(cursorPosition, currentElement) {
+        const currentElementCoord = currentElement.getBoundingClientRect(),
+            currentElementCenter = currentElementCoord.y + currentElementCoord.height / 2,
+            nextElement = (cursorPosition < currentElementCenter) ?
+                currentElement :
+                currentElement.nextElementSibling;
+
+        return nextElement;
+    };
+
     static clearAddTask(taskTitleField, taskDescriptionField, addTaskBtn, clearTasksListConfirmBtn) {
 
         clearTasksListConfirmBtn.addEventListener('click', () => {
@@ -473,15 +423,13 @@ class AddAndList extends Component {
 
     }
 
-    static async setTasksOrder() { // не сохраняются новые позиции
+    static async setTasksOrder() {
         const tasksElements = document.getElementsByClassName('task'),
             tasksOrder = [];
         for (const id of tasksElements) {
             tasksOrder.push(id.getAttribute('data-id'));
         }
         await Tasks.setTasksOrder(tasksOrder);
-        // alert(tasksElements);
-        // alert(tasksID); //считается корректно
     }
 
 
@@ -509,10 +457,8 @@ class AddAndList extends Component {
         const dateNow = Date.parse(`
         ${new Date().getFullYear()}-
         ${new Date().getMonth() + 1}-
-        ${new Date().getDate()}
-        `),
+        ${new Date().getDate()}`),
             year = 31525200000;
-
         return (date + year > dateNow) ? 'Действительна' : 'Истекла';
     }
 
@@ -555,14 +501,10 @@ class AddAndList extends Component {
         deledeTaskConfirmBtn,
         closeModalWindowRemoveBtn
     ) {
-
-
         deledeTaskConfirmBtn.addEventListener('click', () => {
             taskContainer.remove();
             !tasksList.children.length && (clearTasksListBtn.disabled = true);
-
             Tasks.removeSelectedTask(taskContainer.dataset);
-
         })
 
         closeModalWindowRemoveBtn.addEventListener('click', () => {
@@ -572,14 +514,11 @@ class AddAndList extends Component {
     }
 
     static checkTiresStatus(tireType) {
-        return (
-            new Date().getMonth() > 10 && tireType === 'Зимние' ||
+        return (new Date().getMonth() > 10 && tireType === 'Зимние' ||
             new Date().getMonth() < 2 && tireType === 'Зимние' ||
             new Date().getMonth() < 11 && tireType === 'Летние' ||
             new Date().getMonth() > 1 && tireType === 'Летние') ? 'Нет' : 'Да';
     }
-
-
 }
 
 export default AddAndList;

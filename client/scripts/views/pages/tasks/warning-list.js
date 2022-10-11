@@ -222,10 +222,6 @@ class Warning extends Component {
             Math.trunc((summer.getTime() - new Date().getTime()) / oneDay)
     }
 
-    static() {
-
-    }
-
     static afterRender() {
         this.setActions();
     }
@@ -239,37 +235,13 @@ class Warning extends Component {
 
             switch (true) {
 
-                // case targetClassList.contains('task'):
-                // case targetClassList.contains('task__title'):
-                //     AddAndList.redirectToTaskInfo(target.dataset.id);
-                //     break;
-
-                // case targetClassList.contains('task'):
-                // case targetClassList.contains('task__content'):
-                // case targetClassList.contains('task__img-container'):
-                // case targetClassList.contains('task__img'):
-                //     AddAndList.redirectToTaskInfo(target.dataset.id);
-                //     break;
-
                 case targetClassList.contains('car-redirect'):
                     AddAndList.redirectToTaskInfo(target.dataset.id);
                     break;
-
-                // case targetClassList.contains('task'):
-                // case targetClassList.contains('task-content'):
-                // case targetClassList.contains('task-content__params'):
-                // case targetClassList.contains('task-edit__params-container'):
-                // case targetClassList.contains('task__params-values'):
-
-                // AddAndList.redirectToTaskInfo(target.dataset.id);
-                // break;
             }
         };
     }
 
 }
-
-
-
 
 export default Warning;
