@@ -1,20 +1,20 @@
-import Component from '../../../views/component.js';
+import Component from '../../component.js';
 
-import Error404 from '../../../views/pages/error404.js';
+import Error404 from '../error404.js';
 
-import Tasks from '../../../models/tasks.js';
+import Cars from '../../../models/cars.js';
 
 import AddAndList from './add-list.js';
 
 class Info extends Component {
 	static async getData() {
-		return await Tasks.getTask(this.urlParts.id);
+		return await Cars.getCar(this.urlParts.id);
 	}
 
-	static async render(task) {
+	static async render(car) {
 		let html;
 
-		if (!task.error) {
+		if (!car.error) {
 			const { id,
 				title,
 				description,
@@ -25,7 +25,7 @@ class Info extends Component {
 				fuelCost,
 				totalFuelUsed,
 				totalFuelCost,
-				tireType } = task;
+				tireType } = car;
 
 			html = `
 				<h1 class="page-title">Информация</h1>

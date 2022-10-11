@@ -2,31 +2,30 @@ import Component from '../../../views/component.js';
 
 import Error404 from '../../../views/pages/error404.js';
 
-import Tasks from '../../../models/tasks.js';
+import Cars from '../../../models/cars.js';
 
 import AddAndList from './add-list.js';
 
 class Edit extends Component {
     static async getData() {
-        this.task = await Tasks.getTask(this.urlParts.id);
+        this.car = await Cars.getCar(this.urlParts.id);
 
-        return this.task;
+        return this.car;
     }
 
-    static async render(task) {
+    static async render(car) {
         let html;
 
-        if (this.isEditEnable()) {
-            const { id,
-                title,
-                description,
-                capacity,
-                dateInsuranceStart,
-                fuelUsed,
-                distanceTraveled,
-                fuelCost } = task;
+        const { id,
+            title,
+            description,
+            capacity,
+            dateInsuranceStart,
+            fuelUsed,
+            distanceTraveled,
+            fuelCost } = car;
 
-            html = `
+        html = `
                 <h1 class="page-title">Изменить</h1>              
                 <div class="_container">
                     <div class="task-edit">
@@ -117,21 +116,12 @@ class Edit extends Component {
                     </div>
                 </div>               
             `;
-        } else {
-            html = Error404.render();
-        }
 
         return html;
     }
 
     static afterRender() {
-        this.isEditEnable() && this.setActions();
-    }
-
-    static isEditEnable() {
-        return !this.task.error &&
-            this.task.status !== 'Done' &&
-            !location.hash.split(this.urlParts.action)[1];
+        this.setActions();
     }
 
     static setActions() {
@@ -147,7 +137,7 @@ class Edit extends Component {
             saveTaskBtn = document.getElementsByClassName('task-edit__btn-save')[0];
 
         taskTitleField.onkeyup = () => saveTaskBtn.disabled = !taskTitleField.value.trim();
-        saveTaskBtn.onclick = () => this.editTask(taskTitleField,
+        saveTaskBtn.onclick = () => this.editCar(taskTitleField,
             taskDescriptionField,
             taskTimeInput,
             inputCapacity,
@@ -157,7 +147,7 @@ class Edit extends Component {
             taskTireTypeSelect);
     }
 
-    static async editTask(taskTitleField,
+    static async editCar(taskTitleField,
         taskDescriptionField,
         taskTimeInput,
         inputCapacity,
@@ -165,22 +155,22 @@ class Edit extends Component {
         fuelUsedInput,
         distanceTraveledInput,
         taskTireTypeSelect) {
-        this.task.title = taskTitleField.value.trim();
-        this.task.description = taskDescriptionField.value.trim();
-        this.task.dateInsuranceStart = taskTimeInput.value;
-        this.task.insuranceStatus = AddAndList.getInsuranceStatus(Date.parse(taskTimeInput.value));
-        this.task.capacity = inputCapacity.value;
-        this.task.fuelCost = fuelCostInput.value;
-        this.task.fuelUsed = fuelUsedInput.value;
-        this.task.distanceTraveled = distanceTraveledInput.value;
-        this.task.tireType = taskTireTypeSelect.value;
-        await Tasks.editTask(this.task);
+        this.car.title = taskTitleField.value.trim();
+        this.car.description = taskDescriptionField.value.trim();
+        this.car.dateInsuranceStart = taskTimeInput.value;
+        this.car.insuranceStatus = AddAndList.getInsuranceStatus(Date.parse(taskTimeInput.value));
+        this.car.capacity = inputCapacity.value;
+        this.car.fuelCost = fuelCostInput.value;
+        this.car.fuelUsed = fuelUsedInput.value;
+        this.car.distanceTraveled = distanceTraveledInput.value;
+        this.car.tireType = taskTireTypeSelect.value;
+        await Cars.editCar(this.car);
 
-        this.redirectToTaskInfo();
+        this.redirectToCarInfo();
     }
 
-    static redirectToTaskInfo() {
-        location.hash = `#/task/${this.task.id}`;
+    static redirectToCarInfo() {
+        location.hash = `#/task/${this.car.id}`;
     }
 }
 

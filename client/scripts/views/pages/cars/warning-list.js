@@ -2,46 +2,46 @@ import Component from '../../../views/component.js';
 
 import Error404 from '../../../views/pages/error404.js';
 
-import Tasks from '../../../models/tasks.js';
+import Cars from '../../../models/cars.js';
 
 import AddAndList from './add-list.js';
 
 class Warning extends Component {
     static async getData() {
-        return await Tasks.getTasksList();
+        return await Cars.getCarsList();
     }
 
-    static async render(tasks) {
+    static async render(cars) {
         let html;
 
-        if (!tasks.error) {
+        if (!cars.error) {
 
-            if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length > 0 &&
-                tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length > 0) {
+            if (cars.filter(car => this.checkIfInsuranceIsExpired(car.dateInsuranceStart)).length > 0 &&
+                cars.filter(car => AddAndList.checkTiresStatus(car.tireType) === 'Да').length > 0) {
                 html = `   
                 <div class="tasks">
                     <div class="_container">
                         <div class="warning-tasks__title">
                             <div class="warning-tasks__title-text">
                                 Авто с просроченной страховкой:
-                                ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length}
+                                ${cars.filter(car => this.checkIfInsuranceIsExpired(car.dateInsuranceStart)).length}
                             </div>
                         </div>           
                         <div class="tasks__list">
-                            ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).map(task => this.getTaskInsuranceWarningHTML(task)).join('')}
+                            ${cars.filter(car => this.checkIfInsuranceIsExpired(car.dateInsuranceStart)).map(car => this.getCarInsuranceWarningHTML(car)).join('')}
                         </div>                   
                         <div class="warning-tasks__title">
                             Авто с неверным типом шин:
-                            ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length}
+                            ${cars.filter(car => AddAndList.checkTiresStatus(car.tireType) === 'Да').length}
                         </div>                  
                         <div class="tasks__list">
-                            ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').map(task => this.getTaskTireTypeWarningHTML(task)).join('')}
+                            ${cars.filter(car => AddAndList.checkTiresStatus(car.tireType) === 'Да').map(car => this.getCarTireTypeWarningHTML(car)).join('')}
                         </div>
                     </div>        
                 </div>
             `
-            } else if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length == 0 &&
-                tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length == 0) {
+            } else if (cars.filter(car => this.checkIfInsuranceIsExpired(car.dateInsuranceStart)).length == 0 &&
+                cars.filter(car => AddAndList.checkTiresStatus(car.tireType) === 'Да').length == 0) {
                 html = `
                 <div class="tasks">
                     <div class="_container">
@@ -59,34 +59,34 @@ class Warning extends Component {
                         </div>
                     </div>
                 `
-            } else if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length > 0 &&
-                tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length == 0) {
+            } else if (cars.filter(car => this.checkIfInsuranceIsExpired(car.dateInsuranceStart)).length > 0 &&
+                cars.filter(car => AddAndList.checkTiresStatus(car.tireType) === 'Да').length == 0) {
                 html = `   
                 <div class="tasks">
                     <div class="_container">
                         <div class="warning-tasks__title">
                             <div class="warning-tasks__title-text">
                                 Авто с просроченной страховкой:
-                                ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length}
+                                ${cars.filter(car => this.checkIfInsuranceIsExpired(car.dateInsuranceStart)).length}
                             </div>
                         </div>           
                         <div class="tasks__list">
-                            ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).map(task => this.getTaskInsuranceWarningHTML(task)).join('')}
+                            ${cars.filter(car => this.checkIfInsuranceIsExpired(car.dateInsuranceStart)).map(car => this.getCarInsuranceWarningHTML(car)).join('')}
                         </div>                                  
                     </div>        
                 </div>
                 `
-            } else if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length == 0 &&
-                tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length >> 0) {
+            } else if (cars.filter(car => this.checkIfInsuranceIsExpired(car.dateInsuranceStart)).length == 0 &&
+                cars.filter(car => AddAndList.checkTiresStatus(car.tireType) === 'Да').length >> 0) {
                 html = `   
                 <div class="tasks">
                     <div class="_container">
                         <div class="warning-tasks__title">
                             Авто с неверным типом шин:
-                ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length}
+                ${cars.filter(car => AddAndList.checkTiresStatus(car.tireType) === 'Да').length}
                         </div>                  
                         <div class="tasks__list">
-                ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').map(task => this.getTaskTireTypeWarningHTML(task)).join('')}
+                ${cars.filter(car => AddAndList.checkTiresStatus(car.tireType) === 'Да').map(car => this.getCarTireTypeWarningHTML(car)).join('')}
                         </div>
                     </div>                                  
                 </div>        
@@ -103,39 +103,39 @@ class Warning extends Component {
         return AddAndList.getInsuranceStatus(Date.parse(date)) === 'Истекла';
     }
 
-    static getTaskInsuranceWarningHTML(task) {
+    static getCarInsuranceWarningHTML(car) {
         return `
         <div class="task__item">           
-            <div class="task car-redirect" data-id="${task.id}">
-                <div class="task__title car-redirect" data-id="${task.id}">
+            <div class="task car-redirect" data-id="${car.id}">
+                <div class="task__title car-redirect" data-id="${car.id}">
                     <div class="task__title-images car-redirect"></div>
-                    ${task.title}
+                    ${car.title}
                     <div class="task__title-images car-redirect"></div>  
                 </div>                                 
-                <div class="task-content car-redirect" data-id="${task.id}">
-                    <div class="task__img-container car-redirect" data-id="${task.id}">
-                        <img class="task__img car-redirect" data-id="${task.id}" src="styles/img/task__logo.png">
+                <div class="task-content car-redirect" data-id="${car.id}">
+                    <div class="task__img-container car-redirect" data-id="${car.id}">
+                        <img class="task__img car-redirect" data-id="${car.id}" src="styles/img/task__logo.png">
                     </div>
-                    <div class="task-content__params car-redirect" data-id="${task.id}">                    
-					    <div class="task-edit__params-container car-redirect" data-id="${task.id}">
-					    	<b class="task__params-values car-redirect" data-id="${task.id}">Оформлена:</b>
-					    	<div class="task__params-values car-redirect" data-id="${task.id}">
-                            ${AddAndList.changeDateFormat(task.dateInsuranceStart)}
+                    <div class="task-content__params car-redirect" data-id="${car.id}">                    
+					    <div class="task-edit__params-container car-redirect" data-id="${car.id}">
+					    	<b class="task__params-values car-redirect" data-id="${car.id}">Оформлена:</b>
+					    	<div class="task__params-values car-redirect" data-id="${car.id}">
+                            ${AddAndList.changeDateFormat(car.dateInsuranceStart)}
 					    	</div>
 					    </div>
-                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
-					    	<b class="task__params-values car-redirect" data-id="${task.id}">Истекла:</b>
-					    	<div class="task__params-values car-redirect" data-id="${task.id}">
-                                <p class="task__params-values car-redirect" data-id="${task.id}">
-                                    ${this.getInsuranceDateEnd(task.dateInsuranceStart)}
+                        <div class="task-edit__params-container car-redirect" data-id="${car.id}">
+					    	<b class="task__params-values car-redirect" data-id="${car.id}">Истекла:</b>
+					    	<div class="task__params-values car-redirect" data-id="${car.id}">
+                                <p class="task__params-values car-redirect" data-id="${car.id}">
+                                    ${this.getInsuranceDateEnd(car.dateInsuranceStart)}
                                 </p>
 					    	</div>
 					    </div>
-                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
-					    	<b class="task__params-values car-redirect" data-id="${task.id}">Опоздание:</b>
-					    	<div class="task__params-values car-redirect" data-id="${task.id}">
-                            ${Math.abs(AddAndList.getDaysInsuranceValidityLeft(task.dateInsuranceStart))}
-					    		<p class="task__params-values car-redirect" data-id="${task.id}">${AddAndList.getWordDaysForm(Math.abs(AddAndList.getDaysInsuranceValidityLeft(task.dateInsuranceStart)))}</p>
+                        <div class="task-edit__params-container car-redirect" data-id="${car.id}">
+					    	<b class="task__params-values car-redirect" data-id="${car.id}">Опоздание:</b>
+					    	<div class="task__params-values car-redirect" data-id="${car.id}">
+                            ${Math.abs(AddAndList.getDaysInsuranceValidityLeft(car.dateInsuranceStart))}
+					    		<p class="task__params-values car-redirect" data-id="${car.id}">${AddAndList.getWordDaysForm(Math.abs(AddAndList.getDaysInsuranceValidityLeft(car.dateInsuranceStart)))}</p>
 					    	</div>
 					    </div>                   
 					</div>
@@ -145,37 +145,37 @@ class Warning extends Component {
         `;
     }
 
-    static getTaskTireTypeWarningHTML(task) {
+    static getCarTireTypeWarningHTML(car) {
         return `
         <div class="task__item">           
-            <div class="task car-redirect" data-id="${task.id}">
-                <div class="task__title car-redirect" data-id="${task.id}">
+            <div class="task car-redirect" data-id="${car.id}">
+                <div class="task__title car-redirect" data-id="${car.id}">
                     <div class="task__title-images car-redirect"></div>
-                        ${task.title}
+                        ${car.title}
                     <div class="task__title-images car-redirect"></div> 
                 </div>                                 
-                <div class="task-content car-redirect" data-id="${task.id}">
-                    <div class="task__img-container car-redirect" data-id="${task.id}">
-                        <img class="task__img car-redirect" data-id="${task.id}" src="styles/img/task__logo.png">
+                <div class="task-content car-redirect" data-id="${car.id}">
+                    <div class="task__img-container car-redirect" data-id="${car.id}">
+                        <img class="task__img car-redirect" data-id="${car.id}" src="styles/img/task__logo.png">
                     </div>
-                    <div class="task-content__params car-redirect" data-id="${task.id}">                   
-                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
-                            <b class="task__params-values car-redirect" data-id="${task.id}">Текущий сезон:</b>
-                            <div class="task__params-values car-redirect" data-id="${task.id}">
+                    <div class="task-content__params car-redirect" data-id="${car.id}">                   
+                        <div class="task-edit__params-container car-redirect" data-id="${car.id}">
+                            <b class="task__params-values car-redirect" data-id="${car.id}">Текущий сезон:</b>
+                            <div class="task__params-values car-redirect" data-id="${car.id}">
                                 ${this.getCurrentSeason()}
                             </div>
                         </div>
-					    <div class="task-edit__params-container car-redirect" data-id="${task.id}">
-					    	<b class="task__params-values car-redirect" data-id="${task.id}">Установлены шины:</b>
-					    	<div class="task__params-values car-redirect" data-id="${task.id}">
-                                ${task.tireType}
+					    <div class="task-edit__params-container car-redirect" data-id="${car.id}">
+					    	<b class="task__params-values car-redirect" data-id="${car.id}">Установлены шины:</b>
+					    	<div class="task__params-values car-redirect" data-id="${car.id}">
+                                ${car.tireType}
 					    	</div>
 					    </div>
-                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
-					    	<b class="task__params-values car-redirect" data-id="${task.id}">До смены сезона:</b>
-					    	<div class="task__params-values car-redirect" data-id="${task.id}">
+                        <div class="task-edit__params-container car-redirect" data-id="${car.id}">
+					    	<b class="task__params-values car-redirect" data-id="${car.id}">До смены сезона:</b>
+					    	<div class="task__params-values car-redirect" data-id="${car.id}">
                                 ${this.getDaysUntilNextSeason()}
-                                <p class="task__params-values car-redirect" data-id="${task.id}">${AddAndList.getWordDaysForm(this.getDaysUntilNextSeason())}</p>
+                                <p class="task__params-values car-redirect" data-id="${car.id}">${AddAndList.getWordDaysForm(this.getDaysUntilNextSeason())}</p>
 					    	</div>
 					    </div>                
 					</div>
@@ -219,7 +219,7 @@ class Warning extends Component {
 
             switch (true) {
                 case targetClassList.contains('car-redirect'):
-                    AddAndList.redirectToTaskInfo(target.dataset.id);
+                    AddAndList.redirectToCarInfo(target.dataset.id);
                     break;
             }
         };

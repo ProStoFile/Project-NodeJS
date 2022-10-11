@@ -3,13 +3,13 @@ import {parseCurrentURL} from './helpers/utils.js';
 import Header from './views/partials/header.js';
 import Footer from './views/partials/footer.js';
 
-import AddAndList from './views/pages/tasks/add-list.js';
-import Info from './views/pages/tasks/info.js';
-import Edit from './views/pages/tasks/edit.js';
+import AddAndList from './views/pages/cars/add-list.js';
+import Info from './views/pages/cars/info.js';
+import Edit from './views/pages/cars/edit.js';
 
 import About from './views/pages/about.js';
 import Error404 from './views/pages/error404.js';
-import Warning from './views/pages/tasks/warning-list.js';
+import Warning from './views/pages/cars/warning-list.js';
 
 const Routes = {
     '/': About,

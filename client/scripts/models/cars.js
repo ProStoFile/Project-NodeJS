@@ -1,49 +1,49 @@
-class Tasks {
-	static async getTasksList() {
+class Cars {
+	static async getCarsList() {
 		const response = await fetch('http://localhost:3000/api/tasks');
 
 		return await response.json();
 	}
 
-	static async addTask(newTask) {
+	static async addCar(newCar) {
 		const response = await fetch('http://localhost:3000/api/task', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(newTask)
+			body: JSON.stringify(newCar)
 		});
 
 		return await response.json();
 	}
 
-	static async getTask(id) {
+	static async getCar(id) {
 		const response = await fetch(`http://localhost:3000/api/task/${id}`);
 
 		return await response.json();
 	}
 
-	static async editTask(updatedTask) {
-		await fetch(`http://localhost:3000/api/task/${updatedTask.id}`, {
+	static async editCar(updatedCar) {
+		await fetch(`http://localhost:3000/api/task/${updatedCar.id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(updatedTask)
+			body: JSON.stringify(updatedCar)
 		});
 	}
 
-	static async setTasksOrder(tasksOrder) {
+	static async setCarsOrder(carsOrder) {
 		await fetch(`http://localhost:3000/api/tasks/setorder`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(tasksOrder)
+			body: JSON.stringify(carsOrder)
 		});
 	}
 
-	static async clearTasksList() {
+	static async clearCarsList() {
 		await fetch('http://localhost:3000/api/tasks', {
 			method: 'DELETE',
 			headers: {
@@ -52,25 +52,25 @@ class Tasks {
 		});
 	}
 
-	static async sortTasksListByModel() {
+	static async sortCarsListByModel() {
 		const response = await fetch('http://localhost:3000/api/tasks/sortbymodel');
 		return await response.json();
 	}
 
-	static async sortTasksListByDistanceTraveled() {
+	static async sortCarsListByDistanceTraveled() {
 		const response = await fetch('http://localhost:3000/api/tasks/sortbydistancetraveled');
 		return await response.json();
 	}
 
-	static async sortTasksListByTotalFuelCost() {
+	static async sortCarsListByTotalFuelCost() {
 		const response = await fetch('http://localhost:3000/api/tasks/sortbytotalfuelcost');
 		return await response.json();
 	}
 
 
 
-	static async removeSelectedTask(selectedTask) {
-		await fetch(`http://localhost:3000/api/task/${selectedTask.id}`, {
+	static async removeSelectedCar(selectedCar) {
+		await fetch(`http://localhost:3000/api/task/${selectedCar.id}`, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
@@ -78,8 +78,8 @@ class Tasks {
 		});
 	}
 
-	static async setTaskStatus(selectedTask) {
-		await fetch(`http://localhost:3000/api/task/${selectedTask.id}/done`, {
+	static async setTaskStatus(selectedCar) {
+		await fetch(`http://localhost:3000/api/task/${selectedCar.id}/done`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -90,4 +90,4 @@ class Tasks {
 
 }
 
-export default Tasks;
+export default Cars;

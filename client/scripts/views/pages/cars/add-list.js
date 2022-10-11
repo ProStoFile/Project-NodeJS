@@ -1,13 +1,13 @@
-import Component from '../../../views/component.js';
+import Component from '../../component.js';
 
-import Tasks from '../../../models/tasks.js';
+import Cars from '../../../models/cars.js';
 
 class AddAndList extends Component {
     static async getData() {
-        return await Tasks.getTasksList();
+        return await Cars.getCarsList();
     }
 
-    static async render(tasks) {
+    static async render(cars) {
         return `
         
         <div class="modal__window-add__task">
@@ -88,11 +88,11 @@ class AddAndList extends Component {
                         </div>
                     </div>
                     <button class="tasks__btn-add button">Добавить</button>                                   
-                    <button class="tasks__btn-clear button" ${!tasks.length ? 'disabled' : ''}>Очистить</button>                  
+                    <button class="tasks__btn-clear button" ${!cars.length ? 'disabled' : ''}>Очистить</button>                  
                 </div>               
                 <div class="_container">
                     <div class="tasks__list">
-                        ${tasks.map(task => this.getTaskHTML(task)).join('')}
+                        ${cars.map(car => this.getCarHTML(car)).join('')}
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@ class AddAndList extends Component {
         })
 
         deledeTaskConfirmBtn.addEventListener('click', () => {
-            this.clearTasksList();
+            this.clearCarsList();
         })
 
         window.addEventListener('click', (event) => {
@@ -190,8 +190,8 @@ class AddAndList extends Component {
 
         /* ---------------- Drag'n'Drop ---------------- */
 
-        for (const task of taskElements) {
-            task.draggable = true;
+        for (const car of taskElements) {
+            car.draggable = true;
         }
 
         tasksList.addEventListener('dragstart', (event) => {
@@ -199,7 +199,7 @@ class AddAndList extends Component {
         });
 
         tasksList.addEventListener('dragend', (event) => {
-            this.setTasksOrder();
+            this.setCarsOrder();
             event.target.classList.remove('selected');
 
         });
@@ -223,7 +223,7 @@ class AddAndList extends Component {
         });
 
         taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();
-        addTaskBtn.onclick = () => this.addTask(
+        addTaskBtn.onclick = () => this.addCar(
             taskTitleField,
             taskDescriptionField,
             addTaskBtn,
@@ -243,34 +243,34 @@ class AddAndList extends Component {
             switch (true) {
                 case targetClassList.contains('tasks__btn-clear'):
                     modalClearTasksListWindow.classList.add('display-block');
-                    this.clearTasksList(tasksList, clearTasksListBtn, clearTasksListConfirmBtn);
+                    this.clearCarsList(tasksList, clearTasksListBtn, clearTasksListConfirmBtn);
                     break;
 
                 case targetClassList.contains('tasks__btn-sort'):
-                    this.sortTasksListByModel(tasksList, sortTasksListBtn);
+                    this.sortCarsListByModel(tasksList, sortTasksListBtn);
                     break;
 
                 case targetClassList.contains('tasks__btn-sort_by_distanceTraveled'):
-                    this.sortTasksListByDistanceTraveled(tasksList, sortTasksListBydistanceTraveledBtn);
+                    this.sortCarsListByDistanceTraveled(tasksList, sortTasksListBydistanceTraveledBtn);
                     break;
 
                 case targetClassList.contains('tasks__btn-sort_by_totalFuelCost'):
-                    this.sortTasksListByTotalFuelCost(tasksList, sortTasksListByTotalFuelCostBtn);
+                    this.sortCarsListByTotalFuelCost(tasksList, sortTasksListByTotalFuelCostBtn);
                     break;
 
                 case targetClassList.contains('car-redirect'):
-                    this.redirectToTaskInfo(target.dataset.id);
+                    this.redirectToCarInfo(target.dataset.id);
                     break;
 
                 case targetClassList.contains('task__btn-remove'):
                     modalRemoveTaskWindow.classList.add('display-block');
-                    this.removeTask(tasksList, target.parentNode.parentNode, clearTasksListBtn, deledeTaskConfirmBtn, closeModalWindowRemoveBtn);
+                    this.removeCar(tasksList, target.parentNode.parentNode, clearTasksListBtn, deledeTaskConfirmBtn, closeModalWindowRemoveBtn);
                     break;
             }
         };
     }
 
-    static async addTask(
+    static async addCar(
         taskTitleField,
         taskDescriptionField,
         addTaskBtn,
@@ -283,7 +283,7 @@ class AddAndList extends Component {
         taskFuelCostField,
         taskTireTypeSelect
     ) {
-        let newTask = {
+        let newCar = {
             title: taskTitleField.value.trim(),
             description: taskDescriptionField.value.trim(),
             dateInsuranceStart: taskTimeField.value,
@@ -294,65 +294,65 @@ class AddAndList extends Component {
             tireType: taskTireTypeSelect.value,
         };
 
-        newTask = await Tasks.addTask(newTask);
+        newCar = await Cars.addTask(newCar);
 
         this.clearAddTask(taskTitleField, taskDescriptionField, addTaskBtn);
         clearTasksListBtn.disabled && (clearTasksListBtn.disabled = false);
 
-        tasksList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(newTask));
+        tasksList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(newCar));
 
         this.countTasksAmount();
     }
 
-    static getTaskHTML(task) {
+    static getCarHTML(car) {
         return `
         <div class="task__item">
             
-            <div class="task car-redirect" data-id="${task.id}">
+            <div class="task car-redirect" data-id="${car.id}">
 
             
-                <div class="task__title car-redirect" data-id="${task.id}">
+                <div class="task__title car-redirect" data-id="${car.id}">
                     <div class="task__title-images car-redirect"></div>
-                    ${task.title}
+                    ${car.title}
                     <div class="task__title-images car-redirect">
-                        <a class="task__btn-edit" href="#/task/${task.id}/edit"><img class="task__title-img task__btn-edit" href="#/task/${task.id}/edit" src="styles/img/icons/pencil.png"></a>
-                        <img class="task__title-img task__btn-remove" data-id="${task.id}" src="styles/img/icons/bin.png">
+                        <a class="task__btn-edit" href="#/task/${car.id}/edit"><img class="task__title-img task__btn-edit" href="#/task/${car.id}/edit" src="styles/img/icons/pencil.png"></a>
+                        <img class="task__title-img task__btn-remove" data-id="${car.id}" src="styles/img/icons/bin.png">
                     </div>
    
                 </div>                  
                 
-                <div class="task-content car-redirect" data-id="${task.id}">
-                    <div class="task__img-container car-redirect" data-id="${task.id}">
-                        <img class="task__img car-redirect" data-id="${task.id}" src="styles/img/task__logo.png">
+                <div class="task-content car-redirect" data-id="${car.id}">
+                    <div class="task__img-container car-redirect" data-id="${car.id}">
+                        <img class="task__img car-redirect" data-id="${car.id}" src="styles/img/task__logo.png">
                     </div>
-                    <div class="task-content__params car-redirect" data-id="${task.id}">
+                    <div class="task-content__params car-redirect" data-id="${car.id}">
                     
-					    <div class="task-edit__params-container car-redirect" data-id="${task.id}">
-					    	<b class="task__params-values car-redirect" data-id="${task.id}">Описание:</b>
-					    	<div class="task__params-values car-redirect" data-id="${task.id}">
-					    		${task.description}
+					    <div class="task-edit__params-container car-redirect" data-id="${car.id}">
+					    	<b class="task__params-values car-redirect" data-id="${car.id}">Описание:</b>
+					    	<div class="task__params-values car-redirect" data-id="${car.id}">
+					    		${car.description}
 					    	</div>
 					    </div>
 
-                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
-					    	<b class="task__params-values car-redirect" data-id="${task.id}">Объем двигателя:</b>
-					    	<div class="task__params-values car-redirect" data-id="${task.id}">
-					    		${task.capacity}
-					    		<p class="task__params-values car-redirect" data-id="${task.id}">л</p>
+                        <div class="task-edit__params-container car-redirect" data-id="${car.id}">
+					    	<b class="task__params-values car-redirect" data-id="${car.id}">Объем двигателя:</b>
+					    	<div class="task__params-values car-redirect" data-id="${car.id}">
+					    		${car.capacity}
+					    		<p class="task__params-values car-redirect" data-id="${car.id}">л</p>
 					    	</div>
 					    </div>
-                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
-					    	<b class="task__params-values car-redirect" data-id="${task.id}">Расход топлива:</b>
-					    	<div class="task__params-values car-redirect" data-id="${task.id}">
-					    		${task.fuelUsed}
-					    		<p class="task__params-values car-redirect" data-id="${task.id}">л</p>
+                        <div class="task-edit__params-container car-redirect" data-id="${car.id}">
+					    	<b class="task__params-values car-redirect" data-id="${car.id}">Расход топлива:</b>
+					    	<div class="task__params-values car-redirect" data-id="${car.id}">
+					    		${car.fuelUsed}
+					    		<p class="task__params-values car-redirect" data-id="${car.id}">л</p>
 					    	</div>
 					    </div>
-                        <div class="task-edit__params-container car-redirect" data-id="${task.id}">
-					    	<b class="task__params-values car-redirect" data-id="${task.id}" data-id="${task.id}">Пройдено:</b>
-					    	<div class="task__params-values car-redirect" data-id="${task.id}">
-					    		${task.distanceTraveled}
-					    		<p class="task__params-values car-redirect" data-id="${task.id}">км</p>
+                        <div class="task-edit__params-container car-redirect" data-id="${car.id}">
+					    	<b class="task__params-values car-redirect" data-id="${car.id}" data-id="${car.id}">Пройдено:</b>
+					    	<div class="task__params-values car-redirect" data-id="${car.id}">
+					    		${car.distanceTraveled}
+					    		<p class="task__params-values car-redirect" data-id="${car.id}">км</p>
 					    	</div>
 					    </div>                       
 					</div>
@@ -384,52 +384,52 @@ class AddAndList extends Component {
         addTaskBtn.disabled = true;
     }
 
-    static async sortTasksListByModel(tasksList) {
+    static async sortTasksListByModel(carsList) {
 
-        tasksList.innerHTML = '';
-        await Tasks.sortTasksListByModel();
-        const tasks = await Tasks.getTasksList();
-        const length = tasks.length;
+        carsList.innerHTML = '';
+        await Cars.sortTasksListByModel();
+        const cars = await Cars.getTasksList();
+        const length = cars.length;
 
         for (let i = 0; i < length; i++) {
-            tasksList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(tasks[i]));
+            carsList.insertAdjacentHTML('beforeEnd', this.getCarsHTML(cars[i]));
         }
 
     }
 
-    static async sortTasksListByDistanceTraveled(tasksList) {
+    static async sortTasksListByDistanceTraveled(carsList) {
 
-        tasksList.innerHTML = '';
-        await Tasks.sortTasksListByDistanceTraveled();
-        const tasks = await Tasks.getTasksList();
-        const length = tasks.length;
+        carsList.innerHTML = '';
+        await Cars.sortTasksListByDistanceTraveled();
+        const cars = await Cars.getTasksList();
+        const length = cars.length;
 
         for (let i = 0; i < length; i++) {
-            tasksList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(tasks[i]));
+            carsList.insertAdjacentHTML('beforeEnd', this.getCarsHTML(cars[i]));
         }
 
     }
 
-    static async sortTasksListByTotalFuelCost(tasksList) {
+    static async sortTasksListByTotalFuelCost(carsList) {
 
-        tasksList.innerHTML = '';
-        await Tasks.sortTasksListByTotalFuelCost();
-        const tasks = await Tasks.getTasksList();
-        const length = tasks.length;
+        carsList.innerHTML = '';
+        await Cars.sortTasksListByTotalFuelCost();
+        const cars = await Cars.getTasksList();
+        const length = cars.length;
 
         for (let i = 0; i < length; i++) {
-            tasksList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(tasks[i]));
+            carsList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(cars[i]));
         }
 
     }
 
-    static async setTasksOrder() {
+    static async setCarsOrder() {
         const tasksElements = document.getElementsByClassName('task'),
-            tasksOrder = [];
+            carsOrder = [];
         for (const id of tasksElements) {
-            tasksOrder.push(id.getAttribute('data-id'));
+            carsOrder.push(id.getAttribute('data-id'));
         }
-        await Tasks.setTasksOrder(tasksOrder);
+        await Cars.setTasksOrder(carsOrder);
     }
 
 
@@ -439,13 +439,13 @@ class AddAndList extends Component {
             clearTasksListBtn.disabled = true;
             tasksList.innerHTML = '';
 
-            Tasks.clearTasksList();
+            Cars.clearTasksList();
 
-            Tasks.countTasksAmount();
+            Cars.countTasksAmount();
         })
     }
 
-    static redirectToTaskInfo(id) {
+    static redirectToCarInfo(id) {
         location.hash = `#/task/${id}`;
     }
 
@@ -497,7 +497,7 @@ class AddAndList extends Component {
         }
     }
 
-    static removeTask(
+    static removeCar(
         tasksList,
         taskContainer,
         clearTasksListBtn,
@@ -507,7 +507,7 @@ class AddAndList extends Component {
         deledeTaskConfirmBtn.addEventListener('click', () => {
             taskContainer.remove();
             !tasksList.children.length && (clearTasksListBtn.disabled = true);
-            Tasks.removeSelectedTask(taskContainer.dataset);
+            Cars.removeSelectedCar(taskContainer.dataset);
         })
 
         closeModalWindowRemoveBtn.addEventListener('click', () => {
