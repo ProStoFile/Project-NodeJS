@@ -9,14 +9,14 @@ const express = require('express'),
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('common'));
-app.use((res, next) => {
+app.use((req, res, next) => {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	next();
 });
 
-app.get('/api/tasks', (res) => res.send(getTasksFromDB()));
+app.get('/api/tasks', (req, res) => res.send(getTasksFromDB()));
 
 app.post('/api/task', (req, res) => {
 	const tasksData = getTasksFromDB(),
@@ -69,7 +69,7 @@ app.put('/api/task/:id', (req, res) => {
 	res.sendStatus(204);
 });
 
-app.put('/api/tasks/setorder', (req) => {
+app.put('/api/tasks/setorder', (req, res) => {
 	const tasksData = getTasksFromDB(),
 		tasksOrder = req.body;
 	tasksData.sort((one, two) => tasksOrder.indexOf(one.id) - tasksOrder.indexOf(two.id));
@@ -86,7 +86,7 @@ function setTasksToDB(tasksData) {
 
 app.listen(3000, () => console.log('Сервер запущен...'));
 
-app.delete('/api/tasks', (res) => {
+app.delete('/api/tasks', (req, res) => {
 	setTasksToDB([]);
 	res.sendStatus(204);
 });
@@ -109,7 +109,7 @@ app.put('/api/task/:id/done', (req, res) => {
 	res.sendStatus(204);
 });
 
-app.get('/api/tasks/sortbymodel', (res) => {
+app.get('/api/tasks/sortbymodel', (req, res) => {
 	const tasksData = getTasksFromDB();
 	tasksData.sort((one, two) => {
 		let modelOne = one.title.toLowerCase(), modelTwo = two.title.toLowerCase();
@@ -121,20 +121,18 @@ app.get('/api/tasks/sortbymodel', (res) => {
 	});
 	setTasksToDB(tasksData);
 	res.send(tasksData);
-
 });
 
-app.get('/api/tasks/sortbydistancetraveled', (res) => {
+app.get('/api/tasks/sortbydistancetraveled', (req, res) => {
 	const tasksData = getTasksFromDB();
 	tasksData.sort((one, two) => {
 		return two.distanceTraveled - one.distanceTraveled;
 	});
 	setTasksToDB(tasksData);
 	res.send(tasksData);
-
 });
 
-app.get('/api/tasks/sortbytotalfuelcost', (res) => {
+app.get('/api/tasks/sortbytotalfuelcost', (req, res) => {
 	const tasksData = getTasksFromDB();
 	tasksData.sort((one, two) => {
 		return two.totalFuelCost - one.totalFuelCost;
