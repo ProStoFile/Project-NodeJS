@@ -32,7 +32,7 @@ class About extends Component {
 
 
             <div class="cars__img__container opacity">
-                <img class="cars__image" src="styles/img/car1.png">
+                <img class="cars__image" src="styles/img/cars/5.png">
             </div>
             
         </div>

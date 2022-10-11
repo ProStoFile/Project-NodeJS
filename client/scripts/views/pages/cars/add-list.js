@@ -163,7 +163,7 @@ class AddAndList extends Component {
         })
 
         deledeCarConfirmBtn.addEventListener('click', () => {
-            this.removeTask();
+            this.removeCar();
         })
 
         window.addEventListener('click', (event) => {
@@ -371,7 +371,7 @@ class AddAndList extends Component {
         return nextElement;
     };
 
-    static clearAddTask(carModelInput, carDescriptionField, addCarBtn, clearCarsListConfirmBtn) {
+    static clearAddCar(carModelInput, carDescriptionField, addCarBtn, clearCarsListConfirmBtn) {
 
         clearCarsListConfirmBtn.addEventListener('click', () => {
             this.clearCarsList();
@@ -496,15 +496,15 @@ class AddAndList extends Component {
 
     static removeCar(
         carsList,
-        taskContainer,
+        carsContainer,
         clearCarsListBtn,
         deledeCarConfirmBtn,
         closeModalWindowRemoveBtn
     ) {
         deledeCarConfirmBtn.addEventListener('click', () => {
-            taskContainer.remove();
+            carsContainer.remove();
             !carsList.children.length && (clearCarsListBtn.disabled = true);
-            Cars.removeSelectedCar(taskContainer.dataset);
+            Cars.removeSelectedCar(carsContainer.dataset);
         })
 
         closeModalWindowRemoveBtn.addEventListener('click', () => {
