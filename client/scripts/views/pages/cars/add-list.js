@@ -105,7 +105,7 @@ class AddAndList extends Component {
     }
 
     static setActions() {
-        const carTitleField = document.getElementsByClassName('task-add__title')[0],
+        const carModelField = document.getElementsByClassName('task-add__title')[0],
             carDescriptionField = document.getElementsByClassName('task-add__description')[0],
 
             addCarBtn = document.getElementsByClassName('task-add__btn-add')[0],
@@ -116,60 +116,59 @@ class AddAndList extends Component {
 
             carsContainer = document.getElementsByClassName('tasks')[0],
             clearCarsListBtn = carsContainer.getElementsByClassName('tasks__btn-clear')[0],
+            carsList = carsContainer.getElementsByClassName('tasks__list')[0],
+            carElements = carsList.getElementsByClassName('task__item'),
 
-            tasksList = carsContainer.getElementsByClassName('tasks__list')[0],
-            taskElements = tasksList.getElementsByClassName('task__item'),
+            carTimeField = document.getElementsByClassName('task-add__time')[0],
+            carCapacityField = document.getElementsByClassName('task-add__capacity')[0],
+            carFuelUsedField = document.getElementsByClassName('task-add__fuel_used')[0],
+            carDistancetraveledField = document.getElementsByClassName('task-add__distance_traveled')[0],
+            carFuelCostField = document.getElementsByClassName('task-add__fuel_cost')[0],
+            carTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0],
 
-            taskTimeField = document.getElementsByClassName('task-add__time')[0],
-            taskCapacityField = document.getElementsByClassName('task-add__capacity')[0],
-            taskFuelUsedField = document.getElementsByClassName('task-add__fuel_used')[0],
-            taskDistancetraveledField = document.getElementsByClassName('task-add__distance_traveled')[0],
-            taskFuelCostField = document.getElementsByClassName('task-add__fuel_cost')[0],
-            taskTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0],
-
-            modalAddTaskWindow = document.getElementsByClassName('modal__window-add__task')[0],
-            modalRemoveTaskWindow = document.getElementsByClassName('modal__window-remove__task')[0],
+            modalAddCarWindow = document.getElementsByClassName('modal__window-add__task')[0],
+            modalRemoveCarWindow = document.getElementsByClassName('modal__window-remove__task')[0],
             modalClearTasksListWindow = document.getElementsByClassName('modal__window-clear__task')[0],
 
-            showAddTaskWindowBtn = document.getElementsByClassName('tasks__btn-add')[0],
+            showAddCarWindowBtn = document.getElementsByClassName('tasks__btn-add')[0],
             closeModalWindowBtn = document.getElementsByClassName('modal__window-close')[0],
             closeModalWindowRemoveBtn = document.getElementsByClassName('task-add__btn-cancel')[0],
-            deledeTaskConfirmBtn = document.getElementsByClassName('task-add__btn-delete')[0],
+            deledeCarConfirmBtn = document.getElementsByClassName('task-add__btn-delete')[0],
             closeModalWindowClearBtn = document.getElementsByClassName('task-add__btn-back')[0],
-            clearTasksListConfirmBtn = document.getElementsByClassName('task-add__btn-clear')[0];
+            clearCarsListConfirmBtn = document.getElementsByClassName('task-add__btn-clear')[0];
 
-        taskTimeField.valueAsDate = new Date();
-        taskTimeField.max = new Date().toISOString().split('T')[0];
+        carTimeField.valueAsDate = new Date();
+        carTimeField.max = new Date().toISOString().split('T')[0];
 
         /* ---------------- Add Modal Window ---------------- */
 
-        showAddTaskWindowBtn.addEventListener('click', () => {
-            modalAddTaskWindow.classList.add('display-block');
+        showAddCarWindowBtn.addEventListener('click', () => {
+            modalAddCarWindow.classList.add('display-block');
         })
 
         closeModalWindowBtn.addEventListener('click', () => {
-            modalAddTaskWindow.classList.remove('display-block');
+            modalAddCarWindow.classList.remove('display-block');
         })
 
         window.addEventListener('click', (event) => {
-            if (event.target == modalAddTaskWindow) {
-                modalAddTaskWindow.classList.remove('display-block');
+            if (event.target == modalAddCarWindow) {
+                modalAddCarWindow.classList.remove('display-block');
             }
         })
 
         /* ---------------- Remove Modal Window ---------------- */
 
         closeModalWindowRemoveBtn.addEventListener('click', () => {
-            modalRemoveTaskWindow.classList.remove('display-block');
+            modalRemoveCarWindow.classList.remove('display-block');
         })
 
-        deledeTaskConfirmBtn.addEventListener('click', () => {
+        deledeCarConfirmBtn.addEventListener('click', () => {
             this.removeTask();
         })
 
         window.addEventListener('click', (event) => {
-            if (event.target == modalRemoveTaskWindow) {
-                modalRemoveTaskWindow.classList.remove('display-block');
+            if (event.target == modalRemoveCarWindow) {
+                modalRemoveCarWindow.classList.remove('display-block');
             }
         })
 
@@ -179,7 +178,7 @@ class AddAndList extends Component {
             modalClearTasksListWindow.classList.remove('display-block');
         })
 
-        deledeTaskConfirmBtn.addEventListener('click', () => {
+        deledeCarConfirmBtn.addEventListener('click', () => {
             this.clearCarsList();
         })
 
@@ -191,24 +190,24 @@ class AddAndList extends Component {
 
         /* ---------------- Drag'n'Drop ---------------- */
 
-        for (const car of taskElements) {
+        for (const car of carElements) {
             car.draggable = true;
         }
 
-        tasksList.addEventListener('dragstart', (event) => {
+        carsList.addEventListener('dragstart', (event) => {
             event.target.classList.add('selected');
         });
 
-        tasksList.addEventListener('dragend', (event) => {
+        carsList.addEventListener('dragend', (event) => {
             this.setCarsOrder();
             event.target.classList.remove('selected');
 
         });
 
-        tasksList.addEventListener('dragover', (event) => {
+        carsList.addEventListener('dragover', (event) => {
             event.preventDefault();
 
-            const activeElement = tasksList.querySelector('.selected'),
+            const activeElement = carsList.querySelector('.selected'),
                 currentElement = event.target,
                 isMoveable = activeElement !== currentElement && currentElement.classList.contains('task__item'),
                 nextElement = this.getNextElement(event.clientY, currentElement);
@@ -220,22 +219,22 @@ class AddAndList extends Component {
                 activeElement === nextElement
             ) { return; }
 
-            tasksList.insertBefore(activeElement, nextElement);
+            carsList.insertBefore(activeElement, nextElement);
         });
 
-        carTitleField.onkeyup = () => addCarBtn.disabled = !carTitleField.value.trim();
+        carModelField.onkeyup = () => addCarBtn.disabled = !carModelField.value.trim();
         addCarBtn.onclick = () => this.addCar(
-            carTitleField,
+            carModelField,
             carDescriptionField,
             addCarBtn,
             clearCarsListBtn,
-            tasksList,
-            taskTimeField,
-            taskCapacityField,
-            taskFuelUsedField,
-            taskDistancetraveledField,
-            taskFuelCostField,
-            taskTireTypeSelect,
+            carsList,
+            carTimeField,
+            carCapacityField,
+            carFuelUsedField,
+            carDistancetraveledField,
+            carFuelCostField,
+            carTireTypeSelect,
             sortCarsListByModelBtn);
 
         carsContainer.onclick = event => {
@@ -245,19 +244,19 @@ class AddAndList extends Component {
             switch (true) {
                 case targetClassList.contains('tasks__btn-clear'):
                     modalClearTasksListWindow.classList.add('display-block');
-                    this.clearCarsList(tasksList, clearCarsListBtn, clearTasksListConfirmBtn);
+                    this.clearCarsList(carsList, clearCarsListBtn, clearCarsListConfirmBtn);
                     break;
 
                 case targetClassList.contains('tasks__btn-sort'):
-                    this.sortCarsListByModel(tasksList, sortCarsListByModelBtn);
+                    this.sortCarsListByModel(carsList, sortCarsListByModelBtn);
                     break;
 
                 case targetClassList.contains('tasks__btn-sort_by_distanceTraveled'):
-                    this.sortCarsListByDistanceTraveled(tasksList, sortCarsListBydistanceTraveledBtn);
+                    this.sortCarsListByDistanceTraveled(carsList, sortCarsListBydistanceTraveledBtn);
                     break;
 
                 case targetClassList.contains('tasks__btn-sort_by_totalFuelCost'):
-                    this.sortCarsListByTotalFuelCost(tasksList, sortCarsListByTotalFuelCostBtn);
+                    this.sortCarsListByTotalFuelCost(carsList, sortCarsListByTotalFuelCostBtn);
                     break;
 
                 case targetClassList.contains('car-redirect'):
@@ -265,43 +264,43 @@ class AddAndList extends Component {
                     break;
 
                 case targetClassList.contains('task__btn-remove'):
-                    modalRemoveTaskWindow.classList.add('display-block');
-                    this.removeCar(tasksList, target.parentNode.parentNode, clearCarsListBtn, deledeTaskConfirmBtn, closeModalWindowRemoveBtn);
+                    modalRemoveCarWindow.classList.add('display-block');
+                    this.removeCar(carsList, target.parentNode.parentNode, clearCarsListBtn, deledeCarConfirmBtn, closeModalWindowRemoveBtn);
                     break;
             }
         };
     }
 
     static async addCar(
-        carTitleField,
+        carModelField,
         carDescriptionField,
         addCarBtn,
         clearCarsListBtn,
-        tasksList,
-        taskTimeField,
-        taskCapacityField,
-        taskFuelUsedField,
-        taskDistancetraveledField,
-        taskFuelCostField,
-        taskTireTypeSelect
+        carsList,
+        carTimeField,
+        carCapacityField,
+        carFuelUsedField,
+        carDistancetraveledField,
+        carFuelCostField,
+        carTireTypeSelect
     ) {
         let newCar = {
-            title: carTitleField.value.trim(),
+            title: carModelField.value.trim(),
             description: carDescriptionField.value.trim(),
-            dateInsuranceStart: taskTimeField.value,
-            capacity: taskCapacityField.value,
-            fuelUsed: taskFuelUsedField.value,
-            distanceTraveled: taskDistancetraveledField.value,
-            fuelCost: taskFuelCostField.value,
-            tireType: taskTireTypeSelect.value,
+            dateInsuranceStart: carTimeField.value,
+            capacity: carCapacityField.value,
+            fuelUsed: carFuelUsedField.value,
+            distanceTraveled: carDistancetraveledField.value,
+            fuelCost: carFuelCostField.value,
+            tireType: carTireTypeSelect.value,
         };
 
         newCar = await Cars.addCar(newCar);
 
-        this.clearAddCar(carTitleField, carDescriptionField, addCarBtn);
+        this.clearAddCar(carModelField, carDescriptionField, addCarBtn);
         clearCarsListBtn.disabled && (clearCarsListBtn.disabled = false);
 
-        tasksList.insertAdjacentHTML('beforeEnd', this.getCarHTML(newCar));
+        carsList.insertAdjacentHTML('beforeEnd', this.getCarHTML(newCar));
     }
 
     static getCarHTML(car) {
@@ -372,14 +371,14 @@ class AddAndList extends Component {
         return nextElement;
     };
 
-    static clearAddTask(carTitleField, carDescriptionField, addCarBtn, clearTasksListConfirmBtn) {
+    static clearAddTask(carModelField, carDescriptionField, addCarBtn, clearCarsListConfirmBtn) {
 
-        clearTasksListConfirmBtn.addEventListener('click', () => {
+        clearCarsListConfirmBtn.addEventListener('click', () => {
             this.clearCarsList();
         })
 
 
-        carTitleField.value = '';
+        carModelField.value = '';
         carDescriptionField.value = '';
         addCarBtn.disabled = true;
     }
@@ -388,7 +387,7 @@ class AddAndList extends Component {
 
         carsList.innerHTML = '';
         await Cars.sortCarsListByModel();
-        const cars = await Cars.getTasksList();
+        const cars = await Cars.getCarsList();
         const length = cars.length;
 
         for (let i = 0; i < length; i++) {
@@ -433,11 +432,11 @@ class AddAndList extends Component {
     }
 
 
-    static clearCarsList(tasksList, clearCarsListBtn, clearTasksListConfirmBtn) {
+    static clearCarsList(carsList, clearCarsListBtn, clearCarsListConfirmBtn) {
 
-        clearTasksListConfirmBtn.addEventListener('click', () => {
+        clearCarsListConfirmBtn.addEventListener('click', () => {
             clearCarsListBtn.disabled = true;
-            tasksList.innerHTML = '';
+            carsList.innerHTML = '';
 
             Cars.clearCarsList();
         })
@@ -496,20 +495,20 @@ class AddAndList extends Component {
     }
 
     static removeCar(
-        tasksList,
+        carsList,
         taskContainer,
         clearCarsListBtn,
-        deledeTaskConfirmBtn,
+        deledeCarConfirmBtn,
         closeModalWindowRemoveBtn
     ) {
-        deledeTaskConfirmBtn.addEventListener('click', () => {
+        deledeCarConfirmBtn.addEventListener('click', () => {
             taskContainer.remove();
-            !tasksList.children.length && (clearCarsListBtn.disabled = true);
+            !carsList.children.length && (clearCarsListBtn.disabled = true);
             Cars.removeSelectedCar(taskContainer.dataset);
         })
 
         closeModalWindowRemoveBtn.addEventListener('click', () => {
-            modalAddTaskWindow.classList.remove('display-block');
+            modalAddCarWindow.classList.remove('display-block');
         })
 
     }
