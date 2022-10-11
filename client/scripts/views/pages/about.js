@@ -3,45 +3,38 @@ import Component from '../../views/component.js';
 class About extends Component {
     static async render() {
         return `
-        <body>
-    <div class="cars__container">
-    <h1 class="big-title translate" data-speed="0.9">Максимум преимуществ.</h1>
-        <img src="styles/img/cars/1.png" class="car__one translate" data-speed="-0.9" alt="">
-        <img src="styles/img/cars/2.png" class="car__two translate" data-speed="-0.5" alt="">
-        <img src="styles/img/cars/3.png" class="car__three translate" data-speed="-0.1" alt="">
-        <img src="styles/img/cars/4.png" class="car__four translate" data-speed="0.2" alt="">
-        <img src="styles/img/about-background.jpg" class="cars__background translate" data-speed="0.5" alt="">
-    </div>
-
-    <section class="cars__section">
-        <div class="shadow"></div>
-
-        <div class="cars__container__text">
-            <div class="container__cars opacity">
-                <h3 class="cars__title">
-                    Ваше авто - Наша забота 
-                    <div class="cars__border"></div>
-                </h3>
-                
-                <p class="cars__text">Автомобиль - машина на четырех колесах, 
-                позволяющая легко и быстро проезжать места, 
-                в которых вы никогда не были и никогда не будете, 
-                ибо всякий раз, когда вы оказываетесь рядом, негде припарковаться.</p>
-            </div>
+            <body>
+                <div class="cars__container">
+                <h1 class="big-title translate" data-speed="0.9">Максимум преимуществ.</h1>
+                    <img src="styles/img/cars/1.png" class="car__one translate" data-speed="-0.9" alt="">
+                    <img src="styles/img/cars/2.png" class="car__two translate" data-speed="-0.5" alt="">
+                    <img src="styles/img/cars/3.png" class="car__three translate" data-speed="-0.1" alt="">
+                    <img src="styles/img/cars/4.png" class="car__four translate" data-speed="0.2" alt="">
+                    <img src="styles/img/about-background.jpg" class="cars__background translate" data-speed="0.5" alt="">
+                </div>
             
-
-
-            <div class="cars__img__container opacity">
-                <img class="cars__image" src="styles/img/cars/5.png">
-            </div>
-            
-        </div>
-         
-    </section>
-
-
-</body>
-`;
+                <section class="cars__section">
+                    <div class="shadow"></div>   
+                    <div class="cars__container__text">
+                        <div class="container__cars opacity">
+                            <h3 class="cars__title">
+                                Ваше авто - Наша забота 
+                                <div class="cars__border"></div>
+                            </h3>   
+                            <p class="cars__text">
+                            Автомобиль - машина на четырех колесах, 
+                            позволяющая легко и быстро проезжать места, 
+                            в которых вы никогда не были и никогда не будете, 
+                            ибо всякий раз, когда вы оказываетесь рядом, негде припарковаться.
+                            </p>
+                        </div>   
+                        <div class="cars__img__container opacity">
+                            <img class="cars__image" src="styles/img/cars/5.png">
+                        </div>  
+                    </div>   
+                </section>
+            </body>
+        `;
     }
 
     static afterRender() {

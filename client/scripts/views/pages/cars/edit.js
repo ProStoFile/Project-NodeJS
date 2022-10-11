@@ -114,7 +114,6 @@ class Edit extends Component {
                     </div>
                 </div>               
             `;
-
         return html;
     }
 
