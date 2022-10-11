@@ -108,7 +108,7 @@ class Edit extends Component {
 				            </div>
                             <div class="task-edit__buttons">
                                 <div class="task-edit__buttons-container">
-                                    <a class="task-edit__btn-back button" href="#/task/${id}">Вернуться</a>
+                                    <a class="task-edit__btn-back button" href="#/car/${id}">Вернуться</a>
                                     <button class="task-edit__btn-save button">Сохранить</button>
                                 </div>
                             </div>

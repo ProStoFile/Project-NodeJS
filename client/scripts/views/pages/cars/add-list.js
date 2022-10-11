@@ -105,18 +105,19 @@ class AddAndList extends Component {
     }
 
     static setActions() {
-        const taskTitleField = document.getElementsByClassName('task-add__title')[0],
-            taskDescriptionField = document.getElementsByClassName('task-add__description')[0],
+        const carTitleField = document.getElementsByClassName('task-add__title')[0],
+            carDescriptionField = document.getElementsByClassName('task-add__description')[0],
 
-            addTaskBtn = document.getElementsByClassName('task-add__btn-add')[0],
-            sortTasksListBtn = document.getElementsByClassName('tasks__btn-sort')[0],
-            sortTasksListBydistanceTraveledBtn = document.getElementsByClassName('tasks__btn-sort_by_distanceTraveled')[0],
-            sortTasksListByTotalFuelCostBtn = document.getElementsByClassName('tasks__btn-sort_by_totalFuelCost')[0],
+            addCarBtn = document.getElementsByClassName('task-add__btn-add')[0],
 
-            tasksContainer = document.getElementsByClassName('tasks')[0],
-            clearTasksListBtn = tasksContainer.getElementsByClassName('tasks__btn-clear')[0],
+            sortCarsListByModelBtn = document.getElementsByClassName('tasks__btn-sort')[0],
+            sortCarsListBydistanceTraveledBtn = document.getElementsByClassName('tasks__btn-sort_by_distanceTraveled')[0],
+            sortCarsListByTotalFuelCostBtn = document.getElementsByClassName('tasks__btn-sort_by_totalFuelCost')[0],
 
-            tasksList = tasksContainer.getElementsByClassName('tasks__list')[0],
+            carsContainer = document.getElementsByClassName('tasks')[0],
+            clearCarsListBtn = carsContainer.getElementsByClassName('tasks__btn-clear')[0],
+
+            tasksList = carsContainer.getElementsByClassName('tasks__list')[0],
             taskElements = tasksList.getElementsByClassName('task__item'),
 
             taskTimeField = document.getElementsByClassName('task-add__time')[0],
@@ -222,40 +223,41 @@ class AddAndList extends Component {
             tasksList.insertBefore(activeElement, nextElement);
         });
 
-        taskTitleField.onkeyup = () => addTaskBtn.disabled = !taskTitleField.value.trim();
-        addTaskBtn.onclick = () => this.addCar(
-            taskTitleField,
-            taskDescriptionField,
-            addTaskBtn,
-            clearTasksListBtn,
+        carTitleField.onkeyup = () => addCarBtn.disabled = !carTitleField.value.trim();
+        addCarBtn.onclick = () => this.addCar(
+            carTitleField,
+            carDescriptionField,
+            addCarBtn,
+            clearCarsListBtn,
             tasksList,
             taskTimeField,
             taskCapacityField,
             taskFuelUsedField,
             taskDistancetraveledField,
             taskFuelCostField,
-            taskTireTypeSelect);
+            taskTireTypeSelect,
+            sortCarsListByModelBtn);
 
-        tasksContainer.onclick = event => {
+        carsContainer.onclick = event => {
             const target = event.target,
                 targetClassList = target.classList;
 
             switch (true) {
                 case targetClassList.contains('tasks__btn-clear'):
                     modalClearTasksListWindow.classList.add('display-block');
-                    this.clearCarsList(tasksList, clearTasksListBtn, clearTasksListConfirmBtn);
+                    this.clearCarsList(tasksList, clearCarsListBtn, clearTasksListConfirmBtn);
                     break;
 
                 case targetClassList.contains('tasks__btn-sort'):
-                    this.sortCarsListByModel(tasksList, sortTasksListBtn);
+                    this.sortCarsListByModel(tasksList, sortCarsListByModelBtn);
                     break;
 
                 case targetClassList.contains('tasks__btn-sort_by_distanceTraveled'):
-                    this.sortCarsListByDistanceTraveled(tasksList, sortTasksListBydistanceTraveledBtn);
+                    this.sortCarsListByDistanceTraveled(tasksList, sortCarsListBydistanceTraveledBtn);
                     break;
 
                 case targetClassList.contains('tasks__btn-sort_by_totalFuelCost'):
-                    this.sortCarsListByTotalFuelCost(tasksList, sortTasksListByTotalFuelCostBtn);
+                    this.sortCarsListByTotalFuelCost(tasksList, sortCarsListByTotalFuelCostBtn);
                     break;
 
                 case targetClassList.contains('car-redirect'):
@@ -264,17 +266,17 @@ class AddAndList extends Component {
 
                 case targetClassList.contains('task__btn-remove'):
                     modalRemoveTaskWindow.classList.add('display-block');
-                    this.removeCar(tasksList, target.parentNode.parentNode, clearTasksListBtn, deledeTaskConfirmBtn, closeModalWindowRemoveBtn);
+                    this.removeCar(tasksList, target.parentNode.parentNode, clearCarsListBtn, deledeTaskConfirmBtn, closeModalWindowRemoveBtn);
                     break;
             }
         };
     }
 
     static async addCar(
-        taskTitleField,
-        taskDescriptionField,
-        addTaskBtn,
-        clearTasksListBtn,
+        carTitleField,
+        carDescriptionField,
+        addCarBtn,
+        clearCarsListBtn,
         tasksList,
         taskTimeField,
         taskCapacityField,
@@ -284,8 +286,8 @@ class AddAndList extends Component {
         taskTireTypeSelect
     ) {
         let newCar = {
-            title: taskTitleField.value.trim(),
-            description: taskDescriptionField.value.trim(),
+            title: carTitleField.value.trim(),
+            description: carDescriptionField.value.trim(),
             dateInsuranceStart: taskTimeField.value,
             capacity: taskCapacityField.value,
             fuelUsed: taskFuelUsedField.value,
@@ -296,12 +298,10 @@ class AddAndList extends Component {
 
         newCar = await Cars.addCar(newCar);
 
-        this.clearAddCar(taskTitleField, taskDescriptionField, addTaskBtn);
-        clearTasksListBtn.disabled && (clearTasksListBtn.disabled = false);
+        this.clearAddCar(carTitleField, carDescriptionField, addCarBtn);
+        clearCarsListBtn.disabled && (clearCarsListBtn.disabled = false);
 
         tasksList.insertAdjacentHTML('beforeEnd', this.getCarHTML(newCar));
-
-        this.countTasksAmount();
     }
 
     static getCarHTML(car) {
@@ -372,22 +372,22 @@ class AddAndList extends Component {
         return nextElement;
     };
 
-    static clearAddTask(taskTitleField, taskDescriptionField, addTaskBtn, clearTasksListConfirmBtn) {
+    static clearAddTask(carTitleField, carDescriptionField, addCarBtn, clearTasksListConfirmBtn) {
 
         clearTasksListConfirmBtn.addEventListener('click', () => {
-            this.clearTasksList();
+            this.clearCarsList();
         })
 
 
-        taskTitleField.value = '';
-        taskDescriptionField.value = '';
-        addTaskBtn.disabled = true;
+        carTitleField.value = '';
+        carDescriptionField.value = '';
+        addCarBtn.disabled = true;
     }
 
-    static async sortTasksListByModel(carsList) {
+    static async sortCarsListByModel(carsList) {
 
         carsList.innerHTML = '';
-        await Cars.sortTasksListByModel();
+        await Cars.sortCarsListByModel();
         const cars = await Cars.getTasksList();
         const length = cars.length;
 
@@ -397,11 +397,11 @@ class AddAndList extends Component {
 
     }
 
-    static async sortTasksListByDistanceTraveled(carsList) {
+    static async sortCarsListByDistanceTraveled(carsList) {
 
         carsList.innerHTML = '';
-        await Cars.sortTasksListByDistanceTraveled();
-        const cars = await Cars.getTasksList();
+        await Cars.sortCarsListByDistanceTraveled();
+        const cars = await Cars.getCarsList();
         const length = cars.length;
 
         for (let i = 0; i < length; i++) {
@@ -410,11 +410,11 @@ class AddAndList extends Component {
 
     }
 
-    static async sortTasksListByTotalFuelCost(carsList) {
+    static async sortCarsListByTotalFuelCost(carsList) {
 
         carsList.innerHTML = '';
-        await Cars.sortTasksListByTotalFuelCost();
-        const cars = await Cars.getTasksList();
+        await Cars.sortCarsListByTotalFuelCost();
+        const cars = await Cars.getCarsList();
         const length = cars.length;
 
         for (let i = 0; i < length; i++) {
@@ -429,19 +429,17 @@ class AddAndList extends Component {
         for (const id of tasksElements) {
             carsOrder.push(id.getAttribute('data-id'));
         }
-        await Cars.setTasksOrder(carsOrder);
+        await Cars.setCarsOrder(carsOrder);
     }
 
 
-    static clearTasksList(tasksList, clearTasksListBtn, clearTasksListConfirmBtn) {
+    static clearCarsList(tasksList, clearCarsListBtn, clearTasksListConfirmBtn) {
 
         clearTasksListConfirmBtn.addEventListener('click', () => {
-            clearTasksListBtn.disabled = true;
+            clearCarsListBtn.disabled = true;
             tasksList.innerHTML = '';
 
-            Cars.clearTasksList();
-
-            Cars.countTasksAmount();
+            Cars.clearCarsList();
         })
     }
 
@@ -500,13 +498,13 @@ class AddAndList extends Component {
     static removeCar(
         tasksList,
         taskContainer,
-        clearTasksListBtn,
+        clearCarsListBtn,
         deledeTaskConfirmBtn,
         closeModalWindowRemoveBtn
     ) {
         deledeTaskConfirmBtn.addEventListener('click', () => {
             taskContainer.remove();
-            !tasksList.children.length && (clearTasksListBtn.disabled = true);
+            !tasksList.children.length && (clearCarsListBtn.disabled = true);
             Cars.removeSelectedCar(taskContainer.dataset);
         })
 
