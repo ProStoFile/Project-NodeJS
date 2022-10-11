@@ -31,23 +31,23 @@ class Info extends Component {
 				<h1 class="page-title">Информация</h1>
 
 				<div class="_container">
-					<div class="task-edit">
-						<div class="task-edit__params">
-							<div class="task-edit__params-container">
+					<div class="car-edit">
+						<div class="car-edit__params">
+							<div class="car-edit__params-container">
 								<div>
 									<img class="params-icon" src="styles/img/icons/params/car.png">
 									<b>Модель: </b>
 								</div>
 								<div>${model}</div>
 							</div>				
-							<div class="task-edit__params-container">
+							<div class="car-edit__params-container">
 								<div>
 									<img class="params-icon" src="styles/img/icons/params/document.png">
 									<b>Описание:</b>
 								</div>
 								<div>${description}</div>
 							</div>				
-							<div class="task-edit__params-container">
+							<div class="car-edit__params-container">
 							<div>
 								<img class="params-icon" src="styles/img/icons/params/calendar.png">
 								<b>Застрахован:</b>
@@ -57,7 +57,7 @@ class Info extends Component {
 								</div>
 							</div>
 
-							<div class="task-edit__params-container">
+							<div class="car-edit__params-container">
 								<div>
 									<img class="params-icon" src="styles/img/icons/params/file.png">
 									<b>Статус страховки:</b>
@@ -70,13 +70,13 @@ class Info extends Component {
 									<p>${AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStart))}</p>
 					</div>`}
 				</div>
-				<div class="task-edit__params-container">
+				<div class="car-edit__params-container">
 					${AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart) < 0 ?
 					`<div>
 						<img class="params-icon" src="styles/img/icons/params/document.png">
 							<b>Страховка просрочена:</b>
 							</div>
-								<div class="task-edit__params-item">
+								<div class="car-edit__params-item">
 								${Math.abs(AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart))}
 								<p>${AddAndList.getWordDaysForm(Math.abs(AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart)))} назад</p>
 								</div>
@@ -85,72 +85,72 @@ class Info extends Component {
 									<img class="params-icon" src="styles/img/icons/params/document.png">
 									<b>Истекает через:</b>
 								</div>
-								<div class="task-edit__params-item">
+								<div class="car-edit__params-item">
 									${AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart)}
 									<p>${AddAndList.getWordDaysForm(AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart))}</p>
 								</div>`}
 							</div>									
-							<div class="task-edit__params-container">
+							<div class="car-edit__params-container">
 							<div>
 								<img class="params-icon" src="styles/img/icons/params/car-engine.png">
 								<b>Объем двигателя:</b>
 							</div>
-								<div class="task-edit__params-item">
+								<div class="car-edit__params-item">
 									${capacity}
 									<p>л</p>
 								</div>
 							</div>									
-							<div class="task-edit__params-container">
+							<div class="car-edit__params-container">
 							<div>
 								<img class="params-icon" src="styles/img/icons/params/petrol.png">
 								<b>Расход топлива:</b>
 							</div>
-								<div class="task-edit__params-item">
+								<div class="car-edit__params-item">
 									${fuelUsed}
 									<p>л</p>
 								</div>
 							</div>									
-							<div class="task-edit__params-container">
+							<div class="car-edit__params-container">
 							<div>
 								<img class="params-icon" src="styles/img/icons/params/road.png">
 								<b>Пройдено:</b>
 							</div>
-								<div class="task-edit__params-item">
+								<div class="car-edit__params-item">
 									${distanceTraveled}
 									<p>км</p>
 								</div>
 							</div>									
-							<div class="task-edit__params-container">
+							<div class="car-edit__params-container">
 								<div>
 									<img class="params-icon" src="styles/img/icons/params/salary.png">
 									<b>Стоимость топлива:</b>
 								</div>
-								<div class="task-edit__params-item">
+								<div class="car-edit__params-item">
 									${fuelCost}
 									<p>₽</p>
 								</div>									
 							</div>									
-							<div class="task-edit__params-container">
+							<div class="car-edit__params-container">
 							<div>
 								<img class="params-icon" src="styles/img/icons/params/profits.png">
 								<b>Затраты на топливо:</b>
 							</div>
-								<div class="task-edit__params-item">
+								<div class="car-edit__params-item">
 									<p>${totalFuelCost}</p>
 									<p>₽</p>
 								</div>
 							</div>									
-							<div class="task-edit__params-container">
+							<div class="car-edit__params-container">
 							<div>
 								<img class="params-icon" src="styles/img/icons/params/gasoline.png">
 								<b>Израсходовано топлива:</b>
 							</div>
-								<div class="task-edit__params-item">
+								<div class="car-edit__params-item">
 									<p>${totalFuelUsed}</p>
 									<p>л</p>
 								</div>									
 							</div>
-							<div class="task-edit__params-container">
+							<div class="car-edit__params-container">
 							<div>
 								<img class="params-icon" src="styles/img/icons/params/wheel.png">
 								<b>Установлены шины:</b>
@@ -159,7 +159,7 @@ class Info extends Component {
 									<p>${tireType}</p>
 								</div>
 							</div>
-							<div class="task-edit__params-container">
+							<div class="car-edit__params-container">
 								<div>
 									<img class="params-icon" src="styles/img/icons/params/wheel2.png">
 									<b>Нужна ли замена:</b>
@@ -174,10 +174,10 @@ class Info extends Component {
 					</div>`
 				} 
 				</div>
-				<div class="task-edit__buttons">
-					<div class="task-edit__buttons-container">
-						<a class="task-info__btn-back button" href="#/cars">Вернуться</a>
-            	    	<a class="task-info__btn-edit button" href="#/car/${id}/edit">Изменить</a>
+				<div class="car-edit__buttons">
+					<div class="car-edit__buttons-container">
+						<a class="car-info__btn-back button" href="#/cars">Вернуться</a>
+            	    	<a class="car-info__btn-edit button" href="#/car/${id}/edit">Изменить</a>
             		</div>
 				</div>
 			</div>

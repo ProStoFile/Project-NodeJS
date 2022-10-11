@@ -26,88 +26,88 @@ class Edit extends Component {
         html = `
                 <h1 class="page-title">Изменить</h1>              
                 <div class="_container">
-                    <div class="task-edit">
-                        <div class="task-edit__params">
-                            <div class="task-edit__params-container">
+                    <div class="car-edit">
+                        <div class="car-edit__params">
+                            <div class="car-edit__params-container">
                                 <div>
 				                    <img class="params-icon" src="styles/img/icons/params/car.png">
                                     <b>Модель:</b>
                                 </div>
                                 <div>
-                                    <input class="task-edit__title" type="text" value="${model}">
+                                    <input class="car-edit__title" type="text" value="${model}">
                                 </div>
                             </div>
-                            <div class="task-edit__params-container">
+                            <div class="car-edit__params-container">
                                 <div>
                                     <img class="params-icon" src="styles/img/icons/params/document.png">
                                     <b>Описание:</b>
                                 </div>
                                 <div>
-                                    <textarea class="task-edit__description">
+                                    <textarea class="car-edit__description">
                                         ${(description === 'No Description') ? '' : description}
                                     </textarea>
                                 </div>
                             </div>
-                            <div class="task-edit__params-container">
+                            <div class="car-edit__params-container">
                                 <div>
 					                <img class="params-icon" src="styles/img/icons/params/calendar.png">
                                     <b>Застрахован:</b>
                                 </div>
                                 <div>
-                                    <input class="task-edit__time" value="${dateInsuranceStart}" type="date" min="1980-01-01" max="2060-12-31">
+                                    <input class="car-edit__time" value="${dateInsuranceStart}" type="date" min="1980-01-01" max="2060-12-31">
                                 </div>
                             </div>
-                            <div class="task-edit__params-container">
+                            <div class="car-edit__params-container">
                                 <div>
 				                    <img class="params-icon" src="styles/img/icons/params/car-engine.png">
                                     <b>Объем двигателя (л):</b>
                                 </div>
                                 <div>
-                                    <input class="task-add__capacity" type="number" min="1" max="20" step="0.1" value="${capacity}">
+                                    <input class="car-add__capacity" type="number" min="1" max="20" step="0.1" value="${capacity}">
                                 </div>
                             </div>
-                            <div class="task-edit__params-container">
+                            <div class="car-edit__params-container">
                                 <div>
 					                <img class="params-icon" src="styles/img/icons/params/petrol.png">
                                     <b>Расход топлива (л):</b>
                                 </div>
                                 <div>
-                                    <input class="task-add__fuel_used" type="number" min="0" max="50" step="0.1" value="${fuelUsed}">
+                                    <input class="car-add__fuel_used" type="number" min="0" max="50" step="0.1" value="${fuelUsed}">
                                 </div>
                             </div>
-                            <div class="task-edit__params-container">
+                            <div class="car-edit__params-container">
                                 <div>
 					                <img class="params-icon" src="styles/img/icons/params/road.png">
                                     <b>Пройдено (км):</b>
                                 </div>
                                 <div>
-                                    <input class="task-add__distance_traveled" type="number" min="0" max="50" step="0.1" value="${distanceTraveled}">
+                                    <input class="car-add__distance_traveled" type="number" min="0" max="50" step="0.1" value="${distanceTraveled}">
                                 </div>
                             </div>
-                            <div class="task-edit__params-container">
+                            <div class="car-edit__params-container">
                                 <div>
 				            	    <img class="params-icon" src="styles/img/icons/params/salary.png">
                                     <b>Стоимость топлива (₽):</b>
                                 </div>
                                 <div>
-                                    <input class="task-add__fuel_cost" type="number" min="0" max="50" step="0.1"
+                                    <input class="car-add__fuel_cost" type="number" min="0" max="50" step="0.1"
                                         value="${fuelCost}">
                                 </div>
                             </div>
-                            <div class="task-edit__params-container">
+                            <div class="car-edit__params-container">
                                 <div>
 				            		<img class="params-icon" src="styles/img/icons/params/wheel.png">
 				            	    <b>Установлены шины:</b>
                                 </div>
-                                <select class="task-add__tire_type">
+                                <select class="car-add__tire_type">
                                     <option>Летние</option>
                                     <option>Зимние</option>
                                 </select>
 				            </div>
-                            <div class="task-edit__buttons">
-                                <div class="task-edit__buttons-container">
-                                    <a class="task-edit__btn-back button" href="#/car/${id}">Вернуться</a>
-                                    <button class="task-edit__btn-save button">Сохранить</button>
+                            <div class="car-edit__buttons">
+                                <div class="car-edit__buttons-container">
+                                    <a class="car-edit__btn-back button" href="#/car/${id}">Вернуться</a>
+                                    <button class="car-edit__btn-save button">Сохранить</button>
                                 </div>
                             </div>
                         </div>
@@ -123,21 +123,21 @@ class Edit extends Component {
     }
 
     static setActions() {
-        const carModelInput = document.getElementsByClassName('task-edit__title')[0],
-            carDescriptionField = document.getElementsByClassName('task-edit__description')[0],
-            dateInsuranceStartInput = document.getElementsByClassName('task-edit__time')[0],
-            carCapacityInput = document.getElementsByClassName('task-add__capacity')[0],
-            carFuelUsedInput = document.getElementsByClassName('task-add__fuel_used')[0],
-            carFuelCostInput = document.getElementsByClassName('task-add__fuel_cost')[0],
-            carDistancetraveledInput = document.getElementsByClassName('task-add__distance_traveled')[0],
-            carTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0],
+        const carModelInput = document.getElementsByClassName('car-edit__title')[0],
+            carDescriptionField = document.getElementsByClassName('car-edit__description')[0],
+            dateInsuranceStartInput = document.getElementsByClassName('car-edit__time')[0],
+            carCapacityInput = document.getElementsByClassName('car-add__capacity')[0],
+            carFuelUsedInput = document.getElementsByClassName('car-add__fuel_used')[0],
+            carFuelCostInput = document.getElementsByClassName('car-add__fuel_cost')[0],
+            carDistancetraveledInput = document.getElementsByClassName('car-add__distance_traveled')[0],
+            carTireTypeSelect = document.getElementsByClassName('car-add__tire_type')[0],
 
-            saveTaskBtn = document.getElementsByClassName('task-edit__btn-save')[0];
+            saveCarBtn = document.getElementsByClassName('car-edit__btn-save')[0];
 
         dateInsuranceStartInput.max = new Date().toISOString().split('T')[0];
 
-        carModelInput.onkeyup = () => saveTaskBtn.disabled = !carModelInput.value.trim();
-        saveTaskBtn.onclick = () => this.editCar(
+        carModelInput.onkeyup = () => saveCarBtn.disabled = !carModelInput.value.trim();
+        saveCarBtn.onclick = () => this.editCar(
             carModelInput,
             carDescriptionField,
             dateInsuranceStartInput,
