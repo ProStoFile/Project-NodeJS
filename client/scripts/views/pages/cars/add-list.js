@@ -105,7 +105,7 @@ class AddAndList extends Component {
     }
 
     static setActions() {
-        const carModelField = document.getElementsByClassName('task-add__title')[0],
+        const carModelInput = document.getElementsByClassName('task-add__title')[0],
             carDescriptionField = document.getElementsByClassName('task-add__description')[0],
 
             addCarBtn = document.getElementsByClassName('task-add__btn-add')[0],
@@ -119,16 +119,16 @@ class AddAndList extends Component {
             carsList = carsContainer.getElementsByClassName('tasks__list')[0],
             carElements = carsList.getElementsByClassName('task__item'),
 
-            carTimeField = document.getElementsByClassName('task-add__time')[0],
-            carCapacityField = document.getElementsByClassName('task-add__capacity')[0],
-            carFuelUsedField = document.getElementsByClassName('task-add__fuel_used')[0],
-            carDistancetraveledField = document.getElementsByClassName('task-add__distance_traveled')[0],
-            carFuelCostField = document.getElementsByClassName('task-add__fuel_cost')[0],
+            dateInsuranceStartInput = document.getElementsByClassName('task-add__time')[0],
+            carCapacityInput = document.getElementsByClassName('task-add__capacity')[0],
+            carFuelUsedInput = document.getElementsByClassName('task-add__fuel_used')[0],
+            carDistancetraveledInput = document.getElementsByClassName('task-add__distance_traveled')[0],
+            carFuelCostInput = document.getElementsByClassName('task-add__fuel_cost')[0],
             carTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0],
 
             modalAddCarWindow = document.getElementsByClassName('modal__window-add__task')[0],
             modalRemoveCarWindow = document.getElementsByClassName('modal__window-remove__task')[0],
-            modalClearTasksListWindow = document.getElementsByClassName('modal__window-clear__task')[0],
+            modalClearCarsListWindow = document.getElementsByClassName('modal__window-clear__task')[0],
 
             showAddCarWindowBtn = document.getElementsByClassName('tasks__btn-add')[0],
             closeModalWindowBtn = document.getElementsByClassName('modal__window-close')[0],
@@ -137,8 +137,8 @@ class AddAndList extends Component {
             closeModalWindowClearBtn = document.getElementsByClassName('task-add__btn-back')[0],
             clearCarsListConfirmBtn = document.getElementsByClassName('task-add__btn-clear')[0];
 
-        carTimeField.valueAsDate = new Date();
-        carTimeField.max = new Date().toISOString().split('T')[0];
+        dateInsuranceStartInput.valueAsDate = new Date();
+        dateInsuranceStartInput.max = new Date().toISOString().split('T')[0];
 
         /* ---------------- Add Modal Window ---------------- */
 
@@ -175,7 +175,7 @@ class AddAndList extends Component {
         /* ---------------- Clear Modal Window ---------------- */
 
         closeModalWindowClearBtn.addEventListener('click', () => {
-            modalClearTasksListWindow.classList.remove('display-block');
+            modalClearCarsListWindow.classList.remove('display-block');
         })
 
         deledeCarConfirmBtn.addEventListener('click', () => {
@@ -183,8 +183,8 @@ class AddAndList extends Component {
         })
 
         window.addEventListener('click', (event) => {
-            if (event.target == modalClearTasksListWindow) {
-                modalClearTasksListWindow.classList.remove('display-block');
+            if (event.target == modalClearCarsListWindow) {
+                modalClearCarsListWindow.classList.remove('display-block');
             }
         })
 
@@ -222,18 +222,18 @@ class AddAndList extends Component {
             carsList.insertBefore(activeElement, nextElement);
         });
 
-        carModelField.onkeyup = () => addCarBtn.disabled = !carModelField.value.trim();
+        carModelInput.onkeyup = () => addCarBtn.disabled = !carModelInput.value.trim();
         addCarBtn.onclick = () => this.addCar(
-            carModelField,
+            carModelInput,
             carDescriptionField,
             addCarBtn,
             clearCarsListBtn,
             carsList,
-            carTimeField,
-            carCapacityField,
-            carFuelUsedField,
-            carDistancetraveledField,
-            carFuelCostField,
+            dateInsuranceStartInput,
+            carCapacityInput,
+            carFuelUsedInput,
+            carDistancetraveledInput,
+            carFuelCostInput,
             carTireTypeSelect,
             sortCarsListByModelBtn);
 
@@ -243,7 +243,7 @@ class AddAndList extends Component {
 
             switch (true) {
                 case targetClassList.contains('tasks__btn-clear'):
-                    modalClearTasksListWindow.classList.add('display-block');
+                    modalClearCarsListWindow.classList.add('display-block');
                     this.clearCarsList(carsList, clearCarsListBtn, clearCarsListConfirmBtn);
                     break;
 
@@ -272,12 +272,12 @@ class AddAndList extends Component {
     }
 
     static async addCar(
-        carModelField,
+        carModelInput,
         carDescriptionField,
         addCarBtn,
         clearCarsListBtn,
         carsList,
-        carTimeField,
+        dateInsuranceStartInput,
         carCapacityField,
         carFuelUsedField,
         carDistancetraveledField,
@@ -285,9 +285,9 @@ class AddAndList extends Component {
         carTireTypeSelect
     ) {
         let newCar = {
-            model: carModelField.value.trim(),
+            model: carModelInput.value.trim(),
             description: carDescriptionField.value.trim(),
-            dateInsuranceStart: carTimeField.value,
+            dateInsuranceStart: dateInsuranceStartInput.value,
             capacity: carCapacityField.value,
             fuelUsed: carFuelUsedField.value,
             distanceTraveled: carDistancetraveledField.value,
@@ -297,7 +297,7 @@ class AddAndList extends Component {
 
         newCar = await Cars.addCar(newCar);
 
-        this.clearAddCar(carModelField, carDescriptionField, addCarBtn);
+        this.clearAddCar(carModelInput, carDescriptionField, addCarBtn);
         clearCarsListBtn.disabled && (clearCarsListBtn.disabled = false);
 
         carsList.insertAdjacentHTML('beforeEnd', this.getCarHTML(newCar));
@@ -371,14 +371,14 @@ class AddAndList extends Component {
         return nextElement;
     };
 
-    static clearAddTask(carModelField, carDescriptionField, addCarBtn, clearCarsListConfirmBtn) {
+    static clearAddTask(carModelInput, carDescriptionField, addCarBtn, clearCarsListConfirmBtn) {
 
         clearCarsListConfirmBtn.addEventListener('click', () => {
             this.clearCarsList();
         })
 
 
-        carModelField.value = '';
+        carModelInput.value = '';
         carDescriptionField.value = '';
         addCarBtn.disabled = true;
     }

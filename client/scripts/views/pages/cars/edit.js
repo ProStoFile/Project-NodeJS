@@ -123,45 +123,49 @@ class Edit extends Component {
     }
 
     static setActions() {
-        const taskTitleField = document.getElementsByClassName('task-edit__title')[0],
-            taskDescriptionField = document.getElementsByClassName('task-edit__description')[0],
-            taskTimeInput = document.getElementsByClassName('task-edit__time')[0],
-            inputCapacity = document.getElementsByClassName('task-add__capacity')[0],
-            fuelUsedInput = document.getElementsByClassName('task-add__fuel_used')[0],
-            fuelCostInput = document.getElementsByClassName('task-add__fuel_cost')[0],
-            distanceTraveledInput = document.getElementsByClassName('task-add__distance_traveled')[0],
-            taskTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0],
+        const carModelInput = document.getElementsByClassName('task-edit__title')[0],
+            carDescriptionField = document.getElementsByClassName('task-edit__description')[0],
+            dateInsuranceStartInput = document.getElementsByClassName('task-edit__time')[0],
+            carCapacityInput = document.getElementsByClassName('task-add__capacity')[0],
+            carFuelUsedInput = document.getElementsByClassName('task-add__fuel_used')[0],
+            carFuelCostInput = document.getElementsByClassName('task-add__fuel_cost')[0],
+            carDistancetraveledInput = document.getElementsByClassName('task-add__distance_traveled')[0],
+            carTireTypeSelect = document.getElementsByClassName('task-add__tire_type')[0],
 
             saveTaskBtn = document.getElementsByClassName('task-edit__btn-save')[0];
 
-        taskTitleField.onkeyup = () => saveTaskBtn.disabled = !taskTitleField.value.trim();
-        saveTaskBtn.onclick = () => this.editCar(taskTitleField,
-            taskDescriptionField,
-            taskTimeInput,
-            inputCapacity,
-            fuelCostInput,
-            fuelUsedInput,
-            distanceTraveledInput,
-            taskTireTypeSelect);
+        dateInsuranceStartInput.max = new Date().toISOString().split('T')[0];
+
+        carModelInput.onkeyup = () => saveTaskBtn.disabled = !carModelInput.value.trim();
+        saveTaskBtn.onclick = () => this.editCar(
+            carModelInput,
+            carDescriptionField,
+            dateInsuranceStartInput,
+            carCapacityInput,
+            carFuelCostInput,
+            carFuelUsedInput,
+            carDistancetraveledInput,
+            carTireTypeSelect
+        );
     }
 
-    static async editCar(taskTitleField,
-        taskDescriptionField,
-        taskTimeInput,
-        inputCapacity,
-        fuelCostInput,
-        fuelUsedInput,
-        distanceTraveledInput,
-        taskTireTypeSelect) {
-        this.car.model = taskTitleField.value.trim();
-        this.car.description = taskDescriptionField.value.trim();
-        this.car.dateInsuranceStart = taskTimeInput.value;
-        this.car.insuranceStatus = AddAndList.getInsuranceStatus(Date.parse(taskTimeInput.value));
-        this.car.capacity = inputCapacity.value;
-        this.car.fuelCost = fuelCostInput.value;
-        this.car.fuelUsed = fuelUsedInput.value;
-        this.car.distanceTraveled = distanceTraveledInput.value;
-        this.car.tireType = taskTireTypeSelect.value;
+    static async editCar(carModelInput,
+        carDescriptionField,
+        dateInsuranceStartInput,
+        carCapacityInput,
+        carFuelCostInput,
+        carFuelUsedInput,
+        carDistancetraveledInput,
+        carTireTypeSelect) {
+        this.car.model = carModelInput.value.trim();
+        this.car.description = carDescriptionField.value.trim();
+        this.car.dateInsuranceStart = dateInsuranceStartInput.value;
+        this.car.insuranceStatus = AddAndList.getInsuranceStatus(Date.parse(dateInsuranceStartInput.value));
+        this.car.capacity = carCapacityInput.value;
+        this.car.fuelCost = carFuelCostInput.value;
+        this.car.fuelUsed = carFuelUsedInput.value;
+        this.car.distanceTraveled = carDistancetraveledInput.value;
+        this.car.tireType = carTireTypeSelect.value;
         await Cars.editCar(this.car);
 
         this.redirectToCarInfo();
