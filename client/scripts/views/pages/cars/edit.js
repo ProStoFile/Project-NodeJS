@@ -1,7 +1,5 @@
 import Component from '../../../views/component.js';
 
-import Error404 from '../../../views/pages/error404.js';
-
 import Cars from '../../../models/cars.js';
 
 import AddAndList from './add-list.js';
@@ -17,7 +15,7 @@ class Edit extends Component {
         let html;
 
         const { id,
-            title,
+            model,
             description,
             capacity,
             dateInsuranceStart,
@@ -36,7 +34,7 @@ class Edit extends Component {
                                     <b>Модель:</b>
                                 </div>
                                 <div>
-                                    <input class="task-edit__title" type="text" value="${title}">
+                                    <input class="task-edit__title" type="text" value="${model}">
                                 </div>
                             </div>
                             <div class="task-edit__params-container">
@@ -155,7 +153,7 @@ class Edit extends Component {
         fuelUsedInput,
         distanceTraveledInput,
         taskTireTypeSelect) {
-        this.car.title = taskTitleField.value.trim();
+        this.car.model = taskTitleField.value.trim();
         this.car.description = taskDescriptionField.value.trim();
         this.car.dateInsuranceStart = taskTimeInput.value;
         this.car.insuranceStatus = AddAndList.getInsuranceStatus(Date.parse(taskTimeInput.value));

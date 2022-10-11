@@ -26,7 +26,6 @@ app.post('/api/car', (req, res) => {
 	car.daysInsuranceValidityLeft = car.daysInsuranceValidityLeft;
 	car.id = shortId.generate();
 	car.description = car.description || 'Пусто';
-	car.status = 'In Progress';
 	car.capacity = car.capacity || 'Объем не указан';
 	car.fuelUsed = car.fuelUsed || 'Не указано';
 	car.distanceTraveled = car.distanceTraveled || 'Не указано';
@@ -53,7 +52,7 @@ app.put('/api/car/:id', (req, res) => {
 		car = carsData.find(car => car.id === req.params.id),
 		updatedCar = req.body;
 
-	car.title = updatedCar.title;
+	car.model = updatedCar.model;
 	car.description = updatedCar.description || 'Нет описания';
 	car.dateInsuranceStart = updatedCar.dateInsuranceStart;
 	car.capacity = updatedCar.capacity;
@@ -101,7 +100,7 @@ app.delete('/api/car/:id', (req, res) => {
 app.get('/api/cars/sortbymodel', (req, res) => {
 	const carsData = getCarsFromDB();
 	carsData.sort((one, two) => {
-		let modelOne = one.title.toLowerCase(), modelTwo = two.title.toLowerCase();
+		let modelOne = one.model.toLowerCase(), modelTwo = two.model.toLowerCase();
 		if (modelOne < modelTwo)
 			return -1
 		if (modelOne > modelTwo)

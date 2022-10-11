@@ -16,7 +16,7 @@ class Info extends Component {
 
 		if (!car.error) {
 			const { id,
-				title,
+				model,
 				description,
 				dateInsuranceStart,
 				capacity,
@@ -38,7 +38,7 @@ class Info extends Component {
 									<img class="params-icon" src="styles/img/icons/params/car.png">
 									<b>Модель: </b>
 								</div>
-								<div>${title}</div>
+								<div>${model}</div>
 							</div>				
 							<div class="task-edit__params-container">
 								<div>

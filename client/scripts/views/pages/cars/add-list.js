@@ -285,7 +285,7 @@ class AddAndList extends Component {
         carTireTypeSelect
     ) {
         let newCar = {
-            title: carModelField.value.trim(),
+            model: carModelField.value.trim(),
             description: carDescriptionField.value.trim(),
             dateInsuranceStart: carTimeField.value,
             capacity: carCapacityField.value,
@@ -312,7 +312,7 @@ class AddAndList extends Component {
             
                 <div class="task__title car-redirect" data-id="${car.id}">
                     <div class="task__title-images car-redirect"></div>
-                    ${car.title}
+                    ${car.model}
                     <div class="task__title-images car-redirect">
                         <a class="task__btn-edit" href="#/car/${car.id}/edit"><img class="task__title-img task__btn-edit" href="#/car/${car.id}/edit" src="styles/img/icons/pencil.png"></a>
                         <img class="task__title-img task__btn-remove" data-id="${car.id}" src="styles/img/icons/bin.png">
