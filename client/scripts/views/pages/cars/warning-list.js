@@ -109,7 +109,7 @@ class Warning extends Component {
             <div class="task car-redirect" data-id="${car.id}">
                 <div class="task__title car-redirect" data-id="${car.id}">
                     <div class="task__title-images car-redirect"></div>
-                    ${car.title}
+                    ${car.model}
                     <div class="task__title-images car-redirect"></div>  
                 </div>                                 
                 <div class="task-content car-redirect" data-id="${car.id}">
@@ -151,7 +151,7 @@ class Warning extends Component {
             <div class="task car-redirect" data-id="${car.id}">
                 <div class="task__title car-redirect" data-id="${car.id}">
                     <div class="task__title-images car-redirect"></div>
-                        ${car.title}
+                        ${car.model}
                     <div class="task__title-images car-redirect"></div> 
                 </div>                                 
                 <div class="task-content car-redirect" data-id="${car.id}">
@@ -211,9 +211,9 @@ class Warning extends Component {
     }
 
     static setActions() {
-        const tasksContainer = document.getElementsByClassName('tasks')[0];
+        const carsContainer = document.getElementsByClassName('tasks')[0];
 
-        tasksContainer.onclick = event => {
+        carsContainer.onclick = event => {
             const target = event.target,
                 targetClassList = target.classList;
 
