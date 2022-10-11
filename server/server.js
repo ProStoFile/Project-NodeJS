@@ -16,9 +16,9 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.get('/api/tasks', (req, res) => res.send(getCarsFromDB()));
+app.get('/api/cars', (req, res) => res.send(getCarsFromDB()));
 
-app.post('/api/task', (req, res) => {
+app.post('/api/car', (req, res) => {
 	const carsData = getCarsFromDB(),
 		car = req.body;
 
@@ -42,14 +42,14 @@ app.post('/api/task', (req, res) => {
 	res.send(car);
 });
 
-app.get('/api/task/:id', (req, res) => {
+app.get('/api/car/:id', (req, res) => {
 	const carsData = getCarsFromDB(),
 		car = carsData.find(car => car.id === req.params.id);
 
 	car ? res.send(car) : res.status(404).send({ error: 'Car with given ID was not found' });
 });
 
-app.put('/api/task/:id', (req, res) => {
+app.put('/api/car/:id', (req, res) => {
 	const carsData = getCarsFromDB(),
 		car = carsData.find(car => car.id === req.params.id),
 		updatedCar = req.body;
@@ -69,7 +69,7 @@ app.put('/api/task/:id', (req, res) => {
 	res.sendStatus(204);
 });
 
-app.put('/api/tasks/setorder', (req, res) => {
+app.put('/api/cars/setorder', (req, res) => {
 	const carsData = getCarsFromDB(),
 		carsOrder = req.body;
 	carsData.sort((one, two) => carsOrder.indexOf(one.id) - carsOrder.indexOf(two.id));
@@ -86,12 +86,12 @@ function setCarsToDB(carsData) {
 
 app.listen(3000, () => console.log('Сервер запущен...'));
 
-app.delete('/api/tasks', (req, res) => {
+app.delete('/api/cars', (req, res) => {
 	setCarsToDB([]);
 	res.sendStatus(204);
 });
 
-app.delete('/api/task/:id', (req, res) => {
+app.delete('/api/car/:id', (req, res) => {
 	const carsData = getCarsFromDB(),
 		selectedCar = carsData.find((car) => car.id === req.params.id),
 		updatedCarList = carsData.filter((car) => car.id !== selectedCar.id);
@@ -99,7 +99,7 @@ app.delete('/api/task/:id', (req, res) => {
 	res.sendStatus(204);
 })
 
-app.get('/api/tasks/sortbymodel', (req, res) => {
+app.get('/api/cars/sortbymodel', (req, res) => {
 	const carsData = getCarsFromDB();
 	carsData.sort((one, two) => {
 		let modelOne = one.title.toLowerCase(), modelTwo = two.title.toLowerCase();
@@ -113,7 +113,7 @@ app.get('/api/tasks/sortbymodel', (req, res) => {
 	res.send(carsData);
 });
 
-app.get('/api/tasks/sortbydistancetraveled', (req, res) => {
+app.get('/api/cars/sortbydistancetraveled', (req, res) => {
 	const carsData = getCarsFromDB();
 	carsData.sort((one, two) => {
 		return two.distanceTraveled - one.distanceTraveled;
@@ -122,7 +122,7 @@ app.get('/api/tasks/sortbydistancetraveled', (req, res) => {
 	res.send(carsData);
 });
 
-app.get('/api/tasks/sortbytotalfuelcost', (req, res) => {
+app.get('/api/cars/sortbytotalfuelcost', (req, res) => {
 	const carsData = getCarsFromDB();
 	carsData.sort((one, two) => {
 		return two.totalFuelCost - one.totalFuelCost;

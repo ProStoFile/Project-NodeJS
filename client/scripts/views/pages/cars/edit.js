@@ -170,7 +170,7 @@ class Edit extends Component {
     }
 
     static redirectToCarInfo() {
-        location.hash = `#/task/${this.car.id}`;
+        location.hash = `#/car/${this.car.id}`;
     }
 }
 

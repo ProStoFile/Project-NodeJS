@@ -9,7 +9,7 @@ class Header extends Component {
                 <a class="header__link ${!page ? 'active' : ''}" href="#/">
                     О нас
                 </a>
-                <a class="header__link ${page === 'tasks' ? 'active' : ''}" href="#/tasks">
+                <a class="header__link ${page === 'cars' ? 'active' : ''}" href="#/cars">
                     Авто
                 </a> 
                 <a class="header__link ${page === 'warning' ? 'active' : ''}" href="#/warning">

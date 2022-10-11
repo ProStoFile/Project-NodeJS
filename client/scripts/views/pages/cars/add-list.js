@@ -294,12 +294,12 @@ class AddAndList extends Component {
             tireType: taskTireTypeSelect.value,
         };
 
-        newCar = await Cars.addTask(newCar);
+        newCar = await Cars.addCar(newCar);
 
-        this.clearAddTask(taskTitleField, taskDescriptionField, addTaskBtn);
+        this.clearAddCar(taskTitleField, taskDescriptionField, addTaskBtn);
         clearTasksListBtn.disabled && (clearTasksListBtn.disabled = false);
 
-        tasksList.insertAdjacentHTML('beforeEnd', this.getTaskHTML(newCar));
+        tasksList.insertAdjacentHTML('beforeEnd', this.getCarHTML(newCar));
 
         this.countTasksAmount();
     }
@@ -315,7 +315,7 @@ class AddAndList extends Component {
                     <div class="task__title-images car-redirect"></div>
                     ${car.title}
                     <div class="task__title-images car-redirect">
-                        <a class="task__btn-edit" href="#/task/${car.id}/edit"><img class="task__title-img task__btn-edit" href="#/task/${car.id}/edit" src="styles/img/icons/pencil.png"></a>
+                        <a class="task__btn-edit" href="#/car/${car.id}/edit"><img class="task__title-img task__btn-edit" href="#/car/${car.id}/edit" src="styles/img/icons/pencil.png"></a>
                         <img class="task__title-img task__btn-remove" data-id="${car.id}" src="styles/img/icons/bin.png">
                     </div>
    
@@ -446,7 +446,7 @@ class AddAndList extends Component {
     }
 
     static redirectToCarInfo(id) {
-        location.hash = `#/task/${id}`;
+        location.hash = `#/car/${id}`;
     }
 
     static changeDateFormat(date) {

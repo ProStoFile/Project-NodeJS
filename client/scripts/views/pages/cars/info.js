@@ -176,8 +176,8 @@ class Info extends Component {
 				</div>
 				<div class="task-edit__buttons">
 					<div class="task-edit__buttons-container">
-						<a class="task-info__btn-back button" href="#/tasks">Вернуться</a>
-            	    	<a class="task-info__btn-edit button" href="#/task/${id}/edit">Изменить</a>
+						<a class="task-info__btn-back button" href="#/cars">Вернуться</a>
+            	    	<a class="task-info__btn-edit button" href="#/car/${id}/edit">Изменить</a>
             		</div>
 				</div>
 			</div>

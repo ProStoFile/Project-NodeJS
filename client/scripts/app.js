@@ -13,10 +13,10 @@ import Warning from './views/pages/cars/warning-list.js';
 
 const Routes = {
     '/': About,
-    '/tasks': AddAndList,
+    '/cars': AddAndList,
     '/warning': Warning,
-    '/task/:id': Info,
-    '/task/:id/edit': Edit
+    '/car/:id': Info,
+    '/car/:id/edit': Edit
 };
 
 const router = async() => {
