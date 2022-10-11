@@ -34,7 +34,6 @@ app.post('/api/car', (req, res) => {
 	car.totalFuelUsed = (car.fuelUsed * car.distanceTraveled).toFixed(1);
 	car.totalFuelCost = (car.totalFuelUsed * car.fuelCost).toFixed(2);
 	car.tireType = car.tireType;
-	car.dateAdded = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
 
 	carsData.push(car);
 	setCarsToDB(carsData);
