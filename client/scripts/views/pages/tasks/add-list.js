@@ -483,11 +483,14 @@ class AddAndList extends Component {
 
     static getWordDaysForm(number) {
 
-        if (number % 100 == 11 || number % 10 == 0) {
+        if (number % 100 > 10 &&
+            number % 100 < 20 ||
+            number % 10 == 0) {
             return 'дней';
         } else if (number % 10 == 1) {
             return 'день';
-        } else if (number % 10 > 1 && number % 10 < 5) {
+        } else if (number % 10 > 1 &&
+            number % 10 < 5) {
             return 'дня';
         } else {
             return 'дней';

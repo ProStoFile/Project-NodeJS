@@ -78,7 +78,7 @@ class Info extends Component {
 							</div>
 								<div class="task-edit__params-item">
 								${Math.abs(AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart))}
-								<p>${AddAndList.getWordDaysForm(Math.abs(AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart)))}назад</p>
+								<p>${AddAndList.getWordDaysForm(Math.abs(AddAndList.getDaysInsuranceValidityLeft(dateInsuranceStart)))} назад</p>
 								</div>
 									` : `
 								<div>
