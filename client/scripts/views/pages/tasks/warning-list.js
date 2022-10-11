@@ -18,45 +18,47 @@ class Warning extends Component {
 
             if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length > 0 &&
                 tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length > 0) {
-                html =
-                    `   
-            <div class="tasks">
-                <div class="_container">
-                    <div class="warning-tasks__title">
-                        <div class="warning-tasks__title-text">
-                            Авто с просроченной страховкой:
-                            ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length}
+                html = `   
+                <div class="tasks">
+                    <div class="_container">
+                        <div class="warning-tasks__title">
+                            <div class="warning-tasks__title-text">
+                                Авто с просроченной страховкой:
+                                ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length}
+                            </div>
+                        </div>           
+                        <div class="tasks__list">
+                            ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).map(task => this.getTaskInsuranceWarningHTML(task)).join('')}
+                        </div>                   
+                        <div class="warning-tasks__title">
+                            Авто с неверным типом шин:
+                            ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length}
+                        </div>                  
+                        <div class="tasks__list">
+                            ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').map(task => this.getTaskTireTypeWarningHTML(task)).join('')}
                         </div>
-                    </div>           
-                    <div class="tasks__list">
-                        ${tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).map(task => this.getTaskInsuranceWarningHTML(task)).join('')}
-                </div>                   
-                <div class="warning-tasks__title">
-                    Авто с неверным типом шин:
-                    ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length}
-                </div>                  
-                <div class="tasks__list">
-                    ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').map(task => this.getTaskTireTypeWarningHTML(task)).join('')}
+                    </div>        
                 </div>
-                </div>        
-            </div>`
+            `
             } else if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length == 0 &&
                 tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length == 0) {
-                html = `<div class="tasks">
-                            <div class="_container">
-                                <div class="warning-tasks__title">
-                                    <div class="warning-images">
-                                    <img class="warning-icon" src="styles/img/icons/congratulations/party.png">
-                                    <img class="warning-icon" src="styles/img/icons/congratulations/garland.png">
-                                    <img class="warning-icon" src="styles/img/icons/congratulations/balloons.png">
-                                    <img class="warning-icon" src="styles/img/icons/congratulations/balloons.png">
-                                    <img class="warning-icon" src="styles/img/icons/congratulations/garland.png">
-                                    <img class="warning-icon" src="styles/img/icons/congratulations/party.png">
-                                    </div>
-                                        Все Ваши авто в порядке. Так держать!                                       
-                                    </div>
-                                </div>
-                            </div>`
+                html = `
+                <div class="tasks">
+                    <div class="_container">
+                        <div class="warning-tasks__title">
+                            <div class="warning-images">
+                            <img class="warning-icon" src="styles/img/icons/congratulations/party.png">
+                            <img class="warning-icon" src="styles/img/icons/congratulations/garland.png">
+                            <img class="warning-icon" src="styles/img/icons/congratulations/balloons.png">
+                            <img class="warning-icon" src="styles/img/icons/congratulations/balloons.png">
+                            <img class="warning-icon" src="styles/img/icons/congratulations/garland.png">
+                            <img class="warning-icon" src="styles/img/icons/congratulations/party.png">
+                            </div>
+                                Все Ваши авто в порядке. Так держать!                                       
+                            </div>
+                        </div>
+                    </div>
+                `
             } else if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length > 0 &&
                 tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length == 0) {
                 html = `   
@@ -77,27 +79,23 @@ class Warning extends Component {
             } else if (tasks.filter(task => this.checkIfInsuranceIsExpired(task.dateInsuranceStart)).length == 0 &&
                 tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length >> 0) {
                 html = `   
-            <div class="tasks">
-                <div class="_container">
-                <div class="warning-tasks__title">
-                Авто с неверным типом шин:
+                <div class="tasks">
+                    <div class="_container">
+                        <div class="warning-tasks__title">
+                            Авто с неверным типом шин:
                 ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').length}
-            </div>                  
-            <div class="tasks__list">
+                        </div>                  
+                        <div class="tasks__list">
                 ${tasks.filter(task => AddAndList.checkTiresStatus(task.tireType) === 'Да').map(task => this.getTaskTireTypeWarningHTML(task)).join('')}
-            </div>
-            </div>                                  
+                        </div>
+                    </div>                                  
                 </div>        
             </div>
-            `}
-
-
-
-            ;
+            `
+            };
         } else {
             html = Error404.render();
         }
-
         return html;
     }
 
@@ -107,30 +105,24 @@ class Warning extends Component {
 
     static getTaskInsuranceWarningHTML(task) {
         return `
-        <div class="task__item">
-            
+        <div class="task__item">           
             <div class="task car-redirect" data-id="${task.id}">
-
-            
                 <div class="task__title car-redirect" data-id="${task.id}">
                     <div class="task__title-images car-redirect"></div>
                     ${task.title}
                     <div class="task__title-images car-redirect"></div>  
-                </div>                  
-                
+                </div>                                 
                 <div class="task-content car-redirect" data-id="${task.id}">
                     <div class="task__img-container car-redirect" data-id="${task.id}">
                         <img class="task__img car-redirect" data-id="${task.id}" src="styles/img/task__logo.png">
                     </div>
-                    <div class="task-content__params car-redirect" data-id="${task.id}">
-                    
+                    <div class="task-content__params car-redirect" data-id="${task.id}">                    
 					    <div class="task-edit__params-container car-redirect" data-id="${task.id}">
 					    	<b class="task__params-values car-redirect" data-id="${task.id}">Оформлена:</b>
 					    	<div class="task__params-values car-redirect" data-id="${task.id}">
                             ${AddAndList.changeDateFormat(task.dateInsuranceStart)}
 					    	</div>
 					    </div>
-
                         <div class="task-edit__params-container car-redirect" data-id="${task.id}">
 					    	<b class="task__params-values car-redirect" data-id="${task.id}">Истекла:</b>
 					    	<div class="task__params-values car-redirect" data-id="${task.id}">
@@ -139,7 +131,6 @@ class Warning extends Component {
                                 </p>
 					    	</div>
 					    </div>
-
                         <div class="task-edit__params-container car-redirect" data-id="${task.id}">
 					    	<b class="task__params-values car-redirect" data-id="${task.id}">Опоздание:</b>
 					    	<div class="task__params-values car-redirect" data-id="${task.id}">
@@ -156,37 +147,30 @@ class Warning extends Component {
 
     static getTaskTireTypeWarningHTML(task) {
         return `
-        <div class="task__item">
-            
+        <div class="task__item">           
             <div class="task car-redirect" data-id="${task.id}">
-
-            
                 <div class="task__title car-redirect" data-id="${task.id}">
                     <div class="task__title-images car-redirect"></div>
                         ${task.title}
                     <div class="task__title-images car-redirect"></div> 
-                </div>                  
-                
+                </div>                                 
                 <div class="task-content car-redirect" data-id="${task.id}">
                     <div class="task__img-container car-redirect" data-id="${task.id}">
                         <img class="task__img car-redirect" data-id="${task.id}" src="styles/img/task__logo.png">
                     </div>
-                    <div class="task-content__params car-redirect" data-id="${task.id}">
-                    
+                    <div class="task-content__params car-redirect" data-id="${task.id}">                   
                         <div class="task-edit__params-container car-redirect" data-id="${task.id}">
                             <b class="task__params-values car-redirect" data-id="${task.id}">Текущий сезон:</b>
                             <div class="task__params-values car-redirect" data-id="${task.id}">
                                 ${this.getCurrentSeason()}
                             </div>
                         </div>
-
 					    <div class="task-edit__params-container car-redirect" data-id="${task.id}">
 					    	<b class="task__params-values car-redirect" data-id="${task.id}">Установлены шины:</b>
 					    	<div class="task__params-values car-redirect" data-id="${task.id}">
                                 ${task.tireType}
 					    	</div>
 					    </div>
-
                         <div class="task-edit__params-container car-redirect" data-id="${task.id}">
 					    	<b class="task__params-values car-redirect" data-id="${task.id}">До смены сезона:</b>
 					    	<div class="task__params-values car-redirect" data-id="${task.id}">
@@ -234,14 +218,12 @@ class Warning extends Component {
                 targetClassList = target.classList;
 
             switch (true) {
-
                 case targetClassList.contains('car-redirect'):
                     AddAndList.redirectToTaskInfo(target.dataset.id);
                     break;
             }
         };
     }
-
 }
 
 export default Warning;
